@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+
+.nav {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav > ul {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .nav > ul > li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav > ul > li > a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+  }
+
+.nav ul ul {
+    display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 0;
+  }
+
+  .nav ul ul li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 143px;
+  }
+
+  .nav ul ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+.nav ul {
+    margin: 0;
+}
+
+.nav ul li:hover > ul {
+    display: block;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    display: inline-block;
+    padding: .5em;
+    color: black;
+    font-size: larger;
+    text-decoration: none;
+}
+
+
+.main-nav {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: lighter;
+    border-bottom: 2px solid #0366d6;
+}
+
+.main-nav li {
+    padding: 0 5%;
+}
+
+.nav a:hover {
+    background-color:#0366d6
+}
+
+.main-header {
+    //background-color: white;
+    //background-image: url("https://c1.wallpaperflare.com/preview/946/194/376/graffiti-background-grunge-street-art.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    padding-bottom: 50px;
+}
+
+.site-name {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 30px;
+   // font-family: "Booter - Zero Zero";
+   // font-weight: normal;
+    color: black;
+    width: 10px; 
+    height: 10px;
+
+    .logo {
+        margin-left: 50px;
+    }
+}
+
+/*
+.main-footer {
+    //background-image: url("https://c1.wallpaperflare.com/preview/946/194/376/graffiti-background-grunge-street-art.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    padding-bottom: 30px;
+    //background-color: #56CCF2;
+    //padding: .25em 0;
+}
+
+// .main-footer-container {
+//     //display: flex;
+//     //align-items: center;
+// }
+.footer-name{
+    text-align: center;
+    color: black;
+    margin-top: 0px;
+}
+*/
