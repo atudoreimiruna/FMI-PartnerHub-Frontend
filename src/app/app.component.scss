@@ -25,7 +25,7 @@
   .nav > ul > li > a {
     display: block;
     padding: 10px 20px;
-    color: #333;
+    color: #000000;
     text-decoration: none;
   }
 
@@ -95,6 +95,7 @@
     background-blend-mode: multiply;
     background-size: cover;
     padding-bottom: 50px;
+    z-index: 1000;
 }
 
 .site-name {
@@ -107,6 +108,7 @@
     color: black;
     width: 10px; 
     height: 10px;
+    background-size: "cover";
 
     .logo {
         margin-left: 50px;

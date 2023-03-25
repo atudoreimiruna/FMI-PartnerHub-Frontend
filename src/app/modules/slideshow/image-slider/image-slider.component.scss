@@ -1,7 +1,7 @@
 .slide {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     background-size: cover;
     background-position: center;
   }
@@ -12,8 +12,8 @@
     transform: translate(0, -50%);
     right: 32px;
     font-size: 45px;
-    color: #fff;
-    z-index: 1;
+    color: #FFE0B2;
+    //z-index: 1;
     cursor: pointer;
   }
   
@@ -23,8 +23,8 @@
     transform: translate(0, -50%);
     left: 32px;
     font-size: 45px;
-    color: #fff;
-    z-index: 1;
+    color: #FFE0B2;
+    //z-index: 1;
     cursor: pointer;
   }
   
@@ -42,4 +42,5 @@
     margin: 0 3px;
     cursor: pointer;
     font-size: 20px;
+    color:#FFE0B2
   }

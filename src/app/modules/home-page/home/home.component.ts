@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Slide } from 'src/app/interfaces/slide';
 
-
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
