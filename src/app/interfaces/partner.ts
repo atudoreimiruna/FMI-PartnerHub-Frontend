@@ -4,4 +4,5 @@ export interface Partner {
     description : string;
     address : string;
     contact : string;
+    mainImageUrl : string;
 }

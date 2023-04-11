@@ -80,10 +80,15 @@
     font-size: 1.1em;
     font-weight: lighter;
     border-bottom: 2px solid #0366d6;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 .main-nav li {
     padding: 0 5%;
+}
+
+.main-nav li a {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 .nav a:hover {
