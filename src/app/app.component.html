@@ -7,16 +7,21 @@
           <li>
               <a href="http://localhost:4200/">PARTENERI</a>
               <ul>
-                  <li><a href="http://localhost:4200/">Partener 1</a></li>
-                  <li><a href="http://localhost:4200/">Partener 2</a></li>
-                  <li><a href="http://localhost:4200/">Partener 3</a></li>
+                <li *ngFor="let partner of partners">
+                  <a href="http://localhost:4200/partner/{{ partner.id }}">{{ partner.name }}</a>
+                </li>
               </ul>
           </li>
-          <li><a href="http://localhost:4200/home">EVENIMENTE</a></li>
-          <li><a href="http://localhost:4200/home">JOBURI</a></li>
-          <li><a href="http://localhost:4200/home">PRACTICĂ</a></li>
+          <li><a href="http://localhost:4200/evenimente">EVENIMENTE</a></li>
+          <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
+          <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
+
+          <!-- Add url for user profile -->
+          <li><a routerLink="/">
+            <mat-icon class="nav-icon">account_circle</mat-icon>
+          </a></li>
       </ul>
-  </nav>
+    </nav>
 </div>
   <h1 class="site-name">
     <a href="https://fmi.unibuc.ro/">

@@ -8,31 +8,77 @@
     Fă cunoștință cu firmele colaboratoare facultății!
   </h2>
 
-  <!--
-  <div *ngFor="let partner of partners">
-    <div class="card bg-dark text-white">
-      <img class="card-img" src="{{partner.mainImageUrl}}" alt="Card image"> 
-      <div class="card-img-overlay">
-        <h5 class="card-title">
-          {{partner.name}}
-        </h5>
-        <p class="card-text">
-          {{partner.description}}
-        </p>
-        <a href="#" class="btn btn-primary">View profile</a>
-      </div>
-    </div>
-  </div>
--->
-
 <div *ngFor="let partner of partners">
   <div class="card mb-3">
     <img class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
     <div class="card-body">
       <h5 class="card-title">{{partner.name}}</h5>
       <p class="card-text">{{partner.description}}</p>
-      <a href="#" class="btn btn-primary">View profile</a>
+      <a href="http://localhost:4200/partener/{{ partner.id }}" class="btn btn-primary">View profile</a>
     </div>
   </div>
-  
+</div>
+
+<!--
+  <div *ngFor="let job of jobs">
+  <div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="{{job.partnerLogo}}" alt="Card image cap" >
+    <div class="card-body">
+      <h5 class="card-title">{{ job.title }}</h5>
+      <p class="card-text">{{ job.description }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated {{ job.id }} ago</small>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<div *ngFor="let job of jobs">
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image" >
+      <img src="{{job.partnerLogo}}" alt="Partner Logo">
+    </div>
+    <mat-card-title>{{ job.title }}</mat-card-title>
+    <mat-card-subtitle>{{ job.experience }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ job.description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="btn btn-primary" mat-button>Apply</button>
+    <button class="btn btn-primary" mat-button>Favorite</button>
+  </mat-card-actions>
+</mat-card>
+</div>
+
+<c-row [gutter]="4" class="mb-3" [md]="2" [xs]="1">
+  <c-col *ngFor="let card of cards">
+    <c-card>
+      <img cCardImg="top" src="./assets/img/angular.jpg">
+      <c-card-body>
+        <h5 cCardTitle>Card title</h5>
+        <p cCardText>
+          This is a wider card with supporting text below as a natural lead-in to
+          additional content. This content is a little bit longer.
+        </p>
+      </c-card-body>
+      <c-card-footer>
+        <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+      </c-card-footer>
+    </c-card>
+  </c-col>
+</c-row>
+-->
+
+<div class="cards_container">
+  <mat-card *ngFor = "let job of jobs" class="mat_card">
+      <img [src] = "job.partnerLogo" class="card_image">
+      <mat-card-content>{{ job.title }} </mat-card-content>
+  </mat-card>
 </div>
