@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ImageSliderModule } from '../slideshow/image-slider.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MatCardModule } from '@angular/material/card';
     CommonModule,
     ImageSliderModule,
     HomeRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   exports: [
     HomeComponent

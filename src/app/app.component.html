@@ -8,18 +8,19 @@
               <a href="http://localhost:4200/">PARTENERI</a>
               <ul>
                 <li *ngFor="let partner of partners">
-                  <a href="http://localhost:4200/partner/{{ partner.id }}">{{ partner.name }}</a>
+                  <a href="http://localhost:4200/partener/{{ partner.id }}">{{ partner.name }}</a>
                 </li>
               </ul>
           </li>
-          <li><a href="http://localhost:4200/evenimente">EVENIMENTE</a></li>
           <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
           <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
 
           <!-- Add url for user profile -->
-          <li><a routerLink="/">
-            <mat-icon class="nav-icon">account_circle</mat-icon>
-          </a></li>
+          <li>
+            <a routerLink="/">
+              <mat-icon class="nav-icon">account_circle</mat-icon>
+            </a>
+          </li>
       </ul>
     </nav>
 </div>

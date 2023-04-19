@@ -19,6 +19,6 @@ export class PartnersService {
   }
 
   public getPartnerById(id: any): Observable<Partner> {
-    return this.http.get<any>(`${this.url}/id/${id}`);
+    return this.http.get<any>(`${this.url}/${id}`);
   }
 }
