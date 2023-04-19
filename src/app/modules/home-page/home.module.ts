@@ -5,20 +5,25 @@ import { ImageSliderModule } from '../slideshow/image-slider.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { ProfileCompModule } from '../partner-profile-comp/profile-comp.module';
+import { PartnerComponent } from './partner-profile/partner.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    PartnerComponent
   ],
   imports: [
     CommonModule,
     ImageSliderModule,
     HomeRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    ProfileCompModule
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    PartnerComponent
   ]
 })
 

@@ -1,14 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Partner } from 'src/app/interfaces/partner';
 import { PartnersService } from 'src/app/services/partners.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './partner.component.html',
-    styleUrls: ['./partner.component.scss']
+    selector: 'profile-left',
+    templateUrl: './profile-left.component.html',
+    styleUrls: ['./profile-left.component.scss']
 })
-export class PartnerComponent implements OnDestroy, OnInit {
+export class ProfileLeftComponent implements OnDestroy, OnInit {
 
   public partnerId!: string;
   public partners!: Partner[];

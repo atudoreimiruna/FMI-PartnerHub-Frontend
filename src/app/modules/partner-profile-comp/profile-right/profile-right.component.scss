@@ -1,0 +1,19 @@
+.card {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  .card-body {
+      font-family: 'Roboto',Helvetica,Arial,sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .card-title {
+          font-weight: bold;
+          size: 50px;
+      }
+  }
+}

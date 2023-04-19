@@ -1,14 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {
-    interval,
-    Observable,
-    startWith,
-    Subject,
-    switchMap,
-    timer,
-  } from 'rxjs';
 import { Slide } from 'src/app/interfaces/slide';
-import { NgModule } from '@angular/core';
 
 @Component({
     selector: 'image-slider',
@@ -25,9 +16,11 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.resetTimer();
   }
+
   ngOnDestroy() {
     window.clearTimeout(this.timeoutId);
   }
+  
   resetTimer() {
     if (this.timeoutId) {
       window.clearTimeout(this.timeoutId);

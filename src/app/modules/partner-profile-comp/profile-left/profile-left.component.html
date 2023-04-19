@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ partner.logoImageUrl }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ partner.name }}</h5>
+      <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p>
+      <a href="#" class="btn btn-primary">SALVEAZĂ</a>
+      <a href="#" class="btn btn-second">Joburi ({{ partner.jobs.length }})</a>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Contact</h5>
+      <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+      <p class="card-text">{{ partner.contact }}</p>
+      <!-- <a href="#" class="card-link">Card link</a> -->
+      <!-- <a href="#" class="card-link">Another link</a> -->
+    </div>
+</div>
