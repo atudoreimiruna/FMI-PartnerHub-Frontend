@@ -16,7 +16,7 @@
     <img class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
     <div class="card-body">
       <h5 class="card-title">{{partner.name}}</h5>
-      <p class="card-text">{{partner.description}}</p>
+      <p class="card-text">{{partner.mainDescription}}</p>
       <a href="http://localhost:4200/partener/{{ partner.id }}" class="btn btn-primary">View profile</a>
     </div>
   </div>
@@ -32,10 +32,11 @@
 <div class="cards_container">
   <mat-card *ngFor = "let job of jobs" class="mat_card">
       <img [src] = "job.partnerLogo" class="card_image">
-      <mat-card-content>{{ job.title }} </mat-card-content>
-      <mat-card-actions>
+      <mat-card-content class="card_text">{{ job.title }} </mat-card-content>
+      <mat-card-actions class="card_button">
+      <a href="http://localhost:4200/joburi/{{ job.id }}">
         <button mat-button class="button_apply">APLICĂ</button>
-        <button mat-button class="button_save">SALVEAZĂ</button>
+      </a>
     </mat-card-actions>
   </mat-card>
 </div>

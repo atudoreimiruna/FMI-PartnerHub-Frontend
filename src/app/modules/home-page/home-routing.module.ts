@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PartnerComponent } from './partner-profile/partner.component';
+import { JobComponent } from './job/job.component';
+import { JobProfileComponent } from './job-profile/job-profile.component';
 
 const routes: Routes = [
     {
-        path: '',
-        pathMatch: 'full',
-        component: HomeComponent
+      path: '',
+      pathMatch: 'full',
+      component: HomeComponent
     },
     {
       path: 'partener/:id',
@@ -18,8 +20,12 @@ const routes: Routes = [
       component: PartnerComponent
     },
     {
+      path: 'joburi/:id',
+      component: JobProfileComponent
+    },
+    {
       path: 'joburi',
-      component: PartnerComponent
+      component: JobComponent
     },
     {
       path: 'practica',

@@ -7,11 +7,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ProfileCompModule } from '../partner-profile-comp/profile-comp.module';
 import { PartnerComponent } from './partner-profile/partner.component';
+import { JobComponent } from './job/job.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    PartnerComponent
+    PartnerComponent,
+    JobComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { PartnerComponent } from './partner-profile/partner.component';
   ],
   exports: [
     HomeComponent,
-    PartnerComponent
+    PartnerComponent,
+    JobComponent
   ]
 })
 

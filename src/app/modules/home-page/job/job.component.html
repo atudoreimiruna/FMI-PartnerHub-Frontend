@@ -1,0 +1,63 @@
+<div class="button-container">
+  <div class="dropdown">
+    <button class="dropdown-button" (click)="toggleDropdown()">
+      Locație
+      <span class="dropdown-arrow" [class.active]="isDropdownOpen"></span>
+    </button>
+    <div class="dropdown-menu" [class.active]="isDropdownOpen">
+      <li *ngFor="let address of uniqueAddresses" (click)="selectAddress(address)">
+        <a>{{ address }}</a>
+      </li>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-button" (click)="toggleDropdown1()">
+      Companie
+      <span class="dropdown-arrow" [class.active]="isDropdownOpen1"></span>
+    </button>
+    <div class="dropdown-menu" [class.active]="isDropdownOpen1">
+      <li *ngFor="let partner of uniquePartners" (click)="selectPartner(partner)">
+        <a>{{ partner }}</a>
+      </li>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let job of jobs">
+  <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px;" >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img class="card-img" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); margin-left: 50px;">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title" style="font-weight: bold;">{{ job.title }}</h5>
+
+            <p class="card-text">
+              <small class="text-muted">Locație: {{ job.address }}</small>
+            </p>
+
+            <p class="card-text">
+              <small class="text-muted">Last Updated: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
+            </p>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a class="page-link text-dark" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>
+
+

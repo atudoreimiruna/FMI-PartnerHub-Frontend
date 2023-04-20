@@ -7,6 +7,9 @@ export interface Job {
     experience: JobExperienceEnum;
     description : string;
     partnerLogo : string;
+    partnerName : string;
+    activated : boolean;
+    lastUpdated : string;
 }
 
 export enum JobExperienceEnum {

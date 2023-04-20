@@ -3,6 +3,7 @@ import { Job } from "./job";
 export interface Partner {
     id : number;
     name : string;
+    mainDescription : string;
     description : string;
     address : string;
     contact : string;
