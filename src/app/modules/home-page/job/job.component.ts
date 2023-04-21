@@ -39,12 +39,20 @@ export class JobComponent implements OnInit, OnDestroy {
 
   selectAddress(address: string) {
     this.selectedAddress = address;
-    this.getJobsByFilter(this.selectedPartner, this.selectedAddress);
+    if (this.selectedAddress === 'all') {
+      this.getAllJobs()
+    } else {
+      this.getJobsByFilter(undefined, this.selectedAddress);
+    }
   }
 
   selectPartner(partner: string) {
     this.selectedPartner = partner;
-    this.getJobsByFilter(this.selectedPartner, this.selectedAddress);
+    if (this.selectedPartner === 'all') {
+      this.getAllJobs()
+    } else {
+      this.getJobsByFilter(this.selectedPartner, undefined);
+    }
   }
 
   public getAllJobs(): void {

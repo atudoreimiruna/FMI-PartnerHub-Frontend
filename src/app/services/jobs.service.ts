@@ -18,10 +18,8 @@ export class JobsService {
     return this.http.get<any>(this.url);
   }
 
-  public getJobsFilter(partner?: string, address?: string, pageNumber = 1, pageSize = 10): Observable<Job[]> {
-    let params = new HttpParams()
-      .set('PageNumber', pageNumber.toString())
-      .set('PageSize', pageSize.toString());
+  public getJobsFilter(partner?: string, address?: string): Observable<Job[]> {
+    let params = new HttpParams();
   
     if (partner) {
       params = params.set('PartnerName', partner);
@@ -32,5 +30,4 @@ export class JobsService {
   
     return this.http.get<Job[]>('https://localhost:44330/api/jobs', { params });
   }
-
 }

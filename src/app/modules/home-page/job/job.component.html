@@ -5,6 +5,7 @@
       <span class="dropdown-arrow" [class.active]="isDropdownOpen"></span>
     </button>
     <div class="dropdown-menu" [class.active]="isDropdownOpen">
+      <li (click)="selectAddress('all')"><a>Arată toate</a></li>
       <li *ngFor="let address of uniqueAddresses" (click)="selectAddress(address)">
         <a>{{ address }}</a>
       </li>
@@ -17,6 +18,7 @@
       <span class="dropdown-arrow" [class.active]="isDropdownOpen1"></span>
     </button>
     <div class="dropdown-menu" [class.active]="isDropdownOpen1">
+      <li (click)="selectPartner('all')"><a>Arată toate</a></li>
       <li *ngFor="let partner of uniquePartners" (click)="selectPartner(partner)">
         <a>{{ partner }}</a>
       </li>
@@ -25,27 +27,28 @@
 </div>
 
 <div *ngFor="let job of jobs">
-  <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px;" >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img class="card-img" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); margin-left: 50px;">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title" style="font-weight: bold;">{{ job.title }}</h5>
+  <a href="http://localhost:4200/joburi/{{ job.id }}" class="text-reset text-decoration-none">
+    <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="card-img" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); margin-left: 50px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: bold;">{{ job.title }}</h5>
+              <p class="card-text">
+                <small class="text-muted">Locație: {{ job.address }}</small>
+              </p>
 
-            <p class="card-text">
-              <small class="text-muted">Locație: {{ job.address }}</small>
-            </p>
+              <p class="card-text">
+                <small class="text-muted">Last Updated: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
+              </p>
 
-            <p class="card-text">
-              <small class="text-muted">Last Updated: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
-            </p>
-
+            </div>
           </div>
         </div>
-      </div>
-  </div>
+    </div>
+  </a>
 </div>
 
 <div class="text-center">

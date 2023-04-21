@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Job } from 'src/app/interfaces/job';
 import { Partner } from 'src/app/interfaces/partner';
+import { JobsService } from 'src/app/services/jobs.service';
 import { PartnersService } from 'src/app/services/partners.service';
 
 @Component({
@@ -14,9 +16,11 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   public partners!: Partner[];
   public partner!: Partner;
   public message: any;
+  public jobs!: Job[];
   
   constructor(
     private partnersService: PartnersService,
+    private jobsService: JobsService,
     private route: ActivatedRoute
   ) { }
 
@@ -30,6 +34,13 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
       this.partner = result;
       console.log(this.partner);
     })
+  }
+
+  public getJobsByFilter(partner?: string) {
+    console.log("dfbvshdb")
+    this.jobsService.getJobsFilter(partner).subscribe(jobs => {
+      this.jobs = jobs;
+    });
   }
 
   ngOnDestroy(): void {
