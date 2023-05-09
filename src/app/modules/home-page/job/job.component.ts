@@ -42,7 +42,7 @@ export class JobComponent implements OnInit, OnDestroy {
     if (this.selectedAddress === 'all') {
       this.getAllJobs()
     } else {
-      this.getJobsByFilter(undefined, this.selectedAddress);
+      this.getJobsByFilter(this.selectedPartner, this.selectedAddress);
     }
   }
 
@@ -51,7 +51,7 @@ export class JobComponent implements OnInit, OnDestroy {
     if (this.selectedPartner === 'all') {
       this.getAllJobs()
     } else {
-      this.getJobsByFilter(this.selectedPartner, undefined);
+      this.getJobsByFilter(this.selectedPartner, this.selectedAddress);
     }
   }
 
