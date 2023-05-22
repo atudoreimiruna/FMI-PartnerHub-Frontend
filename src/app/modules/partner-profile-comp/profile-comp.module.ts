@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileLeftComponent } from './profile-left/profile-left.component';
 import { ProfileRightComponent } from './profile-right/profile-right.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,10 @@ import { ProfileRightComponent } from './profile-right/profile-right.component';
     ProfileRightComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAg2osjcgX8Xs-colEx3U2AsozS75gy76Y"
+  })
   ],
   exports: [
     ProfileLeftComponent,

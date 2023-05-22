@@ -7,14 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home-page/home.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { LoginModule } from "./modules/auth-page/auth/auth.module";
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     providers: [],
-    bootstrap: [AppComponent],
+    bootstrap: [
+        AppComponent
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -22,7 +25,8 @@ import { LoginModule } from "./modules/auth-page/auth/auth.module";
         MatIconModule,
         HomeModule,
         HttpClientModule,
-        OAuthModule.forRoot()
+        OAuthModule.forRoot(),
+        NgxPaginationModule
     ]
 })
 export class AppModule { }

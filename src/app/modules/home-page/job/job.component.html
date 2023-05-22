@@ -1,8 +1,17 @@
+
 <div class="button-container">
   
-  <div class="search-bar">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by category" name="q">
-    <button (click)="filterJobs()">Search</button>
+  <div class="dropdown">
+    <button class="dropdown-button" (click)="toggleDropdown2()">
+      Categorie
+      <span class="dropdown-arrow" [class.active]="isDropdownOpen2"></span>
+    </button>
+    <div class="dropdown-menu" [class.active]="isDropdownOpen2">
+      <li (click)="selectCategory('all')"><a>Arată toate</a></li>
+      <li *ngFor="let category of uniqueCategories" (click)="selectCategory(category)">
+        <a>{{ category }}</a>
+      </li>
+    </div>
   </div>
 
   <div class="dropdown">
@@ -32,6 +41,14 @@
   </div>
 </div>
 
+<!-- <div>
+  <select (change)="onTableDataChange($event)">
+    <option *ngFor="let size of tableSizes">
+      {{size}}
+    </option>
+  </select>
+</div> -->
+
 <div *ngFor="let job of jobs">
   <a href="http://localhost:4200/joburi/{{ job.id }}" class="text-reset text-decoration-none">
     <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px;">
@@ -57,7 +74,9 @@
   </a>
 </div>
 
-<div class="text-center">
+<app-pagination [totalLength] = "displayCount" (changePage)="selectPagination($event)" [pageSize]="pageSize"></app-pagination>
+
+<!-- <div class="text-center">
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item"><a class="page-link text-dark" href="#">Previous</a></li>
@@ -67,6 +86,14 @@
       <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
     </ul>
   </nav>
-</div>
+</div> -->
 
+<!-- <div>
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"
+  >
+  </pagination-controls>
+</div> -->
 

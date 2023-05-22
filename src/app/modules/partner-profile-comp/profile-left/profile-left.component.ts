@@ -40,8 +40,7 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   }
 
   public getJobsByFilter(partner?: string) {
-    console.log("dfbvshdb")
-    this.jobsService.getJobsFilter(partner).subscribe(jobs => {
+    this.jobsService.getJobsFilter(null, null, partner).subscribe(jobs => {
       this.jobs = jobs;
     });
   }

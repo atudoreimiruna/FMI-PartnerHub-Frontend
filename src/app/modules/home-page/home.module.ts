@@ -10,12 +10,17 @@ import { PartnerComponent } from './partner-profile/partner.component';
 import { JobComponent } from './job/job.component';
 import { LoginModule } from '../auth-page/auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { PaginationComponent } from './pagination/pagination.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     HomeComponent,
     PartnerComponent,
-    JobComponent
+    JobComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -25,12 +30,16 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     ProfileCompModule,
     LoginModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   exports: [
     HomeComponent,
     PartnerComponent,
-    JobComponent
+    JobComponent,
+    PaginationComponent
   ]
 })
 

@@ -70,6 +70,6 @@ export class AuthService {
   }
 
   sendTokens(tokens: Token): Observable<any> {
-    return this.http.post('/api/auth/tokens', tokens);
+    return this.http.post('https://localhost:44330/api/auth/tokens', tokens);
   }
 }

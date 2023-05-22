@@ -6,7 +6,9 @@ export interface Partner {
     mainDescription : string;
     description : string;
     address : string;
-    contact : string;
+    email : string;
+    phone : string;
+    social : string;
     mainImageUrl : string;
     logoImageUrl: string;
     jobs: Job[];

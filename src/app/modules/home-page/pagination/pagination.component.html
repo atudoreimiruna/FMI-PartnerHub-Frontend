@@ -1,0 +1,10 @@
+<mat-paginator #paginator
+               [length]="totalLength"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               [pageIndex]="currentPage"
+               [hidePageSize]="hidePageSize"
+               [showFirstLastButtons]="showFirstLastButtons"
+               (page)="handlePageChange($event)"
+               class="app-paginator">
+</mat-paginator>
