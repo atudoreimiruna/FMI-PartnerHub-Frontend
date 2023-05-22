@@ -6,7 +6,7 @@
       <h5 class="card-title">{{ partner.name }}</h5>
       <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p>
       <a href="#" class="btn btn-primary">SALVEAZĂ</a>
-      <a href="http://localhost:4200/joburi" class="btn btn-second">Joburi ({{ partner.jobs.length }})</a>
+      <a href="http://localhost:4200/joburi" (click)="getJobsByFilter(partner.name)" class="btn btn-second">Joburi ({{ partner.jobs.length }})</a>
     </div>
 </div>
 

@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { Partner } from 'src/app/interfaces/partner';
 import { JobsService } from 'src/app/services/jobs.service';
@@ -21,7 +22,9 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   constructor(
     private partnersService: PartnersService,
     private jobsService: JobsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
   ) { }
 
     ngOnInit() {
@@ -41,6 +44,13 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
     this.jobsService.getJobsFilter(partner).subscribe(jobs => {
       this.jobs = jobs;
     });
+  }
+
+  loadJobsByPartner(partnerName: string): void {
+    this.jobsService.loadJobsByPartner(partnerName);
+
+    // Redirect to the jobs page
+    this.router.navigateByUrl('/joburi');
   }
 
   ngOnDestroy(): void {

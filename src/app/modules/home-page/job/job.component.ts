@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
@@ -20,11 +21,14 @@ export class JobComponent implements OnInit, OnDestroy {
   public uniquePartners!: string[];
   public selectedAddress!: string;
   public selectedPartner!: string;
+  public searchTerm!: string;
+  public filteredJobs!: Job[];
 
   constructor(
     private jobsService: JobsService,
     private router: Router,
-    private data: DataService
+    private data: DataService,
+    private http: HttpClient
   ) { 
       this.getAllJobs();
     }
@@ -67,9 +71,24 @@ export class JobComponent implements OnInit, OnDestroy {
     });
   }
 
+  public filterJobs(): void {
+    const url = `https://localhost:44330/api/jobs?PartnerName=${this.searchTerm}`;
+
+    this.http.get<Job[]>(url).subscribe(
+      (response) => {
+        this.jobs = response; // Store all jobs
+        this.filteredJobs = this.jobs; // Initialize filtered jobs with all jobs
+      },
+      (error) => {
+        console.error('Failed to fetch jobs:', error);
+      }
+    );
+  }
+
   ngOnInit() {
     this.jobsService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
+      this.filteredJobs = this.jobs;
       this.uniqueAddresses = [...new Set(jobs.map(job => job.address))];
       this.uniquePartners = [...new Set(jobs.map(job => job.partnerName))];
     });

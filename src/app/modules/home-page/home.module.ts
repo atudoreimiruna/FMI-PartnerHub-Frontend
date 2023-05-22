@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProfileCompModule } from '../partner-profile-comp/profile-comp.module';
 import { PartnerComponent } from './partner-profile/partner.component';
 import { JobComponent } from './job/job.component';
+import { LoginModule } from '../auth-page/auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { JobComponent } from './job/job.component';
     HomeRoutingModule,
     MatCardModule,
     MatButtonModule,
-    ProfileCompModule
+    ProfileCompModule,
+    LoginModule,
+    FormsModule
   ],
   exports: [
     HomeComponent,

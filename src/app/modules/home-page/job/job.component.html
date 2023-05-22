@@ -1,4 +1,10 @@
 <div class="button-container">
+  
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by category" name="q">
+    <button (click)="filterJobs()">Search</button>
+  </div>
+
   <div class="dropdown">
     <button class="dropdown-button" (click)="toggleDropdown()">
       Locație

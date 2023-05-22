@@ -37,14 +37,12 @@ export class HomeComponent implements OnDestroy {
     }
 
   public getAllPartners(): void {
-    console.log("usaa")
     this.partnersService.getPartners().subscribe((result) => {
       this.partners = result;
     });
   }
 
   public getAllJobs(): void {
-    console.log("usaa")
     this.jobsService.getJobs().subscribe((result) => {
       this.jobs = result;
     });

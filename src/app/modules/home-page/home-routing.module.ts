@@ -4,11 +4,20 @@ import { HomeComponent } from './home/home.component';
 import { PartnerComponent } from './partner-profile/partner.component';
 import { JobComponent } from './job/job.component';
 import { JobProfileComponent } from './job-profile/job-profile.component';
+import { LoginComponent } from '../auth-page/auth/auth.component';
 
 const routes: Routes = [
     {
       path: '',
       pathMatch: 'full',
+      component: HomeComponent
+    },
+    {
+      path: 'login',
+      component: LoginComponent 
+    },
+    {
+      path: 'home',
       component: HomeComponent
     },
     {

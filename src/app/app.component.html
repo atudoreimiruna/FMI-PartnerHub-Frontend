@@ -21,6 +21,10 @@
               <mat-icon class="nav-icon">account_circle</mat-icon>
             </a>
           </li>
+          
+          <li>
+            <button (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+          </li>
       </ul>
     </nav>
 </div>
