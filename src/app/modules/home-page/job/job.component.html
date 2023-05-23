@@ -1,3 +1,4 @@
+<nav-bar></nav-bar>
 
 <div class="button-container">
   
@@ -39,34 +40,31 @@
       </li>
     </div>
   </div>
+  
 </div>
-
-<!-- <div>
-  <select (change)="onTableDataChange($event)">
-    <option *ngFor="let size of tableSizes">
-      {{size}}
-    </option>
-  </select>
-</div> -->
-
+<h1></h1>
 <div *ngFor="let job of jobs">
   <a href="http://localhost:4200/joburi/{{ job.id }}" class="text-reset text-decoration-none">
-    <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px;">
+    <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px; width: 50rem; box-shadow: 0 0 10px #5C97BF;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img class="card-img" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); margin-left: 50px;">
+            <img class="card-img" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px #5C97BF; margin-left: 50px;">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold;">{{ job.title }}</h5>
               <p class="card-text">
-                <small class="text-muted">Locație: {{ job.address }}</small>
+                <small class="text-muted"><i class="material-icons">place</i> {{ job.address }}</small>
               </p>
-
               <p class="card-text">
-                <small class="text-muted">Last Updated: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
+                <small class="text-muted"><i class="material-icons">paid</i> {{ job.salary }}</small>
               </p>
-
+              <p class="card-text">
+                <small class="text-muted"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani</small>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Actualizat la: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
+              </p>
             </div>
           </div>
         </div>
@@ -76,24 +74,5 @@
 
 <app-pagination [totalLength] = "displayCount" (changePage)="selectPagination($event)" [pageSize]="pageSize"></app-pagination>
 
-<!-- <div class="text-center">
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item"><a class="page-link text-dark" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-      <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-      <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-      <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
-    </ul>
-  </nav>
-</div> -->
 
-<!-- <div>
-  <pagination-controls
-    previousLabel="Prev"
-    nextLabel="Next"
-    (pageChange)="onTableDataChange($event)"
-  >
-  </pagination-controls>
-</div> -->
-
+<footer-comp></footer-comp>

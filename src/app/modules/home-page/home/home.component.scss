@@ -28,7 +28,7 @@
 .line {
   height: 2px;
   width: 100%;
-  background-color: #FFE0B2;
+  background-color: #3A539B;
   // margin-left: 1rem;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -63,7 +63,7 @@
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
 
   &:hover {
-      background-color: #FFE0B2;
+      background-color: #4B77BE;
   }
 }
 
@@ -81,11 +81,11 @@
   object-fit: contain;
   font-family: 'Roboto',Helvetica,Arial,sans-serif;
   margin-bottom: 10px;
-
-  .card_text {
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
-    font-weight: bold;
-  }
+  box-shadow: 0 0 10px #5C97BF;
+    .card_text {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: bold;
+    }
 
   .card_image {
     height: 250px; /* set the desired height */
@@ -105,19 +105,24 @@
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
 
     &:hover {
-        background-color: #FFE0B2;
+        background-color: #4B77BE;
     }
   }
 
 }
 
-.cards_container {
-  width: 100%;
-  height: 70px;
+.container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  min-height: 100vh; /* Set minimum height to make sure the container expands to the full height of the viewport */
+}
+
+.cards_container {
+  flex-grow: 1; /* Allow the cards container to grow and take up remaining vertical space */
+  width: 100%;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  font-family: 'Roboto',Helvetica,Arial,sans-serif;
   align-items: center;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }

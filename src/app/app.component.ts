@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Partner } from './interfaces/partner';
-import { PartnersService } from './services/partners.service';
-import { AuthService } from './services/auth.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +7,8 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'Licenta';
-  partners: Partner[] = []
 
   constructor(
-    private partnersService: PartnersService,
-    public authService: AuthService
-  ) { this.getAllPartners(); }
+  ) {  }
 
-  public getAllPartners(): void {
-    this.partnersService.getPartners().subscribe((result) => {
-      this.partners = result;
-    });
-  }
-
-    logout() {
-    this.authService.logout();
-  }
-
-  isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
-  }
 }

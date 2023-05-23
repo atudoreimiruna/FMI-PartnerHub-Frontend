@@ -5,15 +5,28 @@ export interface Job {
     maxSalary : number;
     address : string;
     experience: JobExperienceEnum;
+    type: TypeJobEnum;
     description : string;
+    criteria: string;
+    skills: string;
     partnerLogo : string;
     partnerName : string;
     activated : boolean;
     lastUpdated : string;
+    createdAt : string;
+    salary: string;
+    minExperience: number;
+    maxExperience: number;
 }
 
 export enum JobExperienceEnum {
     Entry = 0,
     Middle = 1,
     Senior = 2
+}
+
+export enum TypeJobEnum {
+    FullTime = 0,
+    PartTime = 1,
+    Internship = 2
 }

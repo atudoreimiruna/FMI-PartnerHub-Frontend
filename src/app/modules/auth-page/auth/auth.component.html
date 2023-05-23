@@ -1,3 +1,20 @@
-<h1>This is my login page!</h1>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-<button (click)="login()" *ngIf="!isLoggedIn()" >Login with Microsoft</button>
+<header class="main-header">
+    <div>
+    <nav class="nav main-nav">
+        <ul>
+            <li><a href="http://localhost:4200/login">LOGIN</a></li>
+        </ul>
+        </nav>
+    </div>
+</header>
+
+<button (click)="login()" class="microsoft-button" *ngIf="!isLoggedIn()">
+    <img src="https://companieslogo.com/img/orig/MSFT-a203b22d.png?t=1633073277" alt="Microsoft Logo" class="microsoft-logo">
+    Login with Microsoft
+</button>
+
+<div class="container">
+    <footer-comp></footer-comp>
+</div>

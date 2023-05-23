@@ -1,40 +1,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-<header class="main-header">
-<div>
-  <nav class="nav main-nav">
-      <ul>
-          <li>
-              <a href="http://localhost:4200/">PARTENERI</a>
-              <ul>
-                <li *ngFor="let partner of partners">
-                  <a href="http://localhost:4200/partener/{{ partner.id }}">{{ partner.name }}</a>
-                </li>
-              </ul>
-          </li>
-          <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
-          <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
-
-          <!-- Add url for user profile -->
-          <li>
-            <a routerLink="/">
-              <mat-icon class="nav-icon">account_circle</mat-icon>
-            </a>
-          </li>
-          
-          <li>
-            <button (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
-          </li>
-      </ul>
-    </nav>
-</div>
-  <h1 class="site-name">
-    <a href="https://fmi.unibuc.ro/">
-        <img width="200" height="50" decoding="async" loading="lazy" data-variant="logo" class="logo" src="https://fmi.unibuc.ro/wp-content/uploads/2020/05/sigla-fmi-1.png" alt ="FMI logo">
-    </a>
-  </h1>
-  
-</header>
 
 <router-outlet>
 </router-outlet>

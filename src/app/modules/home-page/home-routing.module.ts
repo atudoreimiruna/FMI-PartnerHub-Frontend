@@ -5,6 +5,7 @@ import { PartnerComponent } from './partner-profile/partner.component';
 import { JobComponent } from './job/job.component';
 import { JobProfileComponent } from './job-profile/job-profile.component';
 import { LoginComponent } from '../auth-page/auth/auth.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
     {
@@ -40,6 +41,10 @@ const routes: Routes = [
       path: 'practica',
       component: PartnerComponent
     },
+    {
+      path: 'user',
+      component: UserProfileComponent
+    }
   ];
   
   @NgModule({

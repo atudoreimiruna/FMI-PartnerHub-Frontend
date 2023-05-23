@@ -28,28 +28,15 @@ export class JobComponent implements OnInit, OnDestroy {
   public selectedCategory!: string;
   public searchTerm!: string;
   public filteredJobs!: Job[];
-
-  // for pagination
-  // public page: number = 1;
-  // public count: number = 0;
-  // public tableSize: number = 5;
-  // public tableSizes: any = [5, 10, 15, 20];
-  // public currentPage: number = 1;
-  // public pageSize: number = 5;
-  // public totalJobsCount: number = 0;
   
-  public displayCount: number = 8;
+  // for pagination
+  public displayCount: number = 14;
   private pageNumber: number = 1;
   public pageSize: number = 5;
 
-  constructor(
-    private jobsService: JobsService,
-    private router: Router,
-    private data: DataService,
-    private http: HttpClient
-  ) { 
-      this.getAllJobs();
-    }
+  constructor(private jobsService: JobsService) { 
+    this.getAllJobs();
+  }
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -115,16 +102,6 @@ export class JobComponent implements OnInit, OnDestroy {
     });
   }
 
-  // public onTableDataChange(event: any) {
-  //   this.page = event;
-  //   this.getAllJobs();
-  // }
-  // public onTableSizeChange(event: any): void {
-  //   this.tableSize = event.target.value;
-  //   this.page = 1;
-  //   this.getAllJobs();
-  // }
-
   public getJobsByFilter(partner?: string, address?: string, category?: string) {
     this.jobsService.getJobsFilter(this.pageNumber, this.pageSize, partner, address, category).subscribe(jobs => {
       console.log(this.pageNumber, this.pageSize)
@@ -132,20 +109,6 @@ export class JobComponent implements OnInit, OnDestroy {
       this.jobs = jobs;
     });
   }
-
-  // public filterJobs(): void {
-  //   const url = `https://localhost:44330/api/jobs?PartnerName=${this.searchTerm}`;
-
-  //   this.http.get<Job[]>(url).subscribe(
-  //     (response) => {
-  //       this.jobs = response; // Store all jobs
-  //       this.filteredJobs = this.jobs; // Initialize filtered jobs with all jobs
-  //     },
-  //     (error) => {
-  //       console.error('Failed to fetch jobs:', error);
-  //     }
-  //   );
-  // }
 
   ngOnInit() {
     this.loadJobs();

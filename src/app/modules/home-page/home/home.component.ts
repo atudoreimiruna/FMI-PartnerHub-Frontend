@@ -43,7 +43,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   public getAllJobs(): void {
-    this.jobsService.getJobs().subscribe((result) => {
+    this.jobsService.getJobs(0, 0).subscribe((result) => {
       this.jobs = result;
     });
   }

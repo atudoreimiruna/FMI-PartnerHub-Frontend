@@ -60,4 +60,8 @@ export class JobsService {
         }
       );
   }
+
+  public getJobById(id: any): Observable<Job> {
+    return this.http.get<any>(`${this.url}/by/${id}`);
+  }
 }

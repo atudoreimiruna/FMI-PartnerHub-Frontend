@@ -4,6 +4,7 @@
   <a href="{{ partner.social }}" target="_blank"> <!-- Added anchor tag around the card image -->
       <img class="card-img-top" src="{{ partner.logoImageUrl }}" alt="Card image cap">
   </a>
+  
   <div class="card-body">
     <h5 class="card-title">{{ partner.name }}</h5>
     <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p>
@@ -16,8 +17,8 @@
     <div class="card-body">
       <h5 class="card-title">Contact</h5>
       <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-      <p class="card-text">{{ partner.email }}</p>
-      <p class="card-text">{{ partner.phone }}</p>
+      <p class="card-text"><i class="material-icons">email</i> {{ partner.email }}</p>
+      <p class="card-text"><i class="material-icons">phone</i> {{ partner.phone }}</p>
       <!-- <a href="#" class="card-link">Card link</a> -->
       <!-- <a href="#" class="card-link">Another link</a> -->
     </div>

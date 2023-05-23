@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home-page/home.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AgmCoreModule } from '@agm/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -22,11 +22,11 @@ import { AgmCoreModule } from '@agm/core';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        MatIconModule,
         HomeModule,
         HttpClientModule,
         OAuthModule.forRoot(),
-        NgxPaginationModule
+        NgxPaginationModule,
+        BrowserAnimationsModule
     ]
 })
 export class AppModule { }

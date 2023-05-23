@@ -20,7 +20,7 @@
             margin-right: 20px;
 
             &:hover {
-                background-color: #FFE0B2;
+                background-color: #4B77BE;
             }
         }
         
@@ -48,7 +48,7 @@
             padding: 10px;
             background-color: #fff;
             border: 1px solid #999;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px #5C97BF;
             display: none;
         }
         
@@ -63,7 +63,7 @@
         
         .dropdown-menu a:hover,
         .dropdown-menu a.active {
-            background-color: #FFE0B2;
+            background-color: #4B77BE;
             color: black;
         }
         
@@ -82,4 +82,12 @@
     .dropdown-button {
       margin: 10px 0;
     }
-  }
+}
+
+.card-text {
+    margin-bottom: 5px;
+}
+
+.card-text small i.material-icons {
+    font-size: 17px; /* Adjust the font size as per your preference */
+}

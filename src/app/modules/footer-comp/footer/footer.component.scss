@@ -1,0 +1,23 @@
+.main-footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #DADFE1;
+  padding: 20px;
+}
+  
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-name {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.logo {
+  margin: 0 10px;
+}

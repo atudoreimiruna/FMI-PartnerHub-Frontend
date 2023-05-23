@@ -53,6 +53,11 @@ export class AuthService {
     });
   }
 
+  getUserEmail(): string {
+    const claims = this.oauthService.getIdentityClaims();
+    return claims ? claims['email'] : '';
+  }
+  
   logout() {
     this.oauthService.logOut();
   }

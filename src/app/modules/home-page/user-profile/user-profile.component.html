@@ -1,0 +1,8 @@
+<nav-bar></nav-bar>
+<div>
+    <li>
+        <button (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+    </li>
+</div>
+
+<footer-comp></footer-comp>

@@ -8,19 +8,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProfileCompModule } from '../partner-profile-comp/profile-comp.module';
 import { PartnerComponent } from './partner-profile/partner.component';
 import { JobComponent } from './job/job.component';
-import { LoginModule } from '../auth-page/auth/auth.module';
+import { LoginModule } from '../auth-page/auth.module';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PaginationComponent } from './pagination/pagination.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JobCompModule } from '../job-profile-comp/job-comp.module';
+import { JobProfileComponent } from './job-profile/job-profile.component';
+import { NavBarCompModule } from '../nav-bar-comp/nav-bar-comp.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FooterCompModule } from '../footer-comp/footer-comp.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
     PartnerComponent,
     JobComponent,
-    PaginationComponent
+    PaginationComponent,
+    JobProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
@@ -33,13 +39,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     NgxPaginationModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    JobCompModule,
+    NavBarCompModule,
+    FooterCompModule
   ],
   exports: [
     HomeComponent,
     PartnerComponent,
     JobComponent,
-    PaginationComponent
+    PaginationComponent,
+    JobProfileComponent,
+    UserProfileComponent
   ]
 })
 

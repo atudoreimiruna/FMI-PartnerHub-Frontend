@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 10px #5C97BF;
 
   .card-body {
       font-family: 'Roboto',Helvetica,Arial,sans-serif;
@@ -36,7 +37,7 @@
       cursor: pointer;
 
       &:hover {
-          background-color: #FFE0B2;
+          background-color: #4B77BE;
       }
   }
 
@@ -52,7 +53,7 @@
       border: 1px solid white;
 
       &:hover {
-          background-color: #FFE0B2;
+          background-color: #4B77BE;
       }
   }
 }

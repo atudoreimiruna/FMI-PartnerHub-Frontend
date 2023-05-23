@@ -4,7 +4,7 @@ import { PartnersService } from 'src/app/services/partners.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-home',
+    selector: 'partner',
     templateUrl: './partner.component.html',
     styleUrls: ['./partner.component.scss']
 })
