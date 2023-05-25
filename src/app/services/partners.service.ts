@@ -8,7 +8,7 @@ import { Partner } from '../interfaces/partner';
 })
 export class PartnersService {
 
-  public url = 'https://localhost:44330/api/partners';
+  public url = 'https://localhost:5001/api/partners';
   
   constructor(
     private http: HttpClient

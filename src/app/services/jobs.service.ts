@@ -8,7 +8,7 @@ import { Job } from '../interfaces/job';
 })
 export class JobsService {
 
-  public url = 'https://localhost:44330/api/jobs';
+  public url = 'https://localhost:5001/api/jobs';
   private filteredJobsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public filteredJobs$: Observable<any[]> = this.filteredJobsSubject.asObservable();
   
@@ -49,7 +49,7 @@ export class JobsService {
     const filter = { PartnerName: partnerName };
     const queryParams = new URLSearchParams(filter).toString();
 
-    this.http.get<Job[]>(`https://localhost:44330/api/jobs?${queryParams}`)
+    this.http.get<Job[]>(`https://localhost:5001/api/jobs?${queryParams}`)
       .subscribe(
         (response: Job[]) => {
           // Update the filtered jobs data in the service

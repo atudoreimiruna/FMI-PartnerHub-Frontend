@@ -6,6 +6,7 @@ import { JobComponent } from './job/job.component';
 import { JobProfileComponent } from './job-profile/job-profile.component';
 import { LoginComponent } from '../auth-page/auth/auth.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 const routes: Routes = [
     {
@@ -42,7 +43,7 @@ const routes: Routes = [
       component: PartnerComponent
     },
     {
-      path: 'user',
+      path: 'user/:email',
       component: UserProfileComponent
     }
   ];
@@ -51,4 +52,13 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
   })
-  export class HomeRoutingModule { }
+  export class HomeRoutingModule { 
+
+    constructor(private oauthService: OAuthService) {
+      const email = this.oauthService.getIdentityClaims()?.['email'];
+      const userRoute = routes.find(route => route.path === 'user/:email');
+      if (userRoute) {
+        userRoute.path = `user/${email}`;
+      }
+    }
+  }

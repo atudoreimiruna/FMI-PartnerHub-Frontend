@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -6,11 +7,18 @@ import { AuthService } from 'src/app/services/auth.service';
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
   
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private route: ActivatedRoute
   ) { }
+
+  public email!: string;
+
+  ngOnInit() {
+    this.email = this.route.snapshot.params['email'];
+  }
 
   logout() {
     this.authService.logout();

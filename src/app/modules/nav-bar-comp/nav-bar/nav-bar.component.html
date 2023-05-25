@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
 <header class="main-header">
@@ -14,23 +15,24 @@
               </li>
               <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
               <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
-              <li><a href="http://localhost:4200/user">CONTUL MEU</a></li>
+              <li><a [routerLink]="'/user/' + getEmailFromToken()">CONTUL MEU</a></li>
           </ul>
         </nav>
     </div>
-  </header>
+    
+    <h1 class="site-name">
+      <a href="https://fmi.unibuc.ro/">
+          <img 
+            width="200" 
+            height="50" 
+            decoding="async" 
+            loading="lazy" 
+            data-variant="logo" 
+            class="logo" 
+            src="https://cms.fmi.unibuc.ro/static/icons/logo-fmi-black.png" 
+            alt ="FMI logo"
+          >
+      </a>
+    </h1>
 
-<!-- <h1 class="site-name">
-  <a href="https://fmi.unibuc.ro/">
-      <img 
-        width="200" 
-        height="50" 
-        decoding="async" 
-        loading="lazy" 
-        data-variant="logo" 
-        class="logo" 
-        src="https://cms.fmi.unibuc.ro/static/icons/logo-fmi-black.png" 
-        alt ="FMI logo"
-      >
-  </a>
-</h1> -->
+  </header>

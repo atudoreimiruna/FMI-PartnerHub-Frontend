@@ -1,4 +1,15 @@
 <nav-bar></nav-bar>
+
+<div>
+    <nav class="nav main-nav">
+        <ul>
+            <li><a href="http://localhost:4200/home">PROFIL</a></li>
+            <li><a href="http://localhost:4200/home">JOBURILE TALE</a></li>
+            <li><a href="http://localhost:4200/home">SETĂRILE CONTULUI</a></li>
+        </ul>
+      </nav>
+  </div>
+
 <div>
     <li>
         <button (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>

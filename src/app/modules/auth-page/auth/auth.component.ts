@@ -9,28 +9,32 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class LoginComponent {
+
+  public tokens : Token = {
+    accessToken: this.authService.getAccessToken(),
+    refreshToken: this.authService.getRefreshToken()
+  };
+
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
+    console.log('Login method called');
     this.authService.login().subscribe(() => {
-      if (this.authService.isLoggedIn()) {
-        this.router.navigate(['/home']);
+      // if (this.authService.isLoggedIn()) {
+        // this.router.navigate(['/home']);
 
-        const tokens: Token = {
-          accessToken: this.authService.getAccessToken(),
-          refreshToken: this.authService.getRefreshToken()
-        };
-
-        this.authService.sendTokens(tokens).subscribe(
-          () => {
-            console.log('Tokens sent successfully');
-          },
-          (error) => {
-            console.error('Failed to send tokens:', error);
-          }
-        );
+        // console.log(this.tokens)
+        // this.authService.sendTokens(this.tokens).subscribe(
+        //   () => {
+        //     console.log('Tokens sent successfully');
+        //   },
+        //   (error) => {
+        //     console.error('Failed to send tokens:', error);
+        //   }
+        // );
       }
-    });
+    // }
+    );
   }
 
   isLoggedIn(): boolean {
@@ -43,7 +47,7 @@ export class LoginComponent {
       refreshToken: this.authService.getRefreshToken()
     };
 
-    this.authService.sendTokens(tokens).subscribe(
+    this.authService.sendTokens(this.authService.getAccessToken(), this.authService.getRefreshToken()).subscribe(
       () => {
         console.log('Tokens sent successfully');
       },
