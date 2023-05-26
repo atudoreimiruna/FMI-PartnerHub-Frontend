@@ -10,17 +10,17 @@
 <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">Criterii Job</h5>
-      <p class="card-text"><i class="material-icons">paid</i> {{ job.salary }}</p>
-      <p class="card-text"><i class="material-icons">place</i> {{ job.address }}</p>
-      <p class="card-text"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani</p>
-      <p class="card-text"><i class="material-icons">watch</i> {{ getTypeJobString(job.type) }}</p>
+      <p *ngIf="job.salary" class="card-text"><i class="material-icons">paid</i> {{ job.salary }}</p>
+      <p *ngIf="job.address" class="card-text"><i class="material-icons">place</i> {{ job.address }}</p>
+      <p *ngIf="job.minExperience != 0 && job.maxExperience != 0" class="card-text"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență</p>
+      <p *ngIf="job.type" class="card-text"><i class="material-icons">watch</i> {{ getTypeJobString(job.type) }}</p>
     </div>
 </div>
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">Acțiuni Job</h5>
-      <a href="#" class="btn btn-primary">SALVEAZĂ</a>
+      <button (click)="updateJobOnStudent()" class="btn btn-primary">SALVEAZĂ</button>
       <a href="#" class="btn btn-primary">APLICĂ</a>
     </div>
 </div>
@@ -32,3 +32,4 @@
       <p class="card-text"> Publicat: {{ job.createdAt | date:'dd-MM-yyyy' }}</p>
     </div>
 </div>
+

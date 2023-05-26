@@ -53,16 +53,16 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold;">{{ job.title }}</h5>
-              <p class="card-text">
+              <p *ngIf="job.address" class="card-text">
                 <small class="text-muted"><i class="material-icons">place</i> {{ job.address }}</small>
               </p>
-              <p class="card-text">
+              <p *ngIf="job.salary" class="card-text">
                 <small class="text-muted"><i class="material-icons">paid</i> {{ job.salary }}</small>
               </p>
-              <p class="card-text">
-                <small class="text-muted"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani</small>
+              <p *ngIf="job.minExperience != 0 && job.maxExperience != 0" class="card-text">
+                <small class="text-muted"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență</small>
               </p>
-              <p class="card-text">
+              <p *ngIf="job.lastUpdated" class="card-text">
                 <small class="text-muted">Actualizat la: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
               </p>
             </div>

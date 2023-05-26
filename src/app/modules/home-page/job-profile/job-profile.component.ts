@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { JobsService } from 'src/app/services/jobs.service';

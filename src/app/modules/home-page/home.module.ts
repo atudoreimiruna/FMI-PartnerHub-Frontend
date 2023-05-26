@@ -18,6 +18,8 @@ import { JobProfileComponent } from './job-profile/job-profile.component';
 import { NavBarCompModule } from '../nav-bar-comp/nav-bar-comp.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterCompModule } from '../footer-comp/footer-comp.module';
+import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
+import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { FooterCompModule } from '../footer-comp/footer-comp.module';
     JobComponent,
     PaginationComponent,
     JobProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserProfileSettingsComponent,
+    UserProfileJobsComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +53,9 @@ import { FooterCompModule } from '../footer-comp/footer-comp.module';
     JobComponent,
     PaginationComponent,
     JobProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserProfileSettingsComponent,
+    UserProfileJobsComponent
   ]
 })
 

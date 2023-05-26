@@ -9,9 +9,10 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
+    console.log("lksdnfjknszdjkfn")
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/home']);
-      return false; // Prevent accessing the login page when already authenticated
+      return false; 
     }
     return true;
   }

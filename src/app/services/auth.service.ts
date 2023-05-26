@@ -39,7 +39,6 @@ export class AuthService {
     return new Observable<boolean>(observer => {
       this.oauthService.initImplicitFlow();
       
-      // Subscribe to the token events to check for successful login
       const tokenSubscription = this.oauthService.events.subscribe(e => {
         console.log('Token event:', e);
         if (e.type === 'token_received') {
@@ -51,29 +50,28 @@ export class AuthService {
           this.sendTokens(this.getAccessToken(), this.getRefreshToken()).subscribe(
             () => {
               console.log('Tokens sent successfully');
-              observer.next(true); // Emit true when token is received and tokens are sent
-              observer.complete(); // Complete the observable
+              observer.next(true); 
+              observer.complete(); 
             },
             (error) => {
               console.error('Failed to send tokens:', error);
-              observer.next(false); // Emit false when there's an error sending tokens
-              observer.complete(); // Complete the observable
+              observer.next(false); 
+              observer.complete();
             }
           );
         }
       });
   
-      // Cleanup: Unsubscribe from token events when the observable is unsubscribed
       return () => {
         tokenSubscription.unsubscribe();
       };
     });
   }
 
-  getUserEmail(): string {
-    const claims = this.oauthService.getIdentityClaims();
-    return claims ? claims['email'] : '';
-  }
+  // getUserEmail(): string {
+  //   const claims = this.oauthService.getIdentityClaims();
+  //   return claims ? claims['email'] : '';
+  // }
   
   logout() {
     this.oauthService.logOut();
@@ -103,6 +101,7 @@ export class AuthService {
 
   getEmailFromToken(): string {
     const claims = this.oauthService.getIdentityClaims();
+    //console.log(claims['email'])
     return claims ? claims['email'] : undefined;
   }
 }

@@ -34,6 +34,7 @@ export class HomeComponent implements OnDestroy {
     private data: DataService
   ) { this.getAllPartners();
       this.getAllJobs();
+      console.log("skjdjksbdjkdb")
     }
 
   public getAllPartners(): void {

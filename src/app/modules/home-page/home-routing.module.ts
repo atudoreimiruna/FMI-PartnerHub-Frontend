@@ -6,7 +6,8 @@ import { JobComponent } from './job/job.component';
 import { JobProfileComponent } from './job-profile/job-profile.component';
 import { LoginComponent } from '../auth-page/auth/auth.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
+import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
 
 const routes: Routes = [
     {
@@ -45,6 +46,14 @@ const routes: Routes = [
     {
       path: 'user/:email',
       component: UserProfileComponent
+    },
+    {
+      path: 'user/cont/:email',
+      component: UserProfileSettingsComponent
+    },
+    {
+      path: 'user/joburi/:email',
+      component: UserProfileJobsComponent
     }
   ];
   
@@ -53,12 +62,12 @@ const routes: Routes = [
     exports: [RouterModule]
   })
   export class HomeRoutingModule { 
+    // constructor(private oauthService: OAuthService) {
+    //   const email = this.oauthService.getIdentityClaims()?.['email'];
 
-    constructor(private oauthService: OAuthService) {
-      const email = this.oauthService.getIdentityClaims()?.['email'];
-      const userRoute = routes.find(route => route.path === 'user/:email');
-      if (userRoute) {
-        userRoute.path = `user/${email}`;
-      }
-    }
+    //   const userRoute = routes.find(route => route.path === 'user/:email');
+    //   if (userRoute) {
+    //     userRoute.path = `user/${email}`;
+    //   }
+    // }
   }

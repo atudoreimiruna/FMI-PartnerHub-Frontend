@@ -25,6 +25,11 @@ export class NavBarComponent {
   }
 
   getEmailFromToken(): string {
-    return this.authService.getEmailFromToken(); // Replace with your actual implementation
+    return this.authService.getEmailFromToken(); 
   }
+
+  // goToUserProfile(): void {
+  //   console.log(['/home/user'],{queryParams: { email : this.getEmailFromToken() } })
+  //   this.router.navigate(['/home/user'],{queryParams: { email : this.getEmailFromToken() } });
+  // }
 }
