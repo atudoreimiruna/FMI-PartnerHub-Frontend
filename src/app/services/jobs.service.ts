@@ -17,7 +17,7 @@ export class JobsService {
   ) { }
 
   public getJobs(pageNumber?: any, pageSize?: any) : Observable<Job[]> {
-    return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}`);
+    return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`);
   }
 
   public getJobsFilter(pageNumber?: any, pageSize?: any, partner?: string, address?: string, category?: string): Observable<Job[]> {
@@ -42,7 +42,7 @@ export class JobsService {
       params = params.set('Title', category);
     }
     console.log(params.get(pageNumber))
-    return this.http.get<any>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}`, {params});
+    return this.http.get<any>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`, {params});
   }
 
   loadJobsByPartner(partnerName: string): void {

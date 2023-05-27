@@ -6,13 +6,14 @@
       <nav class="nav main-nav">
           <ul>
               <li>
-                  <a href="http://localhost:4200/">PARTENERI</a>
+                  <a class="link" (click)=goToPartners()>PARTENERI</a>
                   <ul>
                     <li *ngFor="let partner of partners">
                       <a href="http://localhost:4200/partener/{{ partner.id }}">{{ partner.name }}</a>
                     </li>
                   </ul>
               </li>
+              <li><a class="link" (click)=goToEvents() >EVENIMENTE</a></li>
               <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
               <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
               <li><a href="http://localhost:4200/user/{{ getEmailFromToken() }}">CONTUL MEU</a></li>

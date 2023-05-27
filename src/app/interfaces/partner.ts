@@ -11,5 +11,6 @@ export interface Partner {
     social : string;
     mainImageUrl : string;
     logoImageUrl: string;
+    profileImageUrl: string;
     jobs: Job[];
 }

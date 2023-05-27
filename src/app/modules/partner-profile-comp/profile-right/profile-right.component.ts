@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Partner } from 'src/app/interfaces/partner';
+import { Slide } from 'src/app/interfaces/slide';
 import { PartnersService } from 'src/app/services/partners.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class ProfileRightComponent implements OnDestroy, OnInit {
   public partners!: Partner[];
   public partner!: Partner;
   public message: any;
-  
+  public slides: Slide[] = [];
+
   constructor(
     private partnersService: PartnersService,
     private route: ActivatedRoute
@@ -28,7 +30,9 @@ export class ProfileRightComponent implements OnDestroy, OnInit {
   public getPartner() : void {
     this.partnersService.getPartnerById(this.partnerId).subscribe( (result) => {
       this.partner = result;
-      console.log(this.partner);
+      this.slides = [
+        { url: this.partner.profileImageUrl, title: 'image1' }
+      ];
     })
   }
 

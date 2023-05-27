@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Partner } from '../interfaces/partner';
+import { Event } from '../interfaces/event';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PartnersService {
+export class EventsService {
 
-  public url = 'https://localhost:5001/api/partners';
+  public url = 'https://localhost:5001/api/events';
   public changedUrlSbj : Subject<any> = new Subject<any>();
   public changedUrl = this.changedUrlSbj.asObservable();
   
@@ -16,11 +16,8 @@ export class PartnersService {
     private http: HttpClient
   ) { }
 
-  public getPartners() : Observable<Partner[]> {
-    return this.http.get<any>(this.url);
-  }
-
-  public getPartnerById(id: any): Observable<Partner> {
-    return this.http.get<any>(`${this.url}/${id}`);
+  public getEvents() : Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.url}?OrderByDescending=LastUpdated`);
   }
 }
+

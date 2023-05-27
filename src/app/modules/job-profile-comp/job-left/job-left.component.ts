@@ -76,7 +76,7 @@ export class JobLeftComponent implements OnDestroy, OnInit {
             .subscribe(
             (response: any) => {
               this.isAlert = true;
-              this.alertMsg = "Ai încărcat cu succes CV-ul tău!"
+              this.alertMsg = "Jobul a fost salvat cu succes!"
               this.closeAlert();
             },
             (error: any) => {

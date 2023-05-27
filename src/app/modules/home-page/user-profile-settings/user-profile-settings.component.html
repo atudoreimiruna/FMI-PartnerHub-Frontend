@@ -10,12 +10,12 @@
     </nav>
 </div>
 
-<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
   {{alertMsg}}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
-<div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px;">
+<div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
   <div class="card-body">
     <!-- <h5 class="card-title">{{ student.firstName }} {{ student.lastName }}</h5> -->
     <form #updateForm="ngForm" (ngSubmit)="updateStudent(updateForm)">
@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px;">
+<div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
   <div class="card-body">
     <div class="mb-3">
       <label for="formFile" class="form-label">CV-ul dumneavoastră</label>

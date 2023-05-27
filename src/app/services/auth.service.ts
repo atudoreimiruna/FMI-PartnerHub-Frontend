@@ -101,7 +101,6 @@ export class AuthService {
 
   getEmailFromToken(): string {
     const claims = this.oauthService.getIdentityClaims();
-    //console.log(claims['email'])
     return claims ? claims['email'] : undefined;
   }
 }
