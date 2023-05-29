@@ -11,7 +11,7 @@ import { JobComponent } from './job/job.component';
 import { LoginModule } from '../auth-page/auth.module';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { PaginationComponent } from './pagination/pagination.component';
 import { JobCompModule } from '../job-profile-comp/job-comp.module';
 import { JobProfileComponent } from './job-profile/job-profile.component';
@@ -20,6 +20,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterCompModule } from '../footer-comp/footer-comp.module';
 import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
+import { PracticaComponent } from './practica/practica.component';
+import { MapsComponent } from './maps/maps.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { AgmCoreModule } from '@agm/core'
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.
     JobProfileComponent,
     UserProfileComponent,
     UserProfileSettingsComponent,
-    UserProfileJobsComponent
+    UserProfileJobsComponent,
+    PracticaComponent,
+    MapsComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +51,10 @@ import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.
     MatPaginatorModule,
     JobCompModule,
     NavBarCompModule,
-    FooterCompModule
+    FooterCompModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBhU3J5kgohV9C4enjQW6g2tbzs-MAMTF8"
+    })
   ],
   exports: [
     HomeComponent,
@@ -55,7 +64,9 @@ import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.
     JobProfileComponent,
     UserProfileComponent,
     UserProfileSettingsComponent,
-    UserProfileJobsComponent
+    UserProfileJobsComponent,
+    PracticaComponent,
+    MapsComponent
   ]
 })
 

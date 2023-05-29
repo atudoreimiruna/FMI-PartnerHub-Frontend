@@ -16,9 +16,9 @@ export class AuthService {
     const authConfig: AuthConfig = {
       issuer: 'https://login.microsoftonline.com/20ed8f4e-52f7-4d77-bfc1-862ced77c351/v2.0',
       redirectUri: window.location.origin,
-      clientId: 'f969fab1-6d79-42a0-96c0-32eb06cb8d0b',
+      clientId: 'e7052f65-eb68-487a-aa5e-7e7ffcb02f5b',
       responseType: 'code',
-      scope: 'openid email profile',
+      scope: 'api://e7052f65-eb68-487a-aa5e-7e7ffcb02f5b/users.all',
       showDebugInformation: false,
       strictDiscoveryDocumentValidation: false
     };

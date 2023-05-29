@@ -8,6 +8,8 @@ import { LoginComponent } from '../auth-page/auth/auth.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
+import { PracticaComponent } from './practica/practica.component';
+import { MapsComponent } from './maps/maps.component';
 
 const routes: Routes = [
     {
@@ -41,7 +43,7 @@ const routes: Routes = [
     },
     {
       path: 'practica',
-      component: PartnerComponent
+      component: PracticaComponent
     },
     {
       path: 'user/:email',
@@ -54,6 +56,10 @@ const routes: Routes = [
     {
       path: 'user/joburi/:email',
       component: UserProfileJobsComponent
+    },
+    {
+      path: 'maps',
+      component: MapsComponent
     }
   ];
   

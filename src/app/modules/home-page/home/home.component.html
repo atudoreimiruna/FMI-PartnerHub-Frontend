@@ -54,7 +54,7 @@
   <div class="line"></div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <div class="cards_container">
     <mat-card *ngFor="let job of jobs" class="mat_card">
       <img [src]="job.partnerLogo" class="card_image">
@@ -66,6 +66,18 @@
       </mat-card-actions>
     </mat-card>
   </div>
+</div> -->
+
+<div class="row"> 
+  <ng-container *ngFor="let job of jobs">
+    <div class="card" style="width: 18rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
+      <img [src]="job.partnerLogo" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title" style="font-size: 17px;">{{job.title}}</h5>
+        <a href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+      </div>
+    </div>
+  </ng-container>
 </div>
 
 <footer-comp></footer-comp>
