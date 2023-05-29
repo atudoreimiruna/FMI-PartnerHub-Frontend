@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Partner } from '../interfaces/partner';
 import { Student } from '../interfaces/student';
 
 @Injectable({
@@ -24,5 +23,9 @@ export class StudentsService {
 
   updateJobOnStudent(requestBody: any): Observable<any> {
     return this.http.put(`${this.url}/job`, requestBody);
+  }
+
+  deleteStudentJob(studentId: any, jobId: any): Observable<any> {
+    return this.http.delete(`${this.url}/${studentId}/${jobId}`)
   }
 }

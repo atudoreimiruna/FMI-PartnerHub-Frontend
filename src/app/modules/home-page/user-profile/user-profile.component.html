@@ -53,6 +53,24 @@
                 <label for="exampleInputDescription" class="form-label">Despre mine</label>
                 <label class="form-control">{{student.description}}</label>
             </div>
+
+            <div *ngIf="fileNames && fileNames.length > 0" class="mb-3">
+                <label class="form-label">CV-urile mele</label>
+                <div *ngFor="let file of fileNames">
+                    <div class="d-flex align-items-center">
+                        <label class="form-control">{{file}}</label>
+                        <!-- <a href="{{file}}" download>
+                            <button (click)="downloadFile(file)" class="btn btn-primary mx-2">
+                                <i class="material-icons">download</i>
+                            </button>
+                        </a> -->
+                        <button (click)="deleteFile(file)" class="btn btn-primary mx-2">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </form>
 
         <!-- <div class="input-group mb-3">

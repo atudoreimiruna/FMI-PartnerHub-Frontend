@@ -19,5 +19,9 @@ export class EventsService {
   public getEvents() : Observable<Event[]> {
     return this.http.get<Event[]>(`${this.url}?OrderByDescending=LastUpdated`);
   }
+
+  public getEventsByPartnerId(partnerId: any) : Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.url}?PartnerId=${partnerId}OrderByDescending=LastUpdated`);
+  }
 }
 

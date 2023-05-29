@@ -39,9 +39,18 @@ export class UserProfileJobsComponent implements OnInit {
 
   public getStudent() : void {
     this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
-      console.log(this.student)
       this.student = result;
-      this.jobs = this.student.jobs;
+      console.log(this.student)
+      this.jobs = result.jobs;
+    })
+  }
+
+  public deleteStudentJob(job: Job) : void {
+    window.location.reload();
+    console.log(this.student.id, job.id)
+    this.studentService.deleteStudentJob(this.student.id, job.id).subscribe( (result: any) => {
+      if(result) { 
+      }
     })
   }
 }

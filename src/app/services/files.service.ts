@@ -18,4 +18,12 @@ export class FilesService {
     
     return this.http.post(`${this.url}/${entity}/${id}`, formData);
   }
+
+  public deleteFile(fileName: any): Observable<any> {
+    return this.http.delete<any>(`${this.url}/${fileName}`);
+   }
+
+   public downloadFile(fileName: any): Observable<any> {
+    return this.http.get<any>(`${this.url}/${fileName}`);
+   }
 }

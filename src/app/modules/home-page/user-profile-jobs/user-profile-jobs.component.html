@@ -20,8 +20,8 @@
         <i *ngIf="job.salary" class="material-icons">paid</i> {{ job.salary }}   
         <i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență
       </p>
-      <button class="btn btn-primary">APLICĂ</button>
-      
+      <button class="btn btn-primary" style="margin-right: 5px;">APLICĂ</button>
+      <button (click)="deleteStudentJob(job)" class="btn btn-primary">Elimină din favorite</button>
     </div>
   </div>
 </div>

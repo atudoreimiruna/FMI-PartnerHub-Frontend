@@ -10,6 +10,6 @@ export interface Student {
     phone : string;
     degree : string;
     skill : string;
-    files: string[];
+    fileNames: string[];
     jobs: Job[]
 }

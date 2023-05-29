@@ -6,4 +6,6 @@ export interface Event {
     location : string;
     date : Date;
     time : string;
+    lastUpdated : string;
+    createdAt : string;
 }
