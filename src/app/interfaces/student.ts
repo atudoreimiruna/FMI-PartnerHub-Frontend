@@ -2,8 +2,7 @@ import { Job } from "./job";
 
 export interface Student {
     id : number;
-    lastName : string;
-    firstName : string;
+    name : string;
     description : string;
     personalEmail : string;
     email : string;

@@ -14,9 +14,10 @@
                   </ul>
               </li>
               <li><a class="link" (click)=goToEvents() >EVENIMENTE</a></li>
+              <li><a href="http://localhost:4200/home">ACASĂ</a></li>
               <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
               <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
-              <li><a href="http://localhost:4200/user/{{ getEmailFromToken() }}">CONTUL MEU</a></li>
+              <li><a *ngIf="isUserAuthorized()" href="http://localhost:4200/user/{{ getEmailFromToken() }}">CONTUL MEU</a></li>
           </ul>
         </nav>
     </div>

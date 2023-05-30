@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { Partner } from '../interfaces/partner';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,29 @@ export class PartnersService {
   public changedUrl = this.changedUrlSbj.asObservable();
   
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   public getPartners() : Observable<Partner[]> {
-    return this.http.get<any>(this.url);
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(this.url, { headers });
+      }
+      return of([]);
   }
 
   public getPartnerById(id: any): Observable<Partner> {
-    return this.http.get<any>(`${this.url}/${id}`);
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}/${id}`, { headers });
+      }
+      return of();
   }
 }

@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { Event } from '../interfaces/event';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,30 @@ export class EventsService {
   public changedUrl = this.changedUrlSbj.asObservable();
   
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   public getEvents() : Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.url}?OrderByDescending=LastUpdated`);
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<Event[]>(`${this.url}?OrderByDescending=LastUpdated`, { headers });
+      }
+      return of([]);
   }
 
   public getEventsByPartnerId(partnerId: any) : Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.url}?PartnerId=${partnerId}OrderByDescending=LastUpdated`);
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<Event[]>(`${this.url}?PartnerId=${partnerId}OrderByDescending=LastUpdated`, { headers });
+      }
+      return of([]);
   }
 }
 

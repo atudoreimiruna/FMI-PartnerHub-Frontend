@@ -16,7 +16,7 @@ export class JobLeftComponent implements OnDestroy, OnInit {
   public jobId!: string;
   public job!: Job;
   public message: any;
-  public email!: string;
+  public email!: string | null;
   public student!: Student;
   public isAlert = false;
   public alertMsg!: string;
@@ -34,6 +34,12 @@ export class JobLeftComponent implements OnDestroy, OnInit {
         [TypeJobEnum.PartTime]: 'Part Time',
         [TypeJobEnum.Internship]: 'Internship'
     };
+
+    isUserAuthorized()
+    {
+      const roles = localStorage.getItem("roles")
+      return roles?.includes("User")
+    }
 
     public getTypeJobString(value: TypeJobEnum): string {
         return JobLeftComponent.typeJobEnumMap[value] || '';

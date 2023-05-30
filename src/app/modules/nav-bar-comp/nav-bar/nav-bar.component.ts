@@ -26,7 +26,13 @@ export class NavBarComponent {
     });
   }
 
-  getEmailFromToken(): string {
+  isUserAuthorized()
+  {
+    const roles = localStorage.getItem("roles")
+    return roles?.includes("User")
+  }
+
+  getEmailFromToken(): string | null {
     return this.authService.getEmailFromToken(); 
   }
 

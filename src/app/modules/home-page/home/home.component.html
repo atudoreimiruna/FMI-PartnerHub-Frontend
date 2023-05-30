@@ -74,7 +74,7 @@
       <img [src]="job.partnerLogo" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title" style="font-size: 17px;">{{job.title}}</h5>
-        <a href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+        <a *ngIf="isUserAuthorized()" href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
       </div>
     </div>
   </ng-container>

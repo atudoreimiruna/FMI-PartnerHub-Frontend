@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Token } from 'src/app/interfaces/token';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,30 +9,18 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
 
-  public tokens : Token = {
-    accessToken: this.authService.getAccessToken(),
-    refreshToken: this.authService.getRefreshToken()
-  };
+  // public tokens : Token = {
+  //   success: false,
+  //   accessToken: this.authService.getMicrosoftAccessToken(),
+  //   refreshToken: this.authService.getRefreshToken()
+  // };
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
     console.log('Login method called');
     this.authService.login().subscribe(() => {
-      // if (this.authService.isLoggedIn()) {
-        // this.router.navigate(['/home']);
-
-        // console.log(this.tokens)
-        // this.authService.sendTokens(this.tokens).subscribe(
-        //   () => {
-        //     console.log('Tokens sent successfully');
-        //   },
-        //   (error) => {
-        //     console.error('Failed to send tokens:', error);
-        //   }
-        // );
       }
-    // }
     );
   }
 
@@ -41,19 +28,19 @@ export class LoginComponent {
     return this.authService.isLoggedIn();
   }
 
-  sendTokensToBackend(): void {
-    const tokens: Token = {
-      accessToken: this.authService.getAccessToken(),
-      refreshToken: this.authService.getRefreshToken()
-    };
+  // sendTokensToBackend(): void {
+  //   const tokens: Token = {
+  //     accessToken: this.authService.getAccessToken(),
+  //     refreshToken: this.authService.getRefreshToken()
+  //   };
 
-    this.authService.sendTokens(this.authService.getAccessToken(), this.authService.getRefreshToken()).subscribe(
-      () => {
-        console.log('Tokens sent successfully');
-      },
-      (error) => {
-        console.error('Failed to send tokens:', error);
-      }
-    );
-  }
+  //   this.authService.sendTokens(this.authService.getAccessToken(), this.authService.getRefreshToken()).subscribe(
+  //     () => {
+  //       console.log('Tokens sent successfully');
+  //     },
+  //     (error) => {
+  //       console.error('Failed to send tokens:', error);
+  //     }
+  //   );
+  // }
 }

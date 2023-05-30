@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Job } from 'src/app/interfaces/job';
@@ -45,6 +45,12 @@ export class HomeComponent implements OnDestroy {
       this.eventsService.changedUrl.subscribe(() => { this.eventspage.nativeElement.scrollIntoView({behavior: 'smooth'})})
     }
 
+    isUserAuthorized()
+    {
+      const roles = localStorage.getItem("roles")
+      return roles?.includes("User")
+    }
+  
   public getAllPartners(): void {
     this.partnersService.getPartners().subscribe((result) => {
       this.partners = result;

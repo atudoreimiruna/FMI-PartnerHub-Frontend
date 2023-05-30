@@ -1,7 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Job } from '../interfaces/job';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +14,23 @@ export class JobsService {
   public filteredJobs$: Observable<any[]> = this.filteredJobsSubject.asObservable();
   
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   public getJobs(pageNumber?: any, pageSize?: any) : Observable<Job[]> {
-    return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`);
+      const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`, { headers });
+      }
+      return of([]);
   }
 
   public getJobsFilter(pageNumber?: any, pageSize?: any, partner?: string, address?: string, category?: string): Observable<Job[]> {
     let params = new HttpParams();
-    // debugger
-    // if (pageNumber) {
-    //   params.set('PageNumber', pageNumber.toString())
-    // }
-    
-    // if(pageSize)
-    // { 
-    //   params.set('PageSize', pageSize.toString());
-    // }
 
     if (partner) {
       params = params.set('PartnerName', partner);
@@ -41,15 +41,28 @@ export class JobsService {
     if (category) {
       params = params.set('Title', category);
     }
-    console.log(params.get(pageNumber))
-    return this.http.get<any>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`, {params});
+
+    const token = this.authService.getAccessToken();
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`, { params, headers });
+    }
+    return of([]);
   }
 
   loadJobsByPartner(partnerName: string): void {
     const filter = { PartnerName: partnerName };
     const queryParams = new URLSearchParams(filter).toString();
 
-    this.http.get<Job[]>(`https://localhost:5001/api/jobs?${queryParams}`)
+    const token = this.authService.getAccessToken();
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+
+      this.http.get<Job[]>(`https://localhost:5001/api/jobs?${queryParams}`, { headers })
       .subscribe(
         (response: Job[]) => {
           // Update the filtered jobs data in the service
@@ -59,9 +72,17 @@ export class JobsService {
           console.error('Failed to load jobs:', error);
         }
       );
+    }
   }
 
   public getJobById(id: any): Observable<Job> {
-    return this.http.get<any>(`${this.url}/by/${id}`);
+    const token = this.authService.getAccessToken();
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.get<any>(`${this.url}/by/${id}`, { headers });
+    }
+    return of();
   }
 }
