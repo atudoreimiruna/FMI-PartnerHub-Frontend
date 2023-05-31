@@ -24,6 +24,8 @@ import { PracticaComponent } from './practica/practica.component';
 import { MapsComponent } from './maps/maps.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule } from '@agm/core'
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AgmCoreModule } from '@agm/core'
     UserProfileSettingsComponent,
     UserProfileJobsComponent,
     PracticaComponent,
-    MapsComponent
+    MapsComponent,
+    AdminProfileComponent,
+    SuperAdminProfileComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +70,9 @@ import { AgmCoreModule } from '@agm/core'
     UserProfileSettingsComponent,
     UserProfileJobsComponent,
     PracticaComponent,
-    MapsComponent
+    MapsComponent,
+    AdminProfileComponent,
+    SuperAdminProfileComponent
   ]
 })
 

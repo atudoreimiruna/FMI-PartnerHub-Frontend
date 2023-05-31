@@ -10,6 +10,11 @@ import { UserProfileSettingsComponent } from './user-profile-settings/user-profi
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
 import { PracticaComponent } from './practica/practica.component';
 import { MapsComponent } from './maps/maps.component';
+import { AuthUserGuard } from 'src/app/auth.user.guard';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AuthAdminGuard } from 'src/app/auth.admin.guard';
+import { AuthSuperAdminGuard } from 'src/app/auth.superadmin.guard';
+import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
 
 const routes: Routes = [
     {
@@ -47,19 +52,32 @@ const routes: Routes = [
     },
     {
       path: 'user/:email',
-      component: UserProfileComponent
+      component: UserProfileComponent,
+      canActivate: [AuthUserGuard] 
     },
     {
       path: 'user/cont/:email',
-      component: UserProfileSettingsComponent
+      component: UserProfileSettingsComponent,
+      canActivate: [AuthUserGuard] 
     },
     {
       path: 'user/joburi/:email',
-      component: UserProfileJobsComponent
+      component: UserProfileJobsComponent,
+      canActivate: [AuthUserGuard] 
     },
     {
       path: 'maps',
       component: MapsComponent
+    },
+    {
+      path: 'admin/:email',
+      component: AdminProfileComponent,
+      canActivate: [AuthAdminGuard] 
+    },
+    {
+      path: 'superadmin/:email',
+      component: SuperAdminProfileComponent,
+      canActivate: [AuthSuperAdminGuard] 
     }
   ];
   

@@ -32,6 +32,12 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
       this.getPartner();
     }
 
+    isUserAuthorized()
+    {
+      const roles = localStorage.getItem("roles")
+      return roles?.includes("User")
+    }
+    
   public getPartner() : void {
     this.partnersService.getPartnerById(this.partnerId).subscribe( (result) => {
       this.partner = result;

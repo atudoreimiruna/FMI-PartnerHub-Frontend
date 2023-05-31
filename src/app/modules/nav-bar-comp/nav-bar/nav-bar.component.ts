@@ -26,10 +26,22 @@ export class NavBarComponent {
     });
   }
 
+  isSuperAdminAuthorized()
+  {
+    const roles = localStorage.getItem("roles")
+    return roles === "SuperAdmin";
+  }
+
   isUserAuthorized()
   {
     const roles = localStorage.getItem("roles")
     return roles?.includes("User")
+  }
+
+  isAdminAuthorized()
+  {
+    const roles = localStorage.getItem("roles")
+    return roles === "Admin";
   }
 
   getEmailFromToken(): string | null {

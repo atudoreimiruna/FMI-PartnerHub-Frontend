@@ -70,13 +70,15 @@
 
 <div class="row"> 
   <ng-container *ngFor="let job of jobs">
-    <div class="card" style="width: 18rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
-      <img [src]="job.partnerLogo" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title" style="font-size: 17px;">{{job.title}}</h5>
-        <a *ngIf="isUserAuthorized()" href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+      <div class="card" style="width: 18rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
+        <a href="http://localhost:4200/joburi/{{ job.id }}">
+          <img [src]="job.partnerLogo" class="card-img-top">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 17px;">{{job.title}}</h5>
+          <a *ngIf="isUserAuthorized()" href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+        </div>
       </div>
-    </div>
   </ng-container>
 </div>
 

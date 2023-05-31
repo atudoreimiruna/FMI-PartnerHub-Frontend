@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OAuthService, AuthConfig, OAuthEvent } from 'angular-oauth2-oidc';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Token } from '../interfaces/token';
 import jwt_decode from 'jwt-decode';
+import { UserRoles } from '../interfaces/userRoles';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,52 @@ export class AuthService {
 
   constructor(private oauthService: OAuthService, private http: HttpClient) {
     this.configureOAuth();
+  }
+
+  public getUsersAndRoles(userName: string, pageNumber?: number, pageSize?: number) : Observable<UserRoles[]> {
+    const token = this.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        if(userName != null)
+        {
+          return this.http.get<any>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&UserName=${userName}`, { headers });
+        }
+        else
+        {
+          return this.http.get<any>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}`, { headers });
+        }
+      }
+      return of([]);
+  }
+
+  postRoleToUser(requestBody: any): Observable<any> {
+    const token = this.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.post(`${this.url}/Role`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
+  removeRoleFromUser(requestBody: any): Observable<any> {
+    const token = this.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+
+        const options = {
+          body: requestBody,
+          headers: headers
+        };
+
+        return this.http.delete(`${this.url}/Role`, options);
+      }
+      return of([]);
   }
 
   private saveAccessTokenAndRoles(token: string) {
@@ -40,7 +87,6 @@ export class AuthService {
       if (response) {
         this.accessToken = response.accessToken;
         this.saveAccessTokenAndRoles(this.accessToken);
-        // Continue with the necessary actions
       } else {
         // Handle the failed login
       }

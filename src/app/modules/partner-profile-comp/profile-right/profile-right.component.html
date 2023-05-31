@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-<div class="card" style="width: 55rem;">
+<div *ngIf="this.partner.description" class="card" style="width: 55rem;">
   <div class="card-body">
     <h5 class="card-title">Descrierea companiei</h5>
     <p class="card-text">{{ partner.description }}</p>
   </div>
 </div>
 
-<div style="width: 98%; height: 400px; margin-left: 20px;">
+<div *ngIf="this.partner.profileImageUrl" style="width: 98%; height: 400px; margin-left: 20px;">
   <image-slider [slides]="slides"></image-slider>
 </div>

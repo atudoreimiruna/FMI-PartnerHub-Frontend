@@ -16,4 +16,12 @@ export class AuthGuard implements CanActivate {
     }
     return true;
   }
+
+  canUserActivate(): boolean {
+    const roles = localStorage.getItem("roles")
+    if(roles?.includes("User")) { 
+      return true;
+    }
+    return false;
+  }
 }
