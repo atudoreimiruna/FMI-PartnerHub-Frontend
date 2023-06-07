@@ -118,7 +118,7 @@ export class AuthService {
   }
 
   login(): Observable<boolean> {
-    console.log('Login method calleddddddddddddddddddddddddd');
+    // console.log('Login method calleddddddddddddddddddddddddd');
     return new Observable<boolean>(observer => {
       this.oauthService.initImplicitFlow();
       
@@ -141,6 +141,8 @@ export class AuthService {
   
   logout() {
     this.oauthService.logOut();
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('roles');
   }
 
   isLoggedIn(): boolean {

@@ -7,7 +7,7 @@
   
   <div class="card-body">
     <h5 class="card-title">{{ partner.name }}</h5>
-    <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p>
+    <!-- <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p> -->
     <a *ngIf="isUserAuthorized()" href="#" class="btn btn-primary">SALVEAZĂ</a>
     <a href="http://localhost:4200/joburi" (click)="getJobsByFilter(partner.name)" class="btn btn-second">Joburi ({{ partner.jobs.length }})</a>
   </div>
@@ -23,7 +23,13 @@
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <maps></maps>
+    <h5 class="card-title">Locație</h5>
+    <p class="card-map"> 
+      <!-- <maps></maps>  -->
+      <agm-map style="height: 270px;" [latitude]="latitude" [longitude]="longitude" [zoom]="15">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+    </p>
     <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p>
   </div>
 </div>

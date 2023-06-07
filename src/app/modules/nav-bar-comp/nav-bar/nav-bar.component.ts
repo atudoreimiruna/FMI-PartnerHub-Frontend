@@ -35,7 +35,7 @@ export class NavBarComponent {
   isUserAuthorized()
   {
     const roles = localStorage.getItem("roles")
-    return roles?.includes("User")
+    return roles === "User";
   }
 
   isAdminAuthorized()

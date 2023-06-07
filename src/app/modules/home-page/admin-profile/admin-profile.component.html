@@ -1,4 +1,15 @@
 <nav-bar></nav-bar>
 
+<div class="row">
+    <ng-container *ngFor="let partner of partners">
+      <div class="col-md-4">
+        <div class="card mb-4" style="width: 18rem; box-shadow: 0 0 10px #5C97BF;">
+          <div class="card-body">
+            <h5 class="card-title" style="font-size: 20px;">{{partner.name}}</h5>        
+          </div>
+        </div>
+      </div>
+    </ng-container>
+</div>
 
 <footer-comp></footer-comp>

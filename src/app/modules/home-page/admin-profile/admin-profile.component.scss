@@ -1,0 +1,31 @@
+
+.card{
+    width: 75vw;
+    object-fit: contain;
+    margin: auto;
+  }
+  
+  .card-title
+  {
+    font-family: 'Roboto',Helvetica,Arial,sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to make sure the container expands to the full height of the viewport */
+  }
+  
+  .cards_container {
+    flex-grow: 1; /* Allow the cards container to grow and take up remaining vertical space */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  }
+  
+  

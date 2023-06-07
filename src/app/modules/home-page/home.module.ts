@@ -23,7 +23,6 @@ import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.
 import { PracticaComponent } from './practica/practica.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
-import { MapModule } from '../maps/maps.module';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,7 @@ import { MapModule } from '../maps/maps.module';
     MatPaginatorModule,
     JobCompModule,
     NavBarCompModule,
-    FooterCompModule,
-    MapModule
+    FooterCompModule
   ],
   exports: [
     HomeComponent,

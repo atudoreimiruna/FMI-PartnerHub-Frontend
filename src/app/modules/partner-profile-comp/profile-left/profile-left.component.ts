@@ -1,3 +1,4 @@
+import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,17 +20,24 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   public message: any;
   public jobs!: Job[];
   
+  // info for map
+  public latitude!: number;
+  public longitude!: number;
+
   constructor(
     private partnersService: PartnersService,
     private jobsService: JobsService,
     private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private mapsAPILoader: MapsAPILoader
   ) { }
 
     ngOnInit() {
       this.partnerId = this.route.snapshot.paramMap.get('id')!;
-      this.getPartner();
+      this.getPartner().then(() => {
+        console.log(this.partner); // Check the retrieved partner data
+        this.findCoordinates(this.partner.address);
+      });
     }
 
     isUserAuthorized()
@@ -38,11 +46,14 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
       return roles?.includes("User")
     }
     
-  public getPartner() : void {
+  public async getPartner(): Promise<void>  {
+    return new Promise<void>((resolve) => {
     this.partnersService.getPartnerById(this.partnerId).subscribe( (result) => {
       this.partner = result;
-      console.log(this.partner);
-    })
+      resolve()
+      // console.log(this.partner);
+    });
+  });
   }
 
   public getJobsByFilter(partner?: string) {
@@ -56,6 +67,21 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
 
     // Redirect to the jobs page
     this.router.navigateByUrl('/joburi');
+  }
+
+  findCoordinates(address: string) {
+    console.log(address)
+    this.mapsAPILoader.load().then(() => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK && results[0]) {
+          this.latitude = results[0].geometry.location.lat();
+          this.longitude = results[0].geometry.location.lng();
+        } else {
+          console.error('Geocoding error:', status);
+        }
+      });
+    });
   }
 
   ngOnDestroy(): void {
