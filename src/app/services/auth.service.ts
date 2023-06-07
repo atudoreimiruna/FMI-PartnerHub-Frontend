@@ -111,19 +111,15 @@ export class AuthService {
 
     this.oauthService.events.subscribe((event: OAuthEvent) => {
       if (event.type === 'token_received') {
-        // console.log('Access Token:', accessToken);
         this.callExternalSignIn(); 
       }
     });
   }
 
   login(): Observable<boolean> {
-    // console.log('Login method calleddddddddddddddddddddddddd');
     return new Observable<boolean>(observer => {
       this.oauthService.initImplicitFlow();
-      
       const tokenSubscription = this.oauthService.events.subscribe(e => {
-        console.log('Token event:', e);
         if (e.type === 'token_received') {
           const tokens: Token = {
             success: true,
