@@ -21,11 +21,9 @@ import { FooterCompModule } from '../footer-comp/footer-comp.module';
 import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
 import { PracticaComponent } from './practica/practica.component';
-import { MapsComponent } from './maps/maps.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { AgmCoreModule } from '@agm/core'
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
+import { MapModule } from '../maps/maps.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +36,6 @@ import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-prof
     UserProfileSettingsComponent,
     UserProfileJobsComponent,
     PracticaComponent,
-    MapsComponent,
     AdminProfileComponent,
     SuperAdminProfileComponent
   ],
@@ -56,9 +53,7 @@ import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-prof
     JobCompModule,
     NavBarCompModule,
     FooterCompModule,
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyBhU3J5kgohV9C4enjQW6g2tbzs-MAMTF8"
-    })
+    MapModule
   ],
   exports: [
     HomeComponent,
@@ -70,7 +65,6 @@ import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-prof
     UserProfileSettingsComponent,
     UserProfileJobsComponent,
     PracticaComponent,
-    MapsComponent,
     AdminProfileComponent,
     SuperAdminProfileComponent
   ]

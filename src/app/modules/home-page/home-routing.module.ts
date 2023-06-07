@@ -9,7 +9,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
 import { PracticaComponent } from './practica/practica.component';
-import { MapsComponent } from './maps/maps.component';
 import { AuthUserGuard } from 'src/app/auth.user.guard';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { AuthAdminGuard } from 'src/app/auth.admin.guard';
@@ -65,10 +64,10 @@ const routes: Routes = [
       component: UserProfileJobsComponent,
       canActivate: [AuthUserGuard] 
     },
-    {
-      path: 'maps',
-      component: MapsComponent
-    },
+    // {
+    //   path: 'maps',
+    //   component: MapsComponent
+    // },
     {
       path: 'admin/:email',
       component: AdminProfileComponent,
