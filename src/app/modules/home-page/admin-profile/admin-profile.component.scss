@@ -28,4 +28,22 @@
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
   }
   
-  
+  .btn
+{
+  background-color: white;
+}
+
+.btn-primary
+{
+  background-color: white;
+  color: black;
+  padding: 5px 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+
+  &:hover {
+      background-color: #4B77BE;
+  }
+}

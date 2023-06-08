@@ -35,7 +35,7 @@ export class AuthService {
       return of([]);
   }
 
-  postRoleToUser(requestBody: any): Observable<any> {
+  public postRoleToUser(requestBody: any): Observable<any> {
     const token = this.getAccessToken();
       if (token) {
         const headers = new HttpHeaders({
@@ -46,7 +46,7 @@ export class AuthService {
       return of([]);
   }
 
-  removeRoleFromUser(requestBody: any): Observable<any> {
+  public removeRoleFromUser(requestBody: any): Observable<any> {
     const token = this.getAccessToken();
       if (token) {
         const headers = new HttpHeaders({

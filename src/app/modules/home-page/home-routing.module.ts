@@ -34,6 +34,10 @@ const routes: Routes = [
       component: PartnerComponent
     },
     {
+      path: 'partener/admin/:id',
+      component: PartnerComponent
+    },
+    {
       path: 'evenimente',
       component: PartnerComponent
     },

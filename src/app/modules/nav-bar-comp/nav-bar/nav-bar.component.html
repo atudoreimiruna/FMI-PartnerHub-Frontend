@@ -13,13 +13,13 @@
                     </li>
                   </ul>
               </li>
-              <li><a class="link" (click)=goToEvents() >EVENIMENTE</a></li>
+              <li><a class="link" href="http://localhost:4200/home#events" >EVENIMENTE</a></li>
               <li><a href="http://localhost:4200/home">ACASĂ</a></li>
               <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
               <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
-              <li><a *ngIf="isUserAuthorized()" href="http://localhost:4200/user/{{ getEmailFromToken() }}">CONTUL MEU</a></li>
-              <li><a *ngIf="isAdminAuthorized()" href="http://localhost:4200/admin/{{ getEmailFromToken() }}">ADMIN</a></li>
-              <li><a *ngIf="isSuperAdminAuthorized()" href="http://localhost:4200/superadmin/{{ getEmailFromToken() }}">ADMIN</a></li>
+              <li><a style="color: #1BA39C;" *ngIf="isUserAuthorized()" href="http://localhost:4200/user/{{ getEmailFromToken() }}">CONTUL MEU</a></li>
+              <li><a style="color: #1BA39C;" *ngIf="isAdminAuthorized()" href="http://localhost:4200/admin/{{ getEmailFromToken() }}">ADMIN</a></li>
+              <li><a style="color: #1BA39C;" *ngIf="isSuperAdminAuthorized()" href="http://localhost:4200/superadmin/{{ getEmailFromToken() }}">ADMIN</a></li>
           </ul>
         </nav>
     </div>

@@ -5,6 +5,7 @@ import { RolesEnum } from 'src/app/interfaces/userRole';
 import { UserRoles } from 'src/app/interfaces/userRoles';
 import { AuthService } from 'src/app/services/auth.service';
 import { FilesService } from 'src/app/services/files.service';
+import { PartnersService } from 'src/app/services/partners.service';
 import { StudentsService } from 'src/app/services/students.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class SuperAdminProfileComponent {
   constructor(
     public authService: AuthService,
     public studentService: StudentsService,
+    public partnerService: PartnersService,
     public fileService: FilesService,
     private route: ActivatedRoute
   ) { 
@@ -33,6 +35,7 @@ export class SuperAdminProfileComponent {
 
   public email: string = '';
   public role: number = 2;
+  public name: string = '';
 
   public isAlert = false;
   public isAlertRed = false;
@@ -90,6 +93,30 @@ export class SuperAdminProfileComponent {
       response => {
         this.isAlert = true;
         this.alertMsg = "Ai adăugat cu succes!"
+        this.closeAlert();
+      },
+      error => {
+        // Handle any errors that occurred during the request
+      }
+    );
+    this.resetAlert()
+    form.reset();
+    }
+  }
+
+  public addPartner(form: NgForm): void {
+    if (form.valid) {
+      const { name } = form.value;
+  
+      const requestBody = {
+        name: this.name
+      };
+   
+    console.log(requestBody)
+    this.partnerService.postPartner(requestBody).subscribe(
+      response => {
+        this.isAlert = true;
+        this.alertMsg = "Ai adăugat cu succes partenerul!"
         this.closeAlert();
       },
       error => {

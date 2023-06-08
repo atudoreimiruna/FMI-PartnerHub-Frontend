@@ -91,6 +91,16 @@
         <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Elimină</button>
       </form>
 
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Adaugă un nou partener</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="addPartner(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlInput3">Numele partenerului</label>
+          <input type="email" class="form-control" id="exampleFormControlInput3" name="name" [(ngModel)]="name">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Adaugă</button>
+      </form>
+
     </div>
 
     <div>

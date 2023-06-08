@@ -1,15 +1,25 @@
 <nav-bar></nav-bar>
 
-<div class="row">
-    <ng-container *ngFor="let partner of partners">
-      <div class="col-md-4">
-        <div class="card mb-4" style="width: 18rem; box-shadow: 0 0 10px #5C97BF;">
-          <div class="card-body">
-            <h5 class="card-title" style="font-size: 20px;">{{partner.name}}</h5>        
+<div class="card mb-3" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
+  <div class="row">
+      <ng-container *ngFor="let partner of partners">
+          <div class="col-md-4">
+            <div class="card mb-4" style="width: 18rem; box-shadow: 0 0 5px #5C97BF; margin-top: 20px; margin-left: 10px; margin-right: 10px;">
+              <a style="text-decoration: none; color: inherit;" href="http://localhost:4200/partener/admin/{{ partner.id }}">
+                <div class="card-body">
+                  <h5 class="card-title" style="font-size: 20px;">{{partner.name}}</h5>        
+                </div>
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
-    </ng-container>
+      </ng-container>
+  </div>
+
+  <div>
+    <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+  </div>
 </div>
 
 <footer-comp></footer-comp>
+
+
