@@ -17,9 +17,9 @@ import { EventsService } from 'src/app/services/events.service';
 })
 export class HomeComponent implements OnDestroy {
   public slides: Slide[] = [
-    { url: 'https://images.indianexpress.com/2019/10/study1.jpg', title: 'image1'},
-    { url: 'https://static-cse.canva.com/blob/558511/studyingtips1.jpg', title: 'image2'},
-    { url: 'https://gradepowerlearning.com/wp-content/uploads/2018/09/how-to-use-self-study-860x420.jpeg', title: 'image3'}
+    { url: 'https://scontent.fotp3-4.fna.fbcdn.net/v/t39.30808-6/346457768_157217477307563_2943196882167428327_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=s-5Bb4JWGjsAX_HW3mD&_nc_ht=scontent.fotp3-4.fna&oh=00_AfClLzbkFQJPuCHd5N5HQiwS4pz0rCUpJWBf0kH3EREbbg&oe=648A702E', title: 'image1'},
+    { url: 'https://scontent.fotp3-4.fna.fbcdn.net/v/t39.30808-6/346281742_207649775382683_7206633406998060326_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=_yuQcWNVeHwAX-sWogG&_nc_ht=scontent.fotp3-4.fna&oh=00_AfCvunWKkOh8Bfns2W-R6Qy6nDfl74C_dvnA6ucherW4iA&oe=648B51EE', title: 'image2'},
+    { url: 'https://scontent.fotp3-4.fna.fbcdn.net/v/t39.30808-6/346091429_1382493435861550_2364217179068669190_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=1IxWSJHoRb8AX8p88pH&_nc_ht=scontent.fotp3-4.fna&oh=00_AfAuQ5EFuj7mzizRM5KT9jz0CDKxTYHS2JiPSu74nTOPiw&oe=648A39A6', title: 'image3'}
   ];
 
   public id: Number | undefined;

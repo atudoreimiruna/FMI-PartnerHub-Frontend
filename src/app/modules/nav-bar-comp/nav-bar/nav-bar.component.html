@@ -4,7 +4,9 @@
 <header class="main-header">
     <div>
       <nav class="nav main-nav">
+        <!-- <a href="http://localhost:4200/home"><img src="../../../../assets/logo-FMIPartnerHub.png" alt="Logo" class="logo"></a> -->
           <ul>
+            <li><a href="http://localhost:4200/home">ACASĂ</a></li>
               <li>
                   <a class="link" (click)=goToPartners()>PARTENERI</a>
                   <ul>
@@ -14,7 +16,6 @@
                   </ul>
               </li>
               <li><a class="link" href="http://localhost:4200/home#events" >EVENIMENTE</a></li>
-              <li><a href="http://localhost:4200/home">ACASĂ</a></li>
               <li><a href="http://localhost:4200/joburi">JOBURI</a></li>
               <li><a href="http://localhost:4200/practica">PRACTICĂ</a></li>
               <li><a style="color: #1BA39C;" *ngIf="isUserAuthorized()" href="http://localhost:4200/user/{{ getEmailFromToken() }}">CONTUL MEU</a></li>
@@ -25,7 +26,7 @@
     </div>
     
     <h1 class="site-name">
-      <a href="https://fmi.unibuc.ro/">
+      <a href="http://localhost:4200/home">
           <img 
             width="200" 
             height="50" 
@@ -33,10 +34,11 @@
             loading="lazy" 
             data-variant="logo" 
             class="logo" 
-            src="https://cms.fmi.unibuc.ro/static/icons/logo-fmi-black.png" 
+            src="../../../../assets/logo-FMIPartnerHub.png" 
             alt ="FMI logo"
           >
       </a>
     </h1>
 
   </header>
+

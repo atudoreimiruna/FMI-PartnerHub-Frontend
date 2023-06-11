@@ -1,3 +1,5 @@
+import { Partner } from "./partner";
+
 export interface Event {
     id : number;
     title : string;
@@ -8,4 +10,6 @@ export interface Event {
     time : string;
     lastUpdated : string;
     createdAt : string;
+    partnerName: string;
+    partner: Partner;
 }

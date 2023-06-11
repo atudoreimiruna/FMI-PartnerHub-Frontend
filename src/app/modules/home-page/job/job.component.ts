@@ -30,7 +30,7 @@ export class JobComponent implements OnInit, OnDestroy {
   public filteredJobs!: Job[];
   
   // for pagination
-  public displayCount: number = 14;
+  public displayCount: number = 7;
   private pageNumber: number = 1;
   public pageSize: number = 5;
 

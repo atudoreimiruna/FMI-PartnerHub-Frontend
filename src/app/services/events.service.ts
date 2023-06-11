@@ -24,7 +24,7 @@ export class EventsService {
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`
         });
-        return this.http.get<Event[]>(`${this.url}?OrderByDescending=LastUpdated`, { headers });
+        return this.http.get<Event[]>(`${this.url}?OrderByDescending=Date`, { headers });
       }
       return of([]);
   }

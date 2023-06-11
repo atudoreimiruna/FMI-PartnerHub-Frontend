@@ -3,7 +3,7 @@
 <div *ngIf="this.partner.description" class="card" style="width: 55rem;">
   <div class="card-body">
     <h5 class="card-title">Descrierea companiei</h5>
-    <p class="card-text">{{ partner.description }}</p>
+    <p class="card-text" [innerHTML]="partner.description"></p>
   </div>
 </div>
 

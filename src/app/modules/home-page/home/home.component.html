@@ -35,13 +35,16 @@
   <ng-container *ngFor="let event of events">
     <div class="col-md-4">
       <div class="card mb-4" style="width: 18rem; box-shadow: 0 0 10px #5C97BF;">
-        <div class="card-body">
-          <h5 class="card-title" style="font-size: 20px;">{{event.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary" style="color: gray">{{event.type}}</h6>
-          <p *ngIf="event.location" class="card-text"><i class="material-icons">map</i> {{ event.location }}</p>
-          <p *ngIf="event.date" class="card-text"><i class="material-icons">event</i> {{ event.date | date:'dd-MM-yyyy' }}</p>
-          <p *ngIf="event.time" class="card-text"><i class="material-icons">watch</i> {{ event.time }}</p>
-        </div>
+        <a style="text-decoration: none; color: inherit;" href="http://localhost:4200/partener/{{ event.partner.id }}">
+          <div class="card-body">
+            <h5 class="card-title" style="font-size: 20px;">{{event.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary" style="color: gray">{{event.type}}</h6>
+            <p *ngIf="event.location" class="card-text"><i class="material-icons">map</i> {{ event.location }}</p>
+            <p *ngIf="event.date" class="card-text"><i class="material-icons">event</i> {{ event.date | date:'dd-MM-yyyy' }}</p>
+            <p *ngIf="event.time" class="card-text"><i class="material-icons">watch</i> {{ event.time }}</p>
+            <p *ngIf="event.partnerName" class="card-text" style="font-weight: bold;">{{ event.partnerName }}</p>
+          </div>
+        </a>
       </div>
     </div>
   </ng-container>
@@ -70,13 +73,15 @@
 
 <div class="row"> 
   <ng-container *ngFor="let job of jobs">
-      <div class="card" style="width: 18rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
-        <a href="http://localhost:4200/joburi/{{ job.id }}">
-          <img [src]="job.partnerLogo" class="card-img-top">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title" style="font-size: 17px;">{{job.title}}</h5>
-          <a *ngIf="isUserAuthorized()" href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+    <div class="col-md-3">
+        <div class="card mb-4" style=" width: 15rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
+          <a href="http://localhost:4200/joburi/{{ job.id }}">
+            <img style="object-fit: contain;" [src]="job.partnerLogo" class="card-img-top">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title" style="font-size: 15px; object-fit: contain;">{{job.title}}</h5>
+            <a *ngIf="isUserAuthorized()" href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+          </div>
         </div>
       </div>
   </ng-container>
