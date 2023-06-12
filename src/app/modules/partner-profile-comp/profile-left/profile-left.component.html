@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
+<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <div class="card" style="width: 18rem;">
   <a href="{{ partner.social }}" target="_blank"> <!-- Added anchor tag around the card image -->
       <img class="card-img-top" src="{{ partner.logoImageUrl }}" alt="Card image cap">
@@ -8,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ partner.name }}</h5>
     <!-- <p class="card-text"><i class="material-icons">place</i> {{ partner.address }}</p> -->
-    <a *ngIf="isUserAuthorized()" href="#" class="btn btn-primary">SALVEAZĂ</a>
+    <button *ngIf="isUserAuthorized()" (click)="updatePartnerOnStudent()" class="btn btn-primary">SALVEAZĂ</button>
     <a href="http://localhost:4200/joburi" (click)="getJobsByFilter(partner.name)" class="btn btn-second">Joburi ({{ partner.jobs.length }})</a>
   </div>
 </div>

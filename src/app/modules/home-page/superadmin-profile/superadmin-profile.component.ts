@@ -29,7 +29,7 @@ export class SuperAdminProfileComponent {
   public searchText: string = '';
 
   // for pagination
-  public displayCount: number = 14;
+  public displayCount: number = 12;
   private pageNumber: number = 1;
   public pageSize: number = 5;
 

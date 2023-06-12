@@ -48,6 +48,18 @@ export class StudentsService {
       return of([]);
   }
 
+  updatePartnerOnStudent(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.put(`${this.url}/partner`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
+
   deleteStudentJob(studentId: any, jobId: any): Observable<any> {
     const token = this.authService.getAccessToken();
       if (token) {
@@ -55,6 +67,17 @@ export class StudentsService {
           Authorization: `Bearer ${token}`
         });
         return this.http.delete(`${this.url}/${studentId}/${jobId}`, { headers })
+      }
+      return of([]);
+  }
+
+  deleteStudentPartner(studentId: any, partnerId: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.delete(`${this.url}/by/${studentId}/${partnerId}`, { headers })
       }
       return of([]);
   }

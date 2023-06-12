@@ -67,6 +67,7 @@ export class AuthService {
     // Save the access token to browser storage
     localStorage.setItem('accessToken', token);
     this.getRolesFromToken();
+    this.getPartnerFromToken();
   }
 
   public getAccessToken(): string | null {
@@ -139,6 +140,7 @@ export class AuthService {
     this.oauthService.logOut();
     localStorage.removeItem('accessToken');
     localStorage.removeItem('roles');
+    localStorage.removeItem('partnerId');
   }
 
   isLoggedIn(): boolean {
@@ -170,6 +172,17 @@ export class AuthService {
       const roles = decodedToken.role || [];
       localStorage.setItem('roles', roles);
       return roles;
+    }
+    return null;
+  }
+
+  getPartnerFromToken(): string[] | null {
+    const token = this.getAccessToken();
+    if (token !== null) {
+      const decodedToken: any = jwt_decode(token);
+      const partner = decodedToken.partnerId || [];
+      localStorage.setItem('partnerId', partner);
+      return partner;
     }
     return null;
   }

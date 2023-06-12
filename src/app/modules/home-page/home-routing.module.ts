@@ -14,6 +14,7 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { AuthAdminGuard } from 'src/app/auth.admin.guard';
 import { AuthSuperAdminGuard } from 'src/app/auth.superadmin.guard';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
+import { UserProfilePartnersComponent } from './user-profile-partners/user-profile-partners.component';
 
 const routes: Routes = [
     {
@@ -66,6 +67,11 @@ const routes: Routes = [
     {
       path: 'user/joburi/:email',
       component: UserProfileJobsComponent,
+      canActivate: [AuthUserGuard] 
+    },
+    {
+      path: 'user/parteneri/:email',
+      component: UserProfilePartnersComponent,
       canActivate: [AuthUserGuard] 
     },
     // {

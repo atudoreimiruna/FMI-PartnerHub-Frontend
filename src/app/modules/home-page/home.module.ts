@@ -23,6 +23,7 @@ import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.
 import { PracticaComponent } from './practica/practica.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
+import { UserProfilePartnersComponent } from './user-profile-partners/user-profile-partners.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-prof
     UserProfileJobsComponent,
     PracticaComponent,
     AdminProfileComponent,
-    SuperAdminProfileComponent
+    SuperAdminProfileComponent,
+    UserProfilePartnersComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-prof
     UserProfileJobsComponent,
     PracticaComponent,
     AdminProfileComponent,
-    SuperAdminProfileComponent
+    SuperAdminProfileComponent,
+    UserProfilePartnersComponent
   ]
 })
 

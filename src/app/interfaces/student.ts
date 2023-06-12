@@ -1,4 +1,5 @@
 import { Job } from "./job";
+import { Partner } from "./partner";
 
 export interface Student {
     id : number;
@@ -11,4 +12,5 @@ export interface Student {
     skill : string;
     fileNames: string[];
     jobs: Job[]
+    partners: Partner[]
 }
