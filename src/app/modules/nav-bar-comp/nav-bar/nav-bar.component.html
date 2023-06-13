@@ -8,7 +8,7 @@
           <ul>
             <li><a href="http://localhost:4200/home">ACASĂ</a></li>
               <li>
-                  <a class="link" (click)=goToPartners()>PARTENERI</a>
+                  <a class="link" href="http://localhost:4200/home#partners" >PARTENERI</a>
                   <ul>
                     <li *ngFor="let partner of partners">
                       <a href="http://localhost:4200/partener/{{ partner.id }}">{{ partner.name }}</a>

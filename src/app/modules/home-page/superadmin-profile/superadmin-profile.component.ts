@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { RolesEnum } from 'src/app/interfaces/userRole';
+import { Partner } from 'src/app/interfaces/partner';
 import { UserRoles } from 'src/app/interfaces/userRoles';
 import { AuthService } from 'src/app/services/auth.service';
 import { FilesService } from 'src/app/services/files.service';
@@ -18,13 +18,15 @@ export class SuperAdminProfileComponent {
   constructor(
     public authService: AuthService,
     public studentService: StudentsService,
-    public partnerService: PartnersService,
+    public partnersService: PartnersService,
     public fileService: FilesService,
     private route: ActivatedRoute
   ) { 
     this.getUsersAndRoles();
+    this.getAllPartners();
   }
 
+  public partners!: Partner[];
   public userRoles!: UserRoles[];
   public searchText: string = '';
 
@@ -36,6 +38,7 @@ export class SuperAdminProfileComponent {
   public email: string = '';
   public role: number = 2;
   public name: string = '';
+  public partner: string = '';
 
   public isAlert = false;
   public isAlertRed = false;
@@ -79,6 +82,12 @@ export class SuperAdminProfileComponent {
     });
   }
 
+  public getAllPartners(): void {
+    this.partnersService.getPartners().subscribe((result) => {
+      this.partners = result;
+    });
+  }
+
   public addRoleToUser(form: NgForm): void {
     if (form.valid) {
       const { email, role } = form.value;
@@ -104,6 +113,31 @@ export class SuperAdminProfileComponent {
     }
   }
 
+  public addAdminToPartner(form: NgForm): void {
+    if (form.valid) {
+      const { email, partner } = form.value;
+  
+      const requestBody = {
+        email: email,
+        partner: partner
+      };
+   
+    console.log(requestBody)
+    this.authService.addPartnerToAdmin(requestBody).subscribe(
+      response => {
+        this.isAlert = true;
+        this.alertMsg = "Ai adăugat cu succes!"
+        this.closeAlert();
+      },
+      error => {
+        // Handle any errors that occurred during the request
+      }
+    );
+    this.resetAlert()
+    form.reset();
+    }
+  }
+
   public addPartner(form: NgForm): void {
     if (form.valid) {
       const { name } = form.value;
@@ -113,7 +147,7 @@ export class SuperAdminProfileComponent {
       };
    
     console.log(requestBody)
-    this.partnerService.postPartner(requestBody).subscribe(
+    this.partnersService.postPartner(requestBody).subscribe(
       response => {
         this.isAlert = true;
         this.alertMsg = "Ai adăugat cu succes partenerul!"

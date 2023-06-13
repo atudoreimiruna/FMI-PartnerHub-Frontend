@@ -46,6 +46,17 @@ export class AuthService {
       return of([]);
   }
 
+  public addPartnerToAdmin(requestBody: any): Observable<any> {
+    const token = this.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.post(`${this.url}/Partner`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
   public removeRoleFromUser(requestBody: any): Observable<any> {
     const token = this.getAccessToken();
       if (token) {
