@@ -1,25 +1,123 @@
 <nav-bar></nav-bar>
 
-<div class="card mb-3" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
-  <div class="row">
-      <ng-container *ngFor="let partner of partners">
-          <div class="col-md-4">
-            <div class="card mb-4" style="width: 18rem; box-shadow: 0 0 5px #5C97BF; margin-top: 20px; margin-left: 10px; margin-right: 10px;">
-              <a style="text-decoration: none; color: inherit;" href="http://localhost:4200/partener/admin/{{ partner.id }}">
-                <div class="card-body">
-                  <h5 class="card-title" style="font-size: 20px;">{{partner.name}}</h5>        
-                </div>
-              </a>
-            </div>
-          </div>
-      </ng-container>
+<div>
+  <div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+    {{alertMsg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
-  <div>
-    <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+    <div class="card-body">
+      <h5 class="card-title" style="margin-bottom: 20px;">Setări Admin</h5>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează informațiile partenerului</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="updatePartner(updateForm)">
+
+        <div class="mb-3">
+          <label for="exampleInputName" class="form-label">Nume</label>
+          <input type="text" class="form-control" id="exampleInputName" name="name" [(ngModel)]="partner.name" >
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputAddress" class="form-label">Adresă</label>
+          <input type="text" class="form-control" id="exampleInputAddress" name="address" [(ngModel)]="partner.address">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPhone" class="form-label">Număr de telefon</label>
+            <input type="tel" class="form-control" id="exampleInputPhone" name="phone" [(ngModel)]="partner.phone">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Adresă de email</label>
+            <input type="email" class="form-control" id="exampleInputEmail" name="email" [(ngModel)]="partner.email">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputSocial" class="form-label">Website</label>
+            <input type="text" class="form-control" id="exampleInputSocial" name="social" [(ngModel)]="partner.social">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputMainDescription" class="form-label">Descriere pentru pagina principală</label>
+          <ckeditor [editor]="Editor" id="exampleInputMainDescription" name="mainDescription" [(ngModel)]="partner.mainDescription"></ckeditor>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputDescription" class="form-label">Descriere pentru pagina de profil</label>
+          <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="partner.description"></ckeditor>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează evenimentele</h5>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Eveniment</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let event of events">
+          <tr (click)="openEventEdit(event.id)">
+            <th scope="row"></th>
+            <td>{{event.title}}</td>
+            <td>{{event.date | date:'dd-MM-yyyy' }}</td>
+          </tr>
+        </ng-container> 
+      </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Adaugă un eveniment nou</button>
+
+    <div>
+      <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+    </div>
+    </div>
+
+    <!-- <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px; margin-left: 20px;">Actualizează evenimentele</h5>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Eveniment</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let event of events">
+          <tr>
+            <th scope="row"></th>
+            <td>{{event.title}}</td>
+            <td>{{event.date | date:'dd-MM-yyyy' }}</td>
+          </tr>
+        </ng-container> 
+      </tbody>
+    </table>
+
+    <div>
+      <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+    </div> -->
+
   </div>
+
+  <!-- <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="formFile" class="form-label">CV</label>
+        <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="uploadFile()">Salvează</button>
+    </div>
+  </div> -->
+
 </div>
 
 <footer-comp></footer-comp>
-
-

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Student } from 'src/app/interfaces/student';
 import { FilesService } from 'src/app/services/files.service';
 import { StudentsService } from 'src/app/services/students.service';
@@ -23,6 +24,7 @@ export class UserProfileSettingsComponent implements OnInit {
   public isAlert = false;
   public alertMsg!: string;
   public file!: File;
+  public Editor = ClassicEditor;
 
   ngOnInit() {
     this.email = this.route.snapshot.params['email'];

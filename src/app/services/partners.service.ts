@@ -51,4 +51,15 @@ export class PartnersService {
       }
       return of();
   }
+
+  updatePartner(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.put(`${this.url}`, requestBody, { headers });
+      }
+      return of([]);
+  }
 }

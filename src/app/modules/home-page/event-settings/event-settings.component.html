@@ -1,0 +1,40 @@
+<div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; ">
+  <div class="card-body">
+    <form #updateForm="ngForm" (ngSubmit)="updateEvent(updateForm)">
+
+        <div class="mb-3">
+          <label for="exampleInputTitle" class="form-label">Titlul</label>
+          <input type="text" class="form-control" id="exampleInputTitle" name="title" [(ngModel)]="event.title" >
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+      
+        <div class="mb-3">
+          <label for="exampleInputType" class="form-label">Tipul evenimentului</label>
+          <input type="text" class="form-control" id="exampleInputType" name="type" [(ngModel)]="event.type">
+        </div>
+      
+        <div class="mb-3">
+            <label for="exampleInputLocation" class="form-label">Locație</label>
+            <input type="tel" class="form-control" id="exampleInputLocation" name="location" [(ngModel)]="event.location">
+        </div>
+      
+        <div class="mb-3">
+            <label for="exampleInputDate" class="form-label">Data</label>
+            <input type="text" class="form-control" id="exampleInputDate" name="date" [(ngModel)]="event.date">
+        </div>
+      
+        <div class="mb-3">
+            <label for="exampleInputTime" class="form-label">Ora</label>
+            <input type="text" class="form-control" id="exampleInputTime" name="time" [(ngModel)]="event.time">
+        </div>
+        
+        <div class="mb-3">
+              <label for="exampleInputDescription" class="form-label">Descriere</label>
+              <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="event.description"></ckeditor>
+            </div>
+
+        <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
+        <button type="submit" class="btn btn-primary" style="margin-left: 5px;">Șterge</button>
+      </form>
+  </div>
+</div>

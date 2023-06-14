@@ -24,6 +24,9 @@ import { PracticaComponent } from './practica/practica.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
 import { UserProfilePartnersComponent } from './user-profile-partners/user-profile-partners.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EventSettingsComponent } from './event-settings/event-settings.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { UserProfilePartnersComponent } from './user-profile-partners/user-profi
     PracticaComponent,
     AdminProfileComponent,
     SuperAdminProfileComponent,
-    UserProfilePartnersComponent
+    UserProfilePartnersComponent,
+    EventSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,9 @@ import { UserProfilePartnersComponent } from './user-profile-partners/user-profi
     MatPaginatorModule,
     JobCompModule,
     NavBarCompModule,
-    FooterCompModule
+    FooterCompModule,
+    CKEditorModule,
+    MatDialogModule
   ],
   exports: [
     HomeComponent,
@@ -67,7 +73,8 @@ import { UserProfilePartnersComponent } from './user-profile-partners/user-profi
     PracticaComponent,
     AdminProfileComponent,
     SuperAdminProfileComponent,
-    UserProfilePartnersComponent
+    UserProfilePartnersComponent,
+    EventSettingsComponent
   ]
 })
 

@@ -35,11 +35,11 @@
       </div>
       <div class="mb-3">
           <label for="exampleInputSkills" class="form-label">Aptitudinile mele</label>
-          <input type="text" class="form-control" id="exampleInputSkills" name="skill" [(ngModel)]="student.skill">
+          <ckeditor [editor]="Editor" id="exampleInputSkills" name="skill" [(ngModel)]="student.skill"></ckeditor>
       </div>
       <div class="mb-3">
           <label for="exampleInputDescription" class="form-label">Despre mine</label>
-          <input type="text" class="form-control" id="exampleInputDescription" name="description" [(ngModel)]="student.description">
+          <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="student.description"></ckeditor>
       </div>
       <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
     </form>

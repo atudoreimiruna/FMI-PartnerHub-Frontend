@@ -35,9 +35,42 @@ export class EventsService {
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`
         });
-        return this.http.get<Event[]>(`${this.url}?PartnerId=${partnerId}OrderByDescending=LastUpdated`, { headers });
+        return this.http.get<Event[]>(`${this.url}?PartnerId=${partnerId}&OrderByDescending=LastUpdated`, { headers });
       }
       return of([]);
+  }
+
+  public getEventsByPartnerName(partnerName: any) : Observable<Event[]> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<Event[]>(`${this.url}?PartnerName=${partnerName}&OrderByDescending=LastUpdated`, { headers });
+      }
+      return of([]);
+  }
+
+  updateEvent(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.put(`${this.url}`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
+  public getEventById(id: any): Observable<Event> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}/${id}`, { headers });
+      }
+      return of();
   }
 }
 

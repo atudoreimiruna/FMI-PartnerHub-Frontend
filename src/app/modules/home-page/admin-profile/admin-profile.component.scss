@@ -1,49 +1,32 @@
 
-.card{
-    width: 75vw;
-    object-fit: contain;
-    margin: auto;
-  }
-  
-  .card-title
-  {
-    font-family: 'Roboto',Helvetica,Arial,sans-serif;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Set minimum height to make sure the container expands to the full height of the viewport */
-  }
-  
-  .cards_container {
-    flex-grow: 1; /* Allow the cards container to grow and take up remaining vertical space */
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
-  }
-  
-  .btn
-{
+.btn {
   background-color: white;
-}
-
-.btn-primary
-{
-  background-color: white;
-  color: black;
-  padding: 5px 20px;
-  border-radius: 10px;
-  border: 1px solid black;
+  margin: 10px 0;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 
   &:hover {
-      background-color: #4B77BE;
+      background-color: #336E7B;
   }
+}
+
+.btn-primary {
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  color: #333333;
+  border: 1px solid black;
+}
+
+
+.form-label {
+font-weight: bold;
+}
+
+.card-title
+{
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
