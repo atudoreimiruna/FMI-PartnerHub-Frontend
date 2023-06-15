@@ -1,6 +1,5 @@
 import { MapsAPILoader } from '@agm/core';
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { Partner } from 'src/app/interfaces/partner';
