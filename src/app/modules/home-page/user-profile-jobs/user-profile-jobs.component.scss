@@ -150,3 +150,22 @@
   font-weight: bold; 
   background-color: #86E2D5;
 }
+.first_title
+{
+  --hidden-scrollbar-width:  0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  vertical-align: initial;
+  border: 0;
+  padding-top: 2.4rem;
+  color: #1c4237;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  // margin-top: 5px;
+}

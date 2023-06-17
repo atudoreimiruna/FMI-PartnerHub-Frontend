@@ -20,6 +20,7 @@ export class JobLeftComponent implements OnDestroy, OnInit {
   public student!: Student;
   public isAlert = false;
   public alertMsg!: string;
+  public isDropdownOpen = false;
 
   constructor(
     private jobsService: JobsService,
@@ -34,6 +35,10 @@ export class JobLeftComponent implements OnDestroy, OnInit {
         [TypeJobEnum.PartTime]: 'Part Time',
         [TypeJobEnum.Internship]: 'Internship'
     };
+
+    toggleDropdown() {
+        this.isDropdownOpen = !this.isDropdownOpen;
+      }
 
     isUserAuthorized()
     {

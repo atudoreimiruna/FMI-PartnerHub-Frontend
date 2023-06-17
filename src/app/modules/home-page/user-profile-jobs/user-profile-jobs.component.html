@@ -11,7 +11,9 @@
     </nav>
 </div>
 
-<div *ngFor="let job of jobs">
+<h2 class="first_title">Joburi recomandate pentru tine</h2>
+
+<div *ngFor="let job of studentJobs">
   <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
     <h5 class="card-header">{{job.partnerName}}</h5>
     <div class="card-body">
@@ -22,7 +24,7 @@
         <i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență
       </p>
       <button class="btn btn-primary" style="margin-right: 5px;">APLICĂ</button>
-      <button (click)="deleteStudentJob(job)" class="btn btn-primary">Elimină din favorite</button>
+      <!-- <button  class="btn btn-primary">Elimină din favorite</button> -->
     </div>
   </div>
 </div>

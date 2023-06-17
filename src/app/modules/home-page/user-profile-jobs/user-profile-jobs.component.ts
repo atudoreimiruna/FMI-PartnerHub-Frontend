@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { Student } from 'src/app/interfaces/student';
+import { StudentJob } from 'src/app/interfaces/studentJob';
 import { StudentsService } from 'src/app/services/students.service';
 
 @Component({
@@ -21,10 +22,12 @@ export class UserProfileJobsComponent implements OnInit {
   public jobs!: Job[];
   public isAlert = false;
   public alertMsg!: string;
-
+  public studentJobs!: StudentJob[];
+  
   ngOnInit() {
     this.email = this.route.snapshot.params['email'];
     this.getStudent();
+    this.getStudentByEmail();
   }
 
   resetAlert() {
@@ -45,6 +48,13 @@ export class UserProfileJobsComponent implements OnInit {
     })
   }
 
+  public getStudentByEmail() : void {
+    this.studentService.getJobsForStudentByEmail(this.email).subscribe( (result) => {
+      this.studentJobs = result;
+      console.log(this.studentJobs)
+    })
+  }
+  
   public deleteStudentJob(job: Job) : void {
     window.location.reload();
     console.log(this.student.id, job.id)
@@ -54,3 +64,4 @@ export class UserProfileJobsComponent implements OnInit {
     })
   }
 }
+

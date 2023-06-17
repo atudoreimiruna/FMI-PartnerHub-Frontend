@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Student } from '../interfaces/student';
 import { AuthService } from './auth.service';
+import { StudentJob } from '../interfaces/studentJob';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,18 @@ export class StudentsService {
         return this.http.get<any>(`${this.url}/by/${email}`, { headers });
       }
       return of();
+  }
+
+  public getJobsForStudentByEmail(email: any): Observable<StudentJob[]> {
+    console.log(email)
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}/jobs-for-student/${email}`, { headers });
+      }
+      return of([]);
   }
 
   updateStudent(requestBody: any): Observable<any> {
