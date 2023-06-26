@@ -53,8 +53,34 @@
         <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
       </form>
 
-      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează evenimentele</h5>
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Încarcă imaginile partenerului</h5>
 
+      <div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Pagina principală</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="uploadProfileFile()">Salvează</button>
+      </div>
+
+      <div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Pagina de profil</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="uploadMainFile()">Salvează</button>
+      </div>
+
+      <div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Logo</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="uploadLogoFile()">Salvează</button>
+      </div>
+
+    <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează evenimentele</h5>
+      
     <table class="table table-sm">
       <thead>
         <tr>
@@ -65,7 +91,7 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let event of events">
-          <tr (click)="openEventEdit(event.id)">
+          <tr (click)="openEventEdit(event.id)" style="cursor: pointer;">
             <th scope="row"></th>
             <td>{{event.title}}</td>
             <td>{{event.date | date:'dd-MM-yyyy' }}</td>
@@ -74,7 +100,7 @@
       </tbody>
     </table>
 
-    <button type="submit" class="btn btn-primary">Adaugă un eveniment nou</button>
+    <button (click)="openEventAdd()" type="submit" class="btn btn-primary">Adaugă un eveniment nou</button>
 
     <div>
       <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>

@@ -27,6 +27,9 @@ import { UserProfilePartnersComponent } from './user-profile-partners/user-profi
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EventSettingsComponent } from './event-settings/event-settings.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { EventSettingsAddComponent } from './event-settings-add/event-settings-add.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     AdminProfileComponent,
     SuperAdminProfileComponent,
     UserProfilePartnersComponent,
-    EventSettingsComponent
+    EventSettingsComponent,
+    EventSettingsAddComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +63,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     NavBarCompModule,
     FooterCompModule,
     CKEditorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     HomeComponent,
@@ -74,7 +80,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     AdminProfileComponent,
     SuperAdminProfileComponent,
     UserProfilePartnersComponent,
-    EventSettingsComponent
+    EventSettingsComponent,
+    EventSettingsAddComponent
   ]
 })
 

@@ -1,4 +1,3 @@
-
 <div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
   {{alertMsg}}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -6,22 +5,22 @@
 
 <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; ">
   <div class="card-body">
-    <form #updateForm="ngForm" (ngSubmit)="updateEvent(updateForm)">
+    <form #updateForm="ngForm" (ngSubmit)="addEvent(updateForm)">
 
         <div class="mb-3">
           <label for="exampleInputTitle" class="form-label">Titlul</label>
-          <input type="text" class="form-control" id="exampleInputTitle" name="title" [(ngModel)]="event.title" >
+          <input type="text" class="form-control" id="exampleInputTitle" name="title" [(ngModel)]="title" >
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
       
         <div class="mb-3">
           <label for="exampleInputType" class="form-label">Tipul evenimentului</label>
-          <input type="text" class="form-control" id="exampleInputType" name="type" [(ngModel)]="event.type">
+          <input type="text" class="form-control" id="exampleInputType" name="type" [(ngModel)]="type">
         </div>
       
         <div class="mb-3">
             <label for="exampleInputLocation" class="form-label">Locație</label>
-            <input type="tel" class="form-control" id="exampleInputLocation" name="location" [(ngModel)]="event.location">
+            <input type="tel" class="form-control" id="exampleInputLocation" name="location" [(ngModel)]="location">
         </div>
       
         <div class="mb-3">
@@ -31,26 +30,24 @@
             class="form-control"
             id="exampleInputDate"
             name="date"
-            [(ngModel)]="event.date"
+            [(ngModel)]="date"
             [matDatepicker]="picker"
           />
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </div>
-      
+        
         <div class="mb-3">
             <label for="exampleInputTime" class="form-label">Ora</label>
-            <input type="text" class="form-control" id="exampleInputTime" name="time" [(ngModel)]="event.time">
+            <input type="text" class="form-control" id="exampleInputTime" name="time" [(ngModel)]="time">
         </div>
         
         <div class="mb-3">
               <label for="exampleInputDescription" class="form-label">Descriere</label>
-              <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="event.description"></ckeditor>
+              <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="description"></ckeditor>
             </div>
 
-        <button type="submit" class="btn btn-primary">Actualizează informațiile</button> 
-        <button (click)="deleteEvent(event.id)" class="btn btn-primary" style="margin-left: 5px;">Șterge</button>
-
+        <button type="submit" class="btn btn-primary">Adaugă evenimentul</button>
       </form>
   </div>
 </div>

@@ -62,6 +62,28 @@ export class EventsService {
       return of([]);
   }
 
+  deleteEvent(id: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.delete(`${this.url}/${id}`, { headers })
+      }
+      return of([]);
+  }
+
+  addEvent(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.post(`${this.url}`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
   public getEventById(id: any): Observable<Event> {
     const token = this.authService.getAccessToken();
       if (token) {

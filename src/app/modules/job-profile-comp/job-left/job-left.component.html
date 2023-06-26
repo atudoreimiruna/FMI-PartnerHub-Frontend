@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div *ngIf="isUserAuthorized()" class="card" style="width: 18rem;">
+<!-- <div *ngIf="isUserAuthorized()" class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">Acțiuni Job</h5>
       
@@ -29,32 +29,34 @@
        background-color: white; &:hover {
         background-color: #4B77BE; 
     }" appearance = "outline">
-        <mat-label>EVALUEAZĂ</mat-label>
-        <mat-select>
-        <mat-option>Foarte interesat</mat-option>
-        <mat-option>Puțin interesat</mat-option>
-        <mat-option>Neutru</mat-option>
-        <mat-option>Puțin neinteresat</mat-option>
-        <mat-option>Neinteresat</mat-option>
+        <mat-label>{{ selectedRating ? 'EVALUARE: ' + selectedRating : 'EVALUEAZĂ' }}</mat-label>
+        <mat-select [(value)]="selectedRating" (selectionChange)="updateJobStatusToRateOnStudent()">
+          <mat-option value="5">Foarte interesat</mat-option>
+          <mat-option value="4">Puțin interesat</mat-option>
+          <mat-option value="3">Neutru</mat-option>
+          <mat-option value="2">Puțin neinteresat</mat-option>
+          <mat-option value="1">Neinteresat</mat-option>
         </mat-select>
-        </mat-form-field>
-
-      <!-- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown()">
-          EVALUEAZĂ
-          <span class="dropdown-arrow" [class.active]="isDropdownOpen"></span>
-        </button>
-        <div class="dropdown-menu" [class.active]="isDropdownOpen" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Very Interested</a>
-          <a class="dropdown-item" href="#">Somewhat Interested</a>
-          <a class="dropdown-item" href="#">Neutral</a>
-          <a class="dropdown-item" href="#">Slight Not Interested</a>
-          <a class="dropdown-item" href="#">Not Interested</a>
-        </div>
-      </div> -->
-      <button (click)="updateJobOnStudent()" class="btn btn-primary" style="margin-top: 0%;">SALVEAZĂ</button>
-      <a href="#" class="btn btn-primary">APLICĂ</a>
+      </mat-form-field>
+      <button (click)="updateJobStatusToFavoriteOnStudent()" class="btn btn-primary" style="margin-top: 0%;">SALVEAZĂ</button>
+      <button (click)="updateJobStatusToApplyOnStudent()" class="btn btn-primary" style="margin-top: 0%;">APLICĂ</button>
     </div>
+</div> -->
+
+<div *ngIf="isUserAuthorized()" class="card" style="width: 18rem;">
+  <div class="card-body">
+      <h5 class="card-title">Acțiuni Job</h5>
+    
+      <mat-form-field style="color: #333333; background-color: white; &:hover { background-color: #4B77BE; }" appearance="outline">
+          <mat-label>{{ selectedRating ?  ratingText[selectedRating] : 'EVALUEAZĂ' }}</mat-label>
+          <mat-select [(value)]="selectedRating" (selectionChange)="updateJobStatusToRateOnStudent()">
+              <mat-option *ngFor="let option of ratingOptions" [value]="option.value">{{ option.text }}</mat-option>
+          </mat-select>
+      </mat-form-field>
+    
+      <button (click)="updateJobStatusToFavoriteOnStudent()" class="btn btn-primary" style="margin-top: 0%;">SALVEAZĂ</button>
+      <button (click)="updateJobStatusToApplyOnStudent()" class="btn btn-primary" style="margin-top: 0%;">APLICĂ</button>
+  </div>
 </div>
 
 <div class="card" style="width: 18rem;">

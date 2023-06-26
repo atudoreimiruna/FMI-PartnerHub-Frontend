@@ -17,6 +17,7 @@ export class EventSettingsComponent {
   public alertMsg!: string;
   public event!: Event; 
   public eventId!: number;
+  public events!: Event[];
 
   constructor(public dialogRef: MatDialogRef<EventSettingsComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
     private eventsService: EventsService,
@@ -45,6 +46,21 @@ export class EventSettingsComponent {
     this.eventsService.getEventById(this.eventId).subscribe( (result) => {
       this.event = result;
     })
+  }
+
+  public deleteEvent(id: number): void {
+    this.eventsService.deleteEvent(id).subscribe(
+      response => {
+        window.location.reload();
+        this.isAlert = true;
+        this.alertMsg = "Evenimentul a fost șters cu succes!";
+        this.closeAlert();
+        this.resetAlert(); // Move the resetAlert() call here
+      },
+      error => {
+        // Handle any errors that occurred during the request
+      }
+    );
   }
 
   updateEvent(form: NgForm) {

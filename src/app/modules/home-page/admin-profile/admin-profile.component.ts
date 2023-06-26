@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { EventSettingsComponent } from '../event-settings/event-settings.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { finalize } from 'rxjs';
+import { EventSettingsAddComponent } from '../event-settings-add/event-settings-add.component';
 
 @Component({
     selector: 'admin-profile',
@@ -28,7 +30,9 @@ export class AdminProfileComponent implements OnInit {
   public isAlert = false;
   public alertMsg!: string;
   public Editor = ClassicEditor;
-  
+  public file!: File;
+  public imageLink!: string;
+
   constructor(
     public authService: AuthService,
     public studentService: StudentsService,
@@ -101,13 +105,186 @@ export class AdminProfileComponent implements OnInit {
 
   openEventEdit(eventId: number): void {
     let dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { id: eventId}
+    dialogConfig.data = { id: eventId, events: this.events }
     dialogConfig.width = '600px';
     dialogConfig.height = '90vh';
     let dialogRef = this.dialog.open(EventSettingsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((res) => {
       //in res am date trimise la inchidere popup
     })
+  }
+
+  openEventAdd(): void {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { id: this.partnerId, events: this.events }
+    dialogConfig.width = '600px';
+    dialogConfig.height = '90vh';
+    let dialogRef = this.dialog.open(EventSettingsAddComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((res) => {
+    })
+  }
+
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  uploadFile() {
+    if (this.file && this.partner.id) {
+      this.fileService.uploadFile(2, this.partner.id, this.file)
+      .pipe(
+        finalize(() => {
+        this.updateImagePartner(this.imageLink)
+        })
+      )
+      .subscribe(
+        (response: any) => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.
+          this.imageLink = response.mainImageUrl
+        },
+        (error: any) => {
+          // Handle any errors that occurred during the request
+        }
+      );
+    }
+    this.resetAlert()
+  }
+
+  updateImagePartner(imageLink: string) {
+    const requestBody: any = {};
+    requestBody.id = this.partner.id;
+
+    this.partnersService.updatePartner(requestBody)
+      .subscribe(
+        response => {
+          this.isAlert = true;
+          this.alertMsg = "Ai actualizat cu succes informațiile tale!"
+          this.closeAlert();
+        },
+        error => {
+          // Handle any errors that occurred during the request
+        }
+      );
+      this.resetAlert()
+  }
+
+  uploadLogoFile() {
+    if (this.file && this.partner.id) {
+      this.fileService.uploadFile(2, this.partner.id, this.file)
+      .pipe(
+        finalize(() => {
+          this.updateLogoPartner(this.imageLink)
+        })
+      )
+      .subscribe(
+        (response: any) => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.blob?.uri
+          console.log(response.blob?.uri)
+        },
+        (error: any) => {
+          // Handle any errors that occurred during the request
+        }
+      );
+    }
+    this.resetAlert()
+  }
+
+  updateLogoPartner(imageLink: string) {
+    const requestBody: any = {};
+    requestBody.id = this.partner.id;
+    requestBody.logoImageUrl = imageLink
+
+    this.partnersService.updatePartner(requestBody)
+      .subscribe(
+        response => {
+        },
+        error => {
+          // Handle any errors that occurred during the request
+        }
+      );
+  }
+
+  uploadMainFile() {
+    if (this.file && this.partner.id) {
+      this.fileService.uploadFile(2, this.partner.id, this.file)
+      .pipe(
+        finalize(() => {
+          this.updateMainPartner(this.imageLink)
+        })
+      )
+      .subscribe(
+        (response: any) => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.blob?.uri
+          console.log(response.blob?.uri)
+        },
+        (error: any) => {
+          // Handle any errors that occurred during the request
+        }
+      );
+    }
+    this.resetAlert()
+  }
+
+  updateMainPartner(imageLink: string) {
+    const requestBody: any = {};
+    requestBody.id = this.partner.id;
+    requestBody.mainImageUrl = imageLink
+
+    this.partnersService.updatePartner(requestBody)
+      .subscribe(
+        response => {
+        },
+        error => {
+          // Handle any errors that occurred during the request
+        }
+      );
+  }
+
+  uploadProfileFile() {
+    if (this.file && this.partner.id) {
+      this.fileService.uploadFile(2, this.partner.id, this.file)
+      .pipe(
+        finalize(() => {
+          this.updateMainPartner(this.imageLink)
+        })
+      )
+      .subscribe(
+        (response: any) => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.blob?.uri
+          console.log(response.blob?.uri)
+        },
+        (error: any) => {
+          // Handle any errors that occurred during the request
+        }
+      );
+    }
+    this.resetAlert()
+  }
+
+  updateProfilePartner(imageLink: string) {
+    const requestBody: any = {};
+    requestBody.id = this.partner.id;
+    requestBody.profileImageUrl = imageLink
+
+    this.partnersService.updatePartner(requestBody)
+      .subscribe(
+        response => {
+        },
+        error => {
+          // Handle any errors that occurred during the request
+        }
+      );
   }
 
 }

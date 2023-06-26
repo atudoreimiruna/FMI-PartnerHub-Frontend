@@ -11,7 +11,7 @@
     </nav>
 </div>
 
-<h2 class="first_title">Joburi recomandate pentru tine</h2>
+<h2 *ngIf="studentJobs.length > 0" class="first_title">Joburi recomandate pentru tine</h2>
 
 <div *ngFor="let job of studentJobs">
   <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
@@ -25,6 +25,42 @@
       </p>
       <button class="btn btn-primary" style="margin-right: 5px;">APLICĂ</button>
       <!-- <button  class="btn btn-primary">Elimină din favorite</button> -->
+    </div>
+  </div>
+</div>
+
+<h2 *ngIf="favoriteJobs.length > 0" class="first_title">Joburi favorite</h2>
+
+<div *ngFor="let job of favoriteJobs">
+  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+    <h5 class="card-header">{{job.partnerName}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{job.title}}</h5>
+      <p class="card-text">
+        <i *ngIf="job.address" class="material-icons">place</i> {{ job.address }}    
+        <i *ngIf="job.salary" class="material-icons">paid</i> {{ job.salary }}   
+        <i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență
+      </p>
+      <button class="btn btn-primary" style="margin-right: 5px;">APLICĂ</button>
+      <button  class="btn btn-primary">Elimină din favorite</button>
+    </div>
+  </div>
+</div>
+
+<h2 *ngIf="appliedJobs.length > 0" class="first_title">Aplicări</h2>
+
+<div *ngFor="let job of appliedJobs">
+  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+    <h5 class="card-header">{{job.partnerName}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{job.title}}</h5>
+      <p class="card-text">
+        <i *ngIf="job.address" class="material-icons">place</i> {{ job.address }}    
+        <i *ngIf="job.salary" class="material-icons">paid</i> {{ job.salary }}   
+        <i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență
+      </p>
+      <!-- <button class="btn btn-primary" style="margin-right: 5px;">APLICĂ</button> -->
+      <button  class="btn btn-primary">Șterge aplicarea</button>
     </div>
   </div>
 </div>

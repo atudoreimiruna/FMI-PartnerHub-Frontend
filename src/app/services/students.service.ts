@@ -84,6 +84,29 @@ export class StudentsService {
       return of([]);
   }
 
+  getStudentJob(studentId: any, jobId: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get(`${this.url}/by/${studentId}/${jobId}`, { headers })
+      }
+      return of([]);
+  }
+
+  getStudentJobs(email: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get(`${this.url}/jobs/${email}`, { headers })
+      }
+      return of([]);
+  }
+
+
   deleteStudentPartner(studentId: any, partnerId: any): Observable<any> {
     const token = this.authService.getAccessToken();
       if (token) {
