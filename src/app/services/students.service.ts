@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Student } from '../interfaces/student';
 import { AuthService } from './auth.service';
 import { StudentJob } from '../interfaces/studentJob';
+import { StudentPartnerTable } from '../interfaces/studentPartnerTable';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,17 @@ export class StudentsService {
           Authorization: `Bearer ${token}`
         });
         return this.http.get<any>(`${this.url}/by/${email}`, { headers });
+      }
+      return of();
+  }
+
+  public getStudentById(id: any): Observable<Student> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}/by/${id}`, { headers });
       }
       return of();
   }
@@ -117,4 +129,16 @@ export class StudentsService {
       }
       return of([]);
   }
+
+  public getStudentsByPartnerId(partnerId: any): Observable<Student[]> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}/partnerStudents/${partnerId}`, { headers });
+      }
+      return of();
+  }
+
 }

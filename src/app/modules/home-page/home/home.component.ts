@@ -31,6 +31,7 @@ export class HomeComponent implements OnDestroy {
   public message: any;
   @ViewChild("partnerspage") partnerspage! : ElementRef;
   @ViewChild("eventspage") eventspage! : ElementRef;
+  public showAllPartners!: boolean;
 
   constructor(
     private partnersService: PartnersService,
@@ -43,6 +44,7 @@ export class HomeComponent implements OnDestroy {
       this.getAllEvents();
       this.partnersService.changedUrl.subscribe(() => { this.partnerspage.nativeElement.scrollIntoView({behavior: 'smooth'})})
       this.eventsService.changedUrl.subscribe(() => { this.eventspage.nativeElement.scrollIntoView({behavior: 'smooth'})})
+      this.showAllPartners = false;
     }
 
     isUserAuthorized()

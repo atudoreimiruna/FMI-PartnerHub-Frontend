@@ -1,0 +1,47 @@
+
+<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card" style="box-shadow: 0 0 10px #5C97BF; ">
+  <div class="card-body">
+    <form>
+
+      <div *ngIf="student.name" class="mb-3">
+        <label for="exampleInputFirstName" class="form-label">Nume</label>
+        <label class="form-control">{{student.name}}</label>
+      </div>
+      
+      <div *ngIf="student.personalEmail" class="mb-3">
+        <label for="exampleInputPersonalEmail" class="form-label">Email Personal</label>
+        <label class="form-control">{{student.personalEmail}}</label>
+      </div>
+
+      <div *ngIf="student.email" class="mb-3">
+        <label for="exampleInputEmail" class="form-label">Email</label>
+        <label class="form-control">{{student.email}}</label>
+      </div>
+
+      <div *ngIf="student.phone" class="mb-3">
+        <label for="exampleInputPhone" class="form-label">Număr de telefon</label>
+        <label class="form-control">{{student.phone}}</label>
+      </div>
+
+      <div *ngIf="student.degree" class="mb-3">
+        <label for="exampleInputDegree" class="form-label">Studii</label>
+        <label class="form-control">{{student.degree}}</label>
+      </div>
+
+      <div *ngIf="student.skill" class="mb-3">
+        <label for="exampleInputSkill" class="form-label">Aptitudini</label>
+        <label class="form-control">{{student.skill}}</label>
+      </div>
+
+      <div *ngIf="student.description" class="mb-3">
+        <label for="exampleInputDescription" class="form-label">Descriere</label>
+        <label class="form-control">{{student.description}}</label>
+      </div>
+      </form> 
+  </div>
+</div>

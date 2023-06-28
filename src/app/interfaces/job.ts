@@ -1,3 +1,6 @@
+import { StudentJobDetails } from "./studentJobDetails";
+import { StudentJobView } from "./studentJobView";
+
 export interface Job {
     id : number;
     title : string;
@@ -17,6 +20,7 @@ export interface Job {
     salary: string;
     minExperience: number;
     maxExperience: number;
+    jobStudents: StudentJobDetails[]
 }
 
 export enum JobExperienceEnum {

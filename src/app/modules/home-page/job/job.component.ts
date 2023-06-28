@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
-import { DataService } from 'src/app/services/data.services';
 import { JobsService } from 'src/app/services/jobs.service';
 
 @Component({
@@ -14,6 +11,7 @@ export class JobComponent implements OnInit, OnDestroy {
 
   public id: Number | undefined;
   public jobs!: Job[];
+  public jobsPag!: Job[];
   public message: any;
 
   // for filtering jobs
@@ -30,12 +28,13 @@ export class JobComponent implements OnInit, OnDestroy {
   public filteredJobs!: Job[];
   
   // for pagination
-  public displayCount: number = 7;
+  public displayCount: number = 0;
   private pageNumber: number = 1;
   public pageSize: number = 5;
 
   constructor(private jobsService: JobsService) { 
     this.getAllJobs();
+    this.getAllJobsWithoutPagination();
   }
 
   toggleDropdown() {
@@ -101,6 +100,14 @@ export class JobComponent implements OnInit, OnDestroy {
       this.jobs = result;
     });
   }
+
+  public getAllJobsWithoutPagination(): void {
+    this.jobsService.getJobsWithoutPagination().subscribe((result) => {
+      this.jobsPag = result;
+      this.displayCount = result.length;
+    });
+  }
+
 
   public getJobsByFilter(partner?: string, address?: string, category?: string) {
     this.jobsService.getJobsFilter(this.pageNumber, this.pageSize, partner, address, category).subscribe(jobs => {

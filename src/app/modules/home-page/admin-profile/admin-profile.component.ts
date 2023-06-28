@@ -13,6 +13,15 @@ import { EventSettingsComponent } from '../event-settings/event-settings.compone
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
 import { EventSettingsAddComponent } from '../event-settings-add/event-settings-add.component';
+import { StudentJobStatusEnum, StudentJobView } from 'src/app/interfaces/studentJobView';
+import { JobsService } from 'src/app/services/jobs.service';
+import { Job } from 'src/app/interfaces/job';
+import { EventSettingsEditJobComponent } from '../event-settings-edit-job/event-settings-edit-job.component';
+import { EventSettingsAddJobComponent } from '../event-settings-add-job/event-settings-add-job.component';
+import { Student } from 'src/app/interfaces/student';
+import { StudentTable } from 'src/app/interfaces/studentTable';
+import { EventStudentComponent } from '../event-student/event-student.component';
+import { StudentPartnerTable } from 'src/app/interfaces/studentPartnerTable';
 
 @Component({
     selector: 'admin-profile',
@@ -24,7 +33,8 @@ export class AdminProfileComponent implements OnInit {
   public partners!: Partner[];
   public email!: string;
   public partnerId!: string[] | null;
-  public events!: Event[] ; 
+  public events!: Event[]; 
+  public jobs!: Job[]; 
   public partner!: Partner;
   public partnerName!: string;
   public isAlert = false;
@@ -32,6 +42,10 @@ export class AdminProfileComponent implements OnInit {
   public Editor = ClassicEditor;
   public file!: File;
   public imageLink!: string;
+  public studentJobsView!: StudentJobView[];
+  public student!: Student;
+  public studentsTable!: StudentTable[];
+  public studentPartnersTable!: Student[];
 
   constructor(
     public authService: AuthService,
@@ -40,6 +54,7 @@ export class AdminProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private partnersService: PartnersService,
     private eventsService: EventsService,
+    private jobsService: JobsService,
     private dialog: MatDialog
   ) { 
   }
@@ -59,6 +74,8 @@ export class AdminProfileComponent implements OnInit {
     this.partnerId = this.authService.getPartnerFromToken();
     this.getPartner();
     this.getEventsByPartner();
+    this.getJobsByPartner();
+    this.getStudentsByPartner();
   }
 
   public getPartner() : void {
@@ -120,6 +137,27 @@ export class AdminProfileComponent implements OnInit {
     dialogConfig.width = '600px';
     dialogConfig.height = '90vh';
     let dialogRef = this.dialog.open(EventSettingsAddComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((res) => {
+    })
+  }
+
+  openEventEditJob(jobId: number): void {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { id: jobId, jobs: this.jobs }
+    dialogConfig.width = '600px';
+    dialogConfig.height = '90vh';
+    let dialogRef = this.dialog.open(EventSettingsEditJobComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((res) => {
+      //in res am date trimise la inchidere popup
+    })
+  }
+
+  openEventAddJob(): void {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { id: this.partnerId, jobs: this.jobs }
+    dialogConfig.width = '600px';
+    dialogConfig.height = '90vh';
+    let dialogRef = this.dialog.open(EventSettingsAddJobComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((res) => {
     })
   }
@@ -285,6 +323,50 @@ export class AdminProfileComponent implements OnInit {
           // Handle any errors that occurred during the request
         }
       );
+  }
+
+  public getJobsByPartner() : void {
+    this.studentsTable = []
+    this.jobsService.getJobsByPartnerId(this.partnerId).subscribe( async (result) => {
+      this.jobs = result;
+
+      for (const job of this.jobs) {
+        for (const studentJob of job.jobStudents)
+        {
+          if (studentJob.jobStatus === 1 || studentJob.jobStatus === 2)
+          {
+              const element: StudentTable = {
+              studentName: studentJob.student.name,
+              jobTitle: job.title,
+              jobStatus: studentJob.jobStatus,
+              studentDetails: studentJob.student
+            };
+            console.log(element)
+            this.studentsTable.push(element)
+          }
+        }
+      }
+      console.log(this.studentsTable)
+    });
+  }
+
+  openStudent(student: Student): void {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { student: student }
+    dialogConfig.width = '600px';
+    dialogConfig.height = '90vh';
+    let dialogRef = this.dialog.open(EventStudentComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((res) => {
+    })
+  }
+
+  public getStudentsByPartner() : void {
+    // this.studentsTable = []
+    this.studentService.getStudentsByPartnerId(this.partnerId).subscribe( async (result) => {
+      this.studentPartnersTable = result;
+
+      console.log(this.studentPartnersTable)
+    });
   }
 
 }

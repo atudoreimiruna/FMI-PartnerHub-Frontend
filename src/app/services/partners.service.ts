@@ -62,4 +62,21 @@ export class PartnersService {
       }
       return of([]);
   }
+
+  public deletePartner(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+
+        const options = {
+          body: requestBody,
+          headers: headers
+        };
+
+        return this.http.delete(`${this.url}`, options);
+      }
+      return of([]);
+  }
 }

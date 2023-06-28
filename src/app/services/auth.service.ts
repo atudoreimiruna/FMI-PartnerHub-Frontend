@@ -35,6 +35,17 @@ export class AuthService {
       return of([]);
   }
 
+  public getUsersAndRolesWithoutPag() : Observable<UserRoles[]> {
+    const token = this.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}`, { headers });
+      }
+      return of([]);
+  }
+
   public postRoleToUser(requestBody: any): Observable<any> {
     const token = this.getAccessToken();
       if (token) {

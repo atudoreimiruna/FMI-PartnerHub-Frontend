@@ -86,7 +86,7 @@ export class UserProfileJobsComponent implements OnInit {
     const completeJob = await this.jobsService.getJobById(job.jobId).toPromise();
     if (completeJob) {
       return {
-        id: completeJob.id,
+            id: completeJob.id,
             title: completeJob.title,
             minSalary: completeJob.minSalary,
             maxSalary: completeJob.maxSalary,
@@ -103,7 +103,8 @@ export class UserProfileJobsComponent implements OnInit {
             createdAt: completeJob.createdAt,
             salary: completeJob.salary,
             minExperience: completeJob.minExperience,
-            maxExperience: completeJob.maxExperience
+            maxExperience: completeJob.maxExperience,
+            jobStudents: completeJob.jobStudents
       };
     } else {
       throw new Error(`Job not found for jobId: ${job.jobId}`);

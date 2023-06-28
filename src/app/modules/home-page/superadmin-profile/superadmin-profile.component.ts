@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Partner } from 'src/app/interfaces/partner';
+import { Practice } from 'src/app/interfaces/practice';
 import { UserRoles } from 'src/app/interfaces/userRoles';
 import { AuthService } from 'src/app/services/auth.service';
 import { FilesService } from 'src/app/services/files.service';
 import { PartnersService } from 'src/app/services/partners.service';
+import { PracticeService } from 'src/app/services/practice.service';
 import { StudentsService } from 'src/app/services/students.service';
 
 @Component({
@@ -20,18 +23,25 @@ export class SuperAdminProfileComponent {
     public studentService: StudentsService,
     public partnersService: PartnersService,
     public fileService: FilesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private practiceService: PracticeService,
   ) { 
     this.getUsersAndRoles();
     this.getAllPartners();
+    this.getPractice();
+    this.getUsersAndRolesWithoutPag();
+    // this.displayCount = this.userRoles.length;
   }
 
   public partners!: Partner[];
   public userRoles!: UserRoles[];
+  public userRolesPag!: UserRoles[];
   public searchText: string = '';
+  public practiceId: number = 1;
+  public practice!: Practice;
 
   // for pagination
-  public displayCount: number = 12;
+  public displayCount: number = 0;
   private pageNumber: number = 1;
   public pageSize: number = 5;
 
@@ -39,11 +49,14 @@ export class SuperAdminProfileComponent {
   public role: number = 2;
   public name: string = '';
   public partner: string = '';
+  public partnerToDelete: string = '';
 
   public isAlert = false;
   public isAlertRed = false;
   public alertMsg!: string;
   public alertMsgRed!: string;
+
+  public Editor = ClassicEditor;
 
   resetAlert() {
     this.isAlert = false; 
@@ -82,8 +95,16 @@ export class SuperAdminProfileComponent {
     });
   }
 
+  public getUsersAndRolesWithoutPag(): void {
+    this.authService.getUsersAndRolesWithoutPag().subscribe((result) => {
+      this.userRolesPag = result;
+      this.displayCount = result.length;
+    });
+  }
+
   public getAllPartners(): void {
     this.partnersService.getPartners().subscribe((result) => {
+      console.log(this.partners)
       this.partners = result;
     });
   }
@@ -152,6 +173,7 @@ export class SuperAdminProfileComponent {
         this.isAlert = true;
         this.alertMsg = "Ai adăugat cu succes partenerul!"
         this.closeAlert();
+        this.partners.push(response)
       },
       error => {
         // Handle any errors that occurred during the request
@@ -189,4 +211,61 @@ export class SuperAdminProfileComponent {
     form.reset();
     }
   }
+
+  public removePartner(form: NgForm): void {
+    if (form.valid) {
+      const { partnerToDelete } = form.value;
+  
+      const requestBody = {
+        name: this.partnerToDelete
+      };
+   
+    console.log(requestBody)
+    this.partnersService.deletePartner(requestBody).subscribe(
+      response => {
+        this.isAlert = true;
+        this.alertMsg = "Ai eliminat cu succes partenerul!"
+        this.closeAlert();
+        window.location.reload();
+
+      },
+      error => {
+        // this.isAlertRed = true;
+        // this.alertMsgRed = "Partenerul nu poate fi eliminat!"
+        // this.closeAlertRed();
+        window.location.reload();
+      }
+    );
+    this.resetAlert()
+    this.resetAlertRed()
+    }
+  }
+
+  updatePractice(form: NgForm) {
+    const { description } = form.value;
+
+    const requestBody: any = {};
+    requestBody.id = this.practice.id;
+    if (description) requestBody.description = description;
+
+    this.practiceService.updatePractice(requestBody)
+      .subscribe(
+        response => {
+          this.isAlert = true;
+          this.alertMsg = "Ai actualizat cu succes informațiile!"
+          this.closeAlert();
+        },
+        error => {
+          // Handle any errors that occurred during the request
+        }
+      );
+      this.resetAlert()
+  }
+
+  public getPractice() : void {
+    this.practiceService.getPracticeById(this.practiceId).subscribe( (result) => {
+        this.practice = result;
+        console.log(this.practice)
+        })
+    }
 }

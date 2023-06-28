@@ -1,0 +1,52 @@
+<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3"
+  role="alert" style="z-index: 10000;">
+  {{alertMsg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card" style="box-shadow: 0 0 10px #5C97BF; ">
+  <div class="card-body">
+    <form #updateForm="ngForm" (ngSubmit)="addJob(updateForm)">
+
+      <div class="mb-3">
+        <label for="exampleInputTitle" class="form-label">Titlul</label>
+        <input type="text" class="form-control" id="exampleInputTitle" name="title" [(ngModel)]="title">
+        <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputLocation" class="form-label">Adresa</label>
+        <input type="tel" class="form-control" id="exampleInputLocation" name="address" [(ngModel)]="address">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputTime" class="form-label">Experiența minimă</label>
+        <input type="text" class="form-control" id="exampleInputTime" name="minExperience" [(ngModel)]="minExperience">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputTime" class="form-label">Experiența maximă</label>
+        <input type="text" class="form-control" id="exampleInputTime" name="maxExperience" [(ngModel)]="maxExperience">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputDescription" class="form-label">Descriere</label>
+        <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="description">
+        </ckeditor>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputDescription" class="form-label">Criterii</label>
+        <ckeditor [editor]="Editor" id="exampleInputDescription" name="criteria" [(ngModel)]="criteria">
+        </ckeditor>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputDescription" class="form-label">Aptitudini</label>
+        <ckeditor [editor]="Editor" id="exampleInputDescription" name="skills" [(ngModel)]="skills"></ckeditor>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Adaugă jobul</button>
+    </form>
+  </div>
+</div>

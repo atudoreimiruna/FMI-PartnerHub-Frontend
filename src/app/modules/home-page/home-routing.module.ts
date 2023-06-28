@@ -8,7 +8,7 @@ import { LoginComponent } from '../auth-page/auth/auth.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
-import { PracticaComponent } from './practica/practica.component';
+import { PracticeComponent } from './practice/practice.component';
 import { AuthUserGuard } from 'src/app/auth.user.guard';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { AuthAdminGuard } from 'src/app/auth.admin.guard';
@@ -52,7 +52,7 @@ const routes: Routes = [
     },
     {
       path: 'practica',
-      component: PracticaComponent
+      component: PracticeComponent
     },
     {
       path: 'user/:email',

@@ -20,7 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterCompModule } from '../footer-comp/footer-comp.module';
 import { UserProfileSettingsComponent } from './user-profile-settings/user-profile-settings.component';
 import { UserProfileJobsComponent } from './user-profile-jobs/user-profile-jobs.component';
-import { PracticaComponent } from './practica/practica.component';
+import { PracticeComponent } from './practice/practice.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
 import { UserProfilePartnersComponent } from './user-profile-partners/user-profile-partners.component';
@@ -30,6 +30,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { EventSettingsAddComponent } from './event-settings-add/event-settings-add.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { EventSettingsEditJobComponent } from './event-settings-edit-job/event-settings-edit-job.component';
+import { EventSettingsAddJobComponent } from './event-settings-add-job/event-settings-add-job.component';
+import { EventStudentComponent } from './event-student/event-student.component';
 
 @NgModule({
   declarations: [
@@ -41,12 +44,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     UserProfileComponent,
     UserProfileSettingsComponent,
     UserProfileJobsComponent,
-    PracticaComponent,
+    PracticeComponent,
     AdminProfileComponent,
     SuperAdminProfileComponent,
     UserProfilePartnersComponent,
     EventSettingsComponent,
-    EventSettingsAddComponent
+    EventSettingsAddComponent,
+    EventSettingsEditJobComponent,
+    EventSettingsAddJobComponent,
+    EventStudentComponent
   ],
   imports: [
     CommonModule,
@@ -76,12 +82,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     UserProfileComponent,
     UserProfileSettingsComponent,
     UserProfileJobsComponent,
-    PracticaComponent,
+    PracticeComponent,
     AdminProfileComponent,
     SuperAdminProfileComponent,
     UserProfilePartnersComponent,
     EventSettingsComponent,
-    EventSettingsAddComponent
+    EventSettingsAddComponent,
+    EventSettingsEditJobComponent,
+    EventSettingsAddJobComponent,
+    EventStudentComponent
   ]
 })
 

@@ -51,7 +51,7 @@ export class EventSettingsComponent {
   public deleteEvent(id: number): void {
     this.eventsService.deleteEvent(id).subscribe(
       response => {
-        window.location.reload();
+        // window.location.reload();
         this.isAlert = true;
         this.alertMsg = "Evenimentul a fost șters cu succes!";
         this.closeAlert();

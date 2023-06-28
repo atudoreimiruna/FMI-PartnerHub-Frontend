@@ -13,14 +13,35 @@
   <div class="line"></div>
 </div>
 
-<div *ngFor="let partner of partners">
+<div *ngFor="let partner of partners.slice(0, 5)">
   <div class="card mb-3" style="box-shadow: 0 0 10px #5C97BF;">
-    <img class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
+    <img *ngIf="partner.mainImageUrl" class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
     <div class="card-body">
       <h5 class="card-title">{{partner.name}}</h5>
       <p class="card-text">{{partner.mainDescription}}</p>
-      <a href="http://localhost:4200/partener/{{ partner.id }}" class="btn btn-primary">VEZI PROFILUL</a>
+      <a href="http://localhost:4200/partner/{{ partner.id }}" class="btn btn-primary">VEZI PROFILUL</a>
     </div>
+  </div>
+</div>
+
+<div class="button-container" *ngIf="!showAllPartners">
+  <button *ngIf="partners.length > 5" (click)="showAllPartners = true" class="btn btn-primary">Show More</button>
+</div>
+
+<div *ngIf="showAllPartners">
+  <div *ngFor="let partner of partners.slice(5)">
+    <div class="card mb-3" style="box-shadow: 0 0 10px #5C97BF;">
+      <img *ngIf="partner.mainImageUrl" class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">{{partner.name}}</h5>
+        <p class="card-text">{{partner.mainDescription}}</p>
+        <a href="http://localhost:4200/partner/{{ partner.id }}" class="btn btn-primary">VEZI PROFILUL</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button *ngIf="partners.length > 10" (click)="showAllPartners = false" class="btn btn-primary">Show Less</button>
   </div>
 </div>
 
@@ -57,26 +78,12 @@
   <div class="line"></div>
 </div>
 
-<!-- <div class="container">
-  <div class="cards_container">
-    <mat-card *ngFor="let job of jobs" class="mat_card">
-      <img [src]="job.partnerLogo" class="card_image">
-      <mat-card-content class="card_text">{{ job.title }}</mat-card-content>
-      <mat-card-actions class="card_button">
-        <a href="http://localhost:4200/joburi/{{ job.id }}">
-          <button mat-button class="button_apply">APLICĂ</button>
-        </a>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</div> -->
-
 <div class="row"> 
   <ng-container *ngFor="let job of jobs">
     <div class="col-md-3">
         <div class="card mb-4" style=" width: 15rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
           <a href="http://localhost:4200/joburi/{{ job.id }}">
-            <img style="object-fit: contain;" [src]="job.partnerLogo" class="card-img-top">
+            <img *ngIf="job.partnerLogo" style="object-fit: contain;" [src]="job.partnerLogo" class="card-img-top">
           </a>
           <div class="card-body">
             <h5 class="card-title" style="font-size: 15px; object-fit: contain;">{{job.title}}</h5>

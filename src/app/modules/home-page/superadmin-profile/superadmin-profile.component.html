@@ -101,6 +101,18 @@
         <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Adaugă</button>
       </form>
 
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Elimină un partener</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="removePartner(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Numele partenerului</label>
+          <select class="form-control" id="exampleFormControlSelect2" name="partnerToDelete" [(ngModel)]="partnerToDelete">
+            <option *ngFor="let partner of partners" >{{partner.name}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Elimină</button>
+      </form>
+
       <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Adaugă admini partenerilor</h5>
 
       <form #updateForm="ngForm" (ngSubmit)="addAdminToPartner(updateForm)">
@@ -111,18 +123,29 @@
         <div class="form-group">
           <label for="exampleFormControlSelect4">Numele partenerului</label>
           <select class="form-control" id="exampleFormControlSelect4" name="partner" [(ngModel)]="partner">
-            <div *ngFor="let partner of partners">
-              <option value="2">{{partner.name}}</option>
-            </div>
+            <option *ngFor="let partner of partners" >{{partner.name}}</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Adaugă</button>
       </form>
 
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează informațiile despre practică</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="updatePractice(updateForm)">
+
+        <div class="mb-3">
+          <label for="exampleInputDescription2" class="form-label">Descriere</label>
+          <ckeditor [editor]="Editor" id="exampleInputDescription2" name="description" [(ngModel)]="practice.description"></ckeditor>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
+      </form>
+
+
     </div>
 
     <div>
-      <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+      <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Delogare</button>
     </div>
 
 </div>

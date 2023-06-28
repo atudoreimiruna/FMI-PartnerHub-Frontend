@@ -29,6 +29,17 @@ export class JobsService {
       return of([]);
   }
 
+  public getJobsWithoutPagination() : Observable<Job[]> {
+    const token = this.authService.getAccessToken();
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.get<Job[]>(`${this.url}`, { headers });
+    }
+    return of([]);
+}
+
   public getJobsFilter(pageNumber?: any, pageSize?: any, partner?: string, address?: string, category?: string): Observable<Job[]> {
     let params = new HttpParams();
 
@@ -84,5 +95,49 @@ export class JobsService {
       return this.http.get<any>(`${this.url}/by/${id}`, { headers });
     }
     return of();
+  }
+
+  public getJobsByPartnerId(partnerId: any): Observable<Job[]> {
+    const token = this.authService.getAccessToken();
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.get<any>(`${this.url}/${partnerId}`, { headers });
+    }
+    return of();
+  }
+
+  addJob(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.post(`${this.url}`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
+  updateJob(requestBody: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.put(`${this.url}`, requestBody, { headers });
+      }
+      return of([]);
+  }
+
+  deleteJob(id: any): Observable<any> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.delete(`${this.url}/${id}`, { headers })
+      }
+      return of([]);
   }
 }
