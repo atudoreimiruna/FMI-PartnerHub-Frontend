@@ -6,7 +6,8 @@
   align-items: center;
   margin-left: 20px;
   box-shadow: 0 0 10px #5C97BF;
-  
+  width: 55rem;
+
   .card-body {
       font-family: 'Roboto',Helvetica,Arial,sans-serif;
       display: flex;
@@ -17,5 +18,20 @@
           font-weight: bold;
           size: 50px;
       }
+  }
+}
+
+@media only screen and (max-width:800px) {
+  /* For tablets: */
+  .card {
+    width: 80%;
+    padding: 0;
+  }
+
+}
+@media only screen and (max-width:500px) {
+  /* For mobile phones: */
+  .card {
+    width: 100%;
   }
 }

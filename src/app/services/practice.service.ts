@@ -27,15 +27,19 @@ export class PracticeService {
     return of();
   }
 
-  updatePractice(requestBody: any): Observable<any> {
+  public updatePractice(requestBody: any): Observable<any> {
     const token = this.authService.getAccessToken();
-      if (token) {
-        const headers = new HttpHeaders({
-          Authorization: `Bearer ${token}`
-        });
-        return this.http.put(`${this.url}`, requestBody, { headers });
-      }
-      return of([]);
+  
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+  
+      return this.http.put(`${this.url}`, requestBody, { headers });
+    }
+  
+    return of(); // Return an empty observable if there is no token
   }
+  
 
 }

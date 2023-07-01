@@ -37,7 +37,7 @@ export class PartnersService {
         });
         return this.http.post(`${this.url}`, requestBody, { headers });
       }
-      return of([]);
+      return of();
   }
 
 
@@ -52,7 +52,7 @@ export class PartnersService {
       return of();
   }
 
-  updatePartner(requestBody: any): Observable<any> {
+  public updatePartner(requestBody: any): Observable<any> {
     const token = this.authService.getAccessToken();
       if (token) {
         const headers = new HttpHeaders({
@@ -60,7 +60,7 @@ export class PartnersService {
         });
         return this.http.put(`${this.url}`, requestBody, { headers });
       }
-      return of([]);
+      return of();
   }
 
   public deletePartner(requestBody: any): Observable<any> {
@@ -77,6 +77,6 @@ export class PartnersService {
 
         return this.http.delete(`${this.url}`, options);
       }
-      return of([]);
+      return of();
   }
 }

@@ -31,7 +31,6 @@ export class UserProfileComponent implements OnInit {
   public getStudent() : void {
     this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
       this.student = result;
-      console.log(this.student)
       this.fileNames = result.fileNames;
     })
   }

@@ -41,14 +41,12 @@ export class UserProfilePartnersComponent implements OnInit {
   public getStudent() : void {
     this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
       this.student = result;
-      console.log(this.student)
       this.partners = result.partners;
     })
   }
 
   public deleteStudentPartner(partner: Partner) : void {
     window.location.reload();
-    console.log(this.student.id, partner.id)
     this.studentService.deleteStudentPartner(this.student.id, partner.id).subscribe( (result: any) => {
       if(result) { 
       }

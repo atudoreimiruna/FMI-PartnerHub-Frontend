@@ -21,6 +21,8 @@ export class JobLeftComponent implements OnDestroy, OnInit {
   public student!: Student;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public isDropdownOpen = false;
   public selectedRating!: number;
   public studentJobView!: StudentJobView;
@@ -85,10 +87,19 @@ export class JobLeftComponent implements OnDestroy, OnInit {
         }, 5000); 
     }
 
+    resetAlertRed() {
+        this.isAlertRed = false; 
+    }
+    
+    closeAlertRed() {
+        setTimeout(() => {
+            this.isAlertRed = false; 
+        }, 5000); 
+    }
+
     public getJob() : void {
         this.jobsService.getJobById(this.jobId).subscribe( (result) => {
         this.job = result;
-        // console.log(this.job);
         })
     }
 
@@ -109,7 +120,6 @@ export class JobLeftComponent implements OnDestroy, OnInit {
         this.email = this.authService.getEmailFromToken();
         this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
             this.student = result;
-            // console.log(this.student);
 
         const requestBody: any = {};
         requestBody.id = this.student.id;
@@ -124,10 +134,14 @@ export class JobLeftComponent implements OnDestroy, OnInit {
               this.closeAlert();
             },
             (error: any) => {
+                this.isAlertRed = true;
+                this.alertMsgRed = "Aplicarea nu a fost realizată!"
+                this.closeAlertRed();
             }
         );
         });
         this.resetAlert()
+        this.resetAlertRed()
     }
 
     
@@ -136,7 +150,6 @@ export class JobLeftComponent implements OnDestroy, OnInit {
         this.email = this.authService.getEmailFromToken();
         this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
             this.student = result;
-            // console.log(this.student);
 
         const requestBody: any = {};
         requestBody.id = this.student.id;
@@ -151,10 +164,14 @@ export class JobLeftComponent implements OnDestroy, OnInit {
               this.closeAlert();
             },
             (error: any) => {
+                this.isAlertRed = true;
+                this.alertMsgRed = "Jobul nu a fost adăugat în lista ta de favorite!"
+                this.closeAlertRed();
             }
         );
         });
         this.resetAlert()
+        this.resetAlertRed()
     }
 
     // evaluare
@@ -162,7 +179,6 @@ export class JobLeftComponent implements OnDestroy, OnInit {
         this.email = this.authService.getEmailFromToken();
         this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
             this.student = result;
-            // console.log(this.student);
 
         const requestBody: any = {};
         requestBody.id = this.student.id;
@@ -177,10 +193,14 @@ export class JobLeftComponent implements OnDestroy, OnInit {
               this.closeAlert();
             },
             (error: any) => {
+                this.isAlertRed = true;
+                this.alertMsgRed = "Jobul nu a fost evaluat!"
+                this.closeAlertRed();
             }
         );
         });
         this.resetAlert()
+        this.resetAlertRed()
     }
 
     ngOnDestroy(): void {

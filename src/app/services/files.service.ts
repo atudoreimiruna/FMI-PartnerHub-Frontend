@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Resume } from '../interfaces/resume';
 
 @Injectable({
   providedIn: 'root'
@@ -39,14 +40,14 @@ export class FilesService {
       return of([]);
    }
 
-   public downloadFile(fileName: any): Observable<any> {
+   public downloadFile(fileName: string): Observable<Resume> {
     const token = this.authService.getAccessToken();
-      if (token) {
-        const headers = new HttpHeaders({
-          Authorization: `Bearer ${token}`
-        });
-        return this.http.get<any>(`${this.url}/${fileName}`, { headers });
-      }
-      return of([]);
-   }
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.get<Resume>(`${this.url}/${fileName}`, { headers });
+    }
+    return of();
+  }
 }

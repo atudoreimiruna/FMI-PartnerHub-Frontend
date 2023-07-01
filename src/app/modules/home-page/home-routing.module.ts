@@ -15,44 +15,55 @@ import { AuthAdminGuard } from 'src/app/auth.admin.guard';
 import { AuthSuperAdminGuard } from 'src/app/auth.superadmin.guard';
 import { SuperAdminProfileComponent } from './superadmin-profile/superadmin-profile.component';
 import { UserProfilePartnersComponent } from './user-profile-partners/user-profile-partners.component';
+import { AuthGuard } from 'src/app/auth.guard';
+import { AuthUsersGuard } from 'src/app/auth.users.guard';
 
 const routes: Routes = [
     {
       path: '',
       pathMatch: 'full',
-      component: HomeComponent
+      component: HomeComponent,
+      // canActivate: [AuthGuard] 
     },
     {
       path: 'login',
-      component: LoginComponent 
+      component: LoginComponent,
+      canActivate: [AuthGuard] 
     },
     {
       path: 'home',
-      component: HomeComponent
+      component: HomeComponent,
+      canActivate: [AuthUsersGuard] 
     },
     {
       path: 'partener/:id',
-      component: PartnerComponent
+      component: PartnerComponent,
+      canActivate: [AuthUsersGuard] 
     },
-    {
-      path: 'partener/admin/:id',
-      component: PartnerComponent
-    },
+    // {
+    //   path: 'partener/admin/:id',
+    //   component: PartnerComponent,
+    //   canActivate: [AuthUsersGuard] 
+    // },
     {
       path: 'evenimente',
-      component: PartnerComponent
+      component: PartnerComponent,
+      canActivate: [AuthUsersGuard] 
     },
     {
       path: 'joburi/:id',
-      component: JobProfileComponent
+      component: JobProfileComponent,
+      canActivate: [AuthUsersGuard] 
     },
     {
       path: 'joburi',
-      component: JobComponent
+      component: JobComponent,
+      canActivate: [AuthUsersGuard] 
     },
     {
       path: 'practica',
-      component: PracticeComponent
+      component: PracticeComponent,
+      canActivate: [AuthUsersGuard] 
     },
     {
       path: 'user/:email',
@@ -74,10 +85,6 @@ const routes: Routes = [
       component: UserProfilePartnersComponent,
       canActivate: [AuthUserGuard] 
     },
-    // {
-    //   path: 'maps',
-    //   component: MapsComponent
-    // },
     {
       path: 'admin/:email',
       component: AdminProfileComponent,

@@ -23,6 +23,8 @@ export class UserProfileSettingsComponent implements OnInit {
   public student!: Student;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public file!: File;
   public Editor = ClassicEditor;
 
@@ -41,6 +43,16 @@ export class UserProfileSettingsComponent implements OnInit {
     }, 5000); 
   }
 
+  resetAlertRed() {
+    this.isAlertRed = false; 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+      this.isAlertRed = false; 
+    }, 5000); 
+  }
+
   onFileSelected(event: any) {
     this.file = event.target.files[0];
   }
@@ -55,11 +67,14 @@ export class UserProfileSettingsComponent implements OnInit {
             this.closeAlert();
           },
           (error: any) => {
-            // Handle any errors that occurred during the request
+            this.isAlertRed = true;
+            this.alertMsgRed = "CV-ul nu a fost încărcat!"
+            this.closeAlertRed();
           }
         );
     }
     this.resetAlert()
+    this.resetAlertRed()
   }
 
   updateStudent(form: NgForm) {
@@ -81,15 +96,17 @@ export class UserProfileSettingsComponent implements OnInit {
           this.closeAlert();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Informațiile nu au fost actualizate!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 
   public getStudent() : void {
     this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
-      console.log(this.student)
       this.student = result;
     })
   }

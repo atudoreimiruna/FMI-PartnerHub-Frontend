@@ -39,7 +39,6 @@ export class PartnerComponent implements OnDestroy, OnInit {
   }
 
   public getEventsByPartner() : void {
-    console.log(this.partnerId)
     this.eventsService.getEventsByPartnerId(this.partnerId).subscribe( (result) => {
       this.events = result;
     })

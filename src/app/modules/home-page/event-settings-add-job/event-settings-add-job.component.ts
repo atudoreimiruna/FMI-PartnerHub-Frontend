@@ -17,6 +17,8 @@ export class EventSettingsAddJobComponent {
   public Editor = ClassicEditor;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public partnerId!: number;
   public title: string = '';
   public description: string = '';
@@ -59,6 +61,16 @@ export class EventSettingsAddJobComponent {
     }, 5000); 
   }
 
+  resetAlertRed() {
+    this.isAlert = false; 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+      this.isAlert = false; 
+    }, 5000); 
+  }
+
   addJob(form: NgForm) {
     const { title, salary, address, minExperience, description, maxExperience, criteria, skills } = form.value;
 
@@ -83,9 +95,12 @@ export class EventSettingsAddJobComponent {
           form.reset();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Jobul nu a fost adăugat!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 }

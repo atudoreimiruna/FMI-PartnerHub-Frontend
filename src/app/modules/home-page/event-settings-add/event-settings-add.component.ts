@@ -15,6 +15,8 @@ export class EventSettingsAddComponent {
   public Editor = ClassicEditor;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public partnerId!: number;
   public title: string = '';
   public description: string = '';
@@ -52,6 +54,15 @@ export class EventSettingsAddComponent {
     }, 5000); 
   }
 
+  resetAlertRed() {
+    this.isAlertRed = false; 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+      this.isAlertRed = false; 
+    }, 5000); 
+  }
   addEvent(form: NgForm) {
     const { title, type, location, date, time, description, partnerId } = form.value;
 
@@ -75,9 +86,12 @@ export class EventSettingsAddComponent {
           form.reset();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Evenimentul nu a fost adăugat!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 }

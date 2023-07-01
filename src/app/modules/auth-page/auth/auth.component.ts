@@ -9,38 +9,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
 
-  // public tokens : Token = {
-  //   success: false,
-  //   accessToken: this.authService.getMicrosoftAccessToken(),
-  //   refreshToken: this.authService.getRefreshToken()
-  // };
-
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
-    console.log('Login method called');
+  public login(): void {
     this.authService.login().subscribe(() => {
       }
     );
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
-
-  // sendTokensToBackend(): void {
-  //   const tokens: Token = {
-  //     accessToken: this.authService.getAccessToken(),
-  //     refreshToken: this.authService.getRefreshToken()
-  //   };
-
-  //   this.authService.sendTokens(this.authService.getAccessToken(), this.authService.getRefreshToken()).subscribe(
-  //     () => {
-  //       console.log('Tokens sent successfully');
-  //     },
-  //     (error) => {
-  //       console.error('Failed to send tokens:', error);
-  //     }
-  //   );
-  // }
 }

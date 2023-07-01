@@ -6,7 +6,12 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
-  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+  <div *ngIf="isAlertRed" class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+    {{alertMsgRed}} 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
     <div class="card-body">
       <h4 class="card-title" style="margin-bottom: 20px;">Studenți interesați de companie</h4>
 
@@ -68,7 +73,7 @@
     </div>
   </div>
 
-  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
     <div class="card-body">
       <h4 class="card-title" style="margin-bottom: 20px;">Setări Admin</h4>
 

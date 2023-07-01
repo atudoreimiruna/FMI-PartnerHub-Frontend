@@ -5,13 +5,18 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
-<div class="card" style="width: 18rem;">
+<div *ngIf="isAlertRed" class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsgRed}} 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card">
   <div class="card-body">
     <h5 class="card-title">{{ job.title }}</h5>
   </div>
 </div>
 
-<div class="card" style="width: 18rem;">
+<div class="card">
     <div class="card-body">
       <h5 class="card-title">Criterii Job</h5>
       <p *ngIf="job.salary" class="card-text"><i class="material-icons">paid</i> {{ job.salary }}</p>
@@ -21,33 +26,11 @@
     </div>
 </div>
 
-<!-- <div *ngIf="isUserAuthorized()" class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Acțiuni Job</h5>
-      
-      <mat-form-field style="color: #333333;
-       background-color: white; &:hover {
-        background-color: #4B77BE; 
-    }" appearance = "outline">
-        <mat-label>{{ selectedRating ? 'EVALUARE: ' + selectedRating : 'EVALUEAZĂ' }}</mat-label>
-        <mat-select [(value)]="selectedRating" (selectionChange)="updateJobStatusToRateOnStudent()">
-          <mat-option value="5">Foarte interesat</mat-option>
-          <mat-option value="4">Puțin interesat</mat-option>
-          <mat-option value="3">Neutru</mat-option>
-          <mat-option value="2">Puțin neinteresat</mat-option>
-          <mat-option value="1">Neinteresat</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button (click)="updateJobStatusToFavoriteOnStudent()" class="btn btn-primary" style="margin-top: 0%;">SALVEAZĂ</button>
-      <button (click)="updateJobStatusToApplyOnStudent()" class="btn btn-primary" style="margin-top: 0%;">APLICĂ</button>
-    </div>
-</div> -->
-
-<div *ngIf="isUserAuthorized()" class="card" style="width: 18rem;">
+<div *ngIf="isUserAuthorized()" class="card">
   <div class="card-body">
       <h5 class="card-title">Acțiuni Job</h5>
     
-      <mat-form-field style="color: #333333; background-color: white; &:hover { background-color: #4B77BE; }" appearance="outline">
+      <mat-form-field class="responsive-form-field" appearance="outline">
           <mat-label>{{ selectedRating ?  ratingText[selectedRating] : 'EVALUEAZĂ' }}</mat-label>
           <mat-select [(value)]="selectedRating" (selectionChange)="updateJobStatusToRateOnStudent()">
               <mat-option *ngFor="let option of ratingOptions" [value]="option.value">{{ option.text }}</mat-option>
@@ -59,7 +42,7 @@
   </div>
 </div>
 
-<div class="card" style="width: 18rem;">
+<div class="card">
     <div class="card-body">
       <h5 class="card-title">Detalii Job</h5>
       <p class="card-text"> Ultima actualizare: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</p>

@@ -22,6 +22,11 @@
     }
 }
 
+.header-with-line {
+    display: flex;
+    justify-content: center;
+  }
+  
 .first_title
 {
   --hidden-scrollbar-width:  0;
@@ -42,3 +47,23 @@
   margin-top: 30px;
   margin-bottom: 10px;
 }
+
+@media only screen and (max-width:800px) {
+    /* For tablets: */
+    .card {
+      width: 80%;
+      padding: 0;
+    }
+    .first_title {
+        font-size: 20px; /* Adjust font size for smaller screens */
+      }
+  }
+  @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+    .card {
+      width: 100%;
+    }
+    .first_title {
+        font-size: 16px; /* Adjust font size for even smaller screens */
+      }
+  }

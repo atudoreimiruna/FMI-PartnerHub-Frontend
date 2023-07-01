@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { Token } from '../interfaces/token';
 import jwt_decode from 'jwt-decode';
 import { UserRoles } from '../interfaces/userRoles';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   public url = 'https://localhost:5001/api/auth';
   accessToken: any;
 
-  constructor(private oauthService: OAuthService, private http: HttpClient) {
+  constructor(private oauthService: OAuthService, private http: HttpClient, private router: Router) {
     this.configureOAuth();
   }
 
@@ -139,7 +140,7 @@ export class AuthService {
     });
   }
 
-  login(): Observable<boolean> {
+  public login(): Observable<boolean> {
     return new Observable<boolean>(observer => {
       this.oauthService.initImplicitFlow();
       const tokenSubscription = this.oauthService.events.subscribe(e => {
@@ -149,6 +150,8 @@ export class AuthService {
             accessToken: this.getMicrosoftAccessToken(),
             refreshToken: this.getRefreshToken()
           };
+  
+          // window.location.href = 'http://localhost:4200/home';
         }
       });
   

@@ -1,11 +1,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
+
 <div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
   {{alertMsg}}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
-<div class="card" style="width: 18rem;">
+<div *ngIf="isAlertRed" class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsgRed}} 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card">
   <a href="{{ partner.social }}" target="_blank"> <!-- Added anchor tag around the card image -->
       <img class="card-img-top" src="{{ partner.logoImageUrl }}" alt="Card image cap">
   </a>
@@ -18,7 +24,7 @@
   </div>
 </div>
 
-<div class="card" style="width: 18rem;">
+<div class="card">
     <div class="card-body">
       <h5 class="card-title">Contact</h5>
       <p class="card-text"><i class="material-icons">email</i> {{ partner.email }}</p>
@@ -26,7 +32,7 @@
     </div>
 </div>
 
-<div class="card" style="width: 18rem;">
+<div class="card">
   <div class="card-body">
     <h5 class="card-title">Locație</h5>
     <p class="card-map"> 

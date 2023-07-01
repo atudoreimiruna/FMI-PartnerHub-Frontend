@@ -77,7 +77,6 @@ export class JobComponent implements OnInit, OnDestroy {
   }
 
   selectPagination(event: any) : void {
-    console.log(event);
     // add if for partner, address and category
     this.pageNumber = event.pageIndex;
     this.pageSize = event.pageSize;
@@ -111,8 +110,6 @@ export class JobComponent implements OnInit, OnDestroy {
 
   public getJobsByFilter(partner?: string, address?: string, category?: string) {
     this.jobsService.getJobsFilter(this.pageNumber, this.pageSize, partner, address, category).subscribe(jobs => {
-      console.log(this.pageNumber, this.pageSize)
-      console.log(jobs)
       this.jobs = jobs;
     });
   }

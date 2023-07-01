@@ -30,7 +30,6 @@ export class JobRightComponent implements OnDestroy, OnInit {
   public getJob() : void {
     this.jobsService.getJobById(this.jobId).subscribe( (result) => {
       this.job = result;
-      console.log(this.job);
     })
   }
 

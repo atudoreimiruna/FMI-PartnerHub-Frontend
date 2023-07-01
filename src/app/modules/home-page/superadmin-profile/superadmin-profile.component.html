@@ -134,13 +134,12 @@
       <form #updateForm="ngForm" (ngSubmit)="updatePractice(updateForm)">
 
         <div class="mb-3">
-          <label for="exampleInputDescription2" class="form-label">Descriere</label>
+          <!-- <label for="exampleInputDescription2" class="form-label"></label> -->
           <ckeditor [editor]="Editor" id="exampleInputDescription2" name="description" [(ngModel)]="practice.description"></ckeditor>
         </div>
 
         <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
       </form>
-
 
     </div>
 

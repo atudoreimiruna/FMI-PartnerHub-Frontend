@@ -9,7 +9,6 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    console.log("lksdnfjknszdjkfn")
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/home']);
       return false; 
@@ -17,11 +16,11 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 
-  canUserActivate(): boolean {
-    const roles = localStorage.getItem("roles")
-    if(roles?.includes("User")) { 
-      return true;
-    }
-    return false;
-  }
+  // canUserActivate(): boolean {
+  //   const roles = localStorage.getItem("roles")
+  //   if(roles?.includes("User")) { 
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }

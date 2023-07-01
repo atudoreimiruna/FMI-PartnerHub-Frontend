@@ -55,11 +55,6 @@
                 <div *ngFor="let file of fileNames">
                     <div class="d-flex align-items-center">
                         <label class="form-control">{{file}}</label>
-                        <!-- <a href="{{file}}" download>
-                            <button (click)="downloadFile(file)" class="btn btn-primary mx-2">
-                                <i class="material-icons">download</i>
-                            </button>
-                        </a> -->
                         <button (click)="deleteFile(file)" class="btn btn-primary mx-2">
                             <i class="material-icons">delete</i>
                         </button>
@@ -68,11 +63,6 @@
             </div>
 
         </form>
-
-        <!-- <div class="input-group mb-3">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
-            <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        </div> -->
 
         <div>
             <button class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Delogare</button>

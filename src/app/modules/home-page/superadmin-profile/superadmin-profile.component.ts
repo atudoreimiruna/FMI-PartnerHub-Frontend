@@ -83,7 +83,6 @@ export class SuperAdminProfileComponent {
   }
 
   selectPagination(event: any) : void {
-    // console.log(event);
     this.pageNumber = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getUsersAndRoles();
@@ -104,7 +103,6 @@ export class SuperAdminProfileComponent {
 
   public getAllPartners(): void {
     this.partnersService.getPartners().subscribe((result) => {
-      console.log(this.partners)
       this.partners = result;
     });
   }
@@ -118,7 +116,6 @@ export class SuperAdminProfileComponent {
         role: role
       };
    
-    console.log(requestBody)
     this.authService.postRoleToUser(requestBody).subscribe(
       response => {
         this.isAlert = true;
@@ -126,10 +123,13 @@ export class SuperAdminProfileComponent {
         this.closeAlert();
       },
       error => {
-        // Handle any errors that occurred during the request
+        this.isAlertRed = true;
+        this.alertMsgRed = "Rolul nu a putut fi adăugat!"
+        this.closeAlertRed();
       }
     );
     this.resetAlert()
+    this.resetAlertRed()
     form.reset();
     }
   }
@@ -143,7 +143,6 @@ export class SuperAdminProfileComponent {
         partner: partner
       };
    
-    console.log(requestBody)
     this.authService.addPartnerToAdmin(requestBody).subscribe(
       response => {
         this.isAlert = true;
@@ -151,10 +150,13 @@ export class SuperAdminProfileComponent {
         this.closeAlert();
       },
       error => {
-        // Handle any errors that occurred during the request
+        this.isAlertRed = true;
+        this.alertMsgRed = "Adminul nu a putut fi adăugat!"
+        this.closeAlertRed();
       }
     );
     this.resetAlert()
+    this.resetAlertRed()
     form.reset();
     }
   }
@@ -167,7 +169,6 @@ export class SuperAdminProfileComponent {
         name: this.name
       };
    
-    console.log(requestBody)
     this.partnersService.postPartner(requestBody).subscribe(
       response => {
         this.isAlert = true;
@@ -176,10 +177,13 @@ export class SuperAdminProfileComponent {
         this.partners.push(response)
       },
       error => {
-        // Handle any errors that occurred during the request
+        this.isAlertRed = true;
+        this.alertMsgRed = "Partenerul nu a putut fi adăugat!"
+        this.closeAlertRed();
       }
     );
     this.resetAlert()
+    this.resetAlertRed()
     form.reset();
     }
   }
@@ -193,7 +197,6 @@ export class SuperAdminProfileComponent {
         role: this.role
       };
    
-    console.log(requestBody)
     this.authService.removeRoleFromUser(requestBody).subscribe(
       response => {
         this.isAlert = true;
@@ -220,7 +223,6 @@ export class SuperAdminProfileComponent {
         name: this.partnerToDelete
       };
    
-    console.log(requestBody)
     this.partnersService.deletePartner(requestBody).subscribe(
       response => {
         this.isAlert = true;
@@ -230,9 +232,9 @@ export class SuperAdminProfileComponent {
 
       },
       error => {
-        // this.isAlertRed = true;
-        // this.alertMsgRed = "Partenerul nu poate fi eliminat!"
-        // this.closeAlertRed();
+        this.isAlertRed = true;
+        this.alertMsgRed = "Partenerul nu poate fi eliminat!"
+        this.closeAlertRed();
         window.location.reload();
       }
     );
@@ -241,31 +243,33 @@ export class SuperAdminProfileComponent {
     }
   }
 
-  updatePractice(form: NgForm) {
+  public updatePractice(form: NgForm) {
     const { description } = form.value;
-
+  
     const requestBody: any = {};
-    requestBody.id = this.practice.id;
+    requestBody.id = this.practice.id; // Assuming this.practice contains the practice object with an 'id' property
     if (description) requestBody.description = description;
-
+  
     this.practiceService.updatePractice(requestBody)
       .subscribe(
         response => {
           this.isAlert = true;
-          this.alertMsg = "Ai actualizat cu succes informațiile!"
+          this.alertMsg = "Ai actualizat cu succes informațiile!";
           this.closeAlert();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Informațiile nu au putut fi actualizate!"
+          this.closeAlertRed();
         }
       );
-      this.resetAlert()
+    this.resetAlertRed()
+    this.resetAlert();
   }
 
   public getPractice() : void {
     this.practiceService.getPracticeById(this.practiceId).subscribe( (result) => {
         this.practice = result;
-        console.log(this.practice)
         })
     }
 }

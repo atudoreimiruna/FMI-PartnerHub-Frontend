@@ -57,8 +57,4 @@ export class NavBarComponent {
   {
     this.eventsService.changedUrlSbj.next(true);
   }
-  // goToUserProfile(): void {
-  //   console.log(['/home/user'],{queryParams: { email : this.getEmailFromToken() } })
-  //   this.router.navigate(['/home/user'],{queryParams: { email : this.getEmailFromToken() } });
-  // }
 }

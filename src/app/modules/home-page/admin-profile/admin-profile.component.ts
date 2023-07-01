@@ -39,6 +39,8 @@ export class AdminProfileComponent implements OnInit {
   public partnerName!: string;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public Editor = ClassicEditor;
   public file!: File;
   public imageLink!: string;
@@ -63,9 +65,19 @@ export class AdminProfileComponent implements OnInit {
     this.isAlert = false; 
   }
 
+  resetAlertRed() {
+    this.isAlertRed = false; 
+  }
+
   closeAlert() {
     setTimeout(() => {
       this.isAlert = false; 
+    }, 5000); 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+      this.isAlertRed = false; 
     }, 5000); 
   }
 
@@ -86,14 +98,12 @@ export class AdminProfileComponent implements OnInit {
   }
 
   public getEventsByPartner() : void {
-    console.log(this.partnerId)
     this.eventsService.getEventsByPartnerId(this.partnerId).subscribe( (result) => {
       this.events = result;
-      console.log(result)
     })
   }
 
-  updatePartner(form: NgForm) {
+  public updatePartner(form: NgForm) {
     const { name, address, phone, email, social, mainDescription, description} = form.value;
 
     const requestBody: any = {};
@@ -114,10 +124,13 @@ export class AdminProfileComponent implements OnInit {
           this.closeAlert();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Informațiile nu au putut fi actualizate!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 
   openEventEdit(eventId: number): void {
@@ -183,11 +196,14 @@ export class AdminProfileComponent implements OnInit {
           this.imageLink = response.mainImageUrl
         },
         (error: any) => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
     }
     this.resetAlert()
+    this.resetAlertRed()
   }
 
   updateImagePartner(imageLink: string) {
@@ -202,10 +218,13 @@ export class AdminProfileComponent implements OnInit {
           this.closeAlert();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Informațiile nu au putut fi actualizate!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 
   uploadLogoFile() {
@@ -222,14 +241,16 @@ export class AdminProfileComponent implements OnInit {
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
           this.imageLink = response.blob?.uri
-          console.log(response.blob?.uri)
         },
         (error: any) => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
     }
     this.resetAlert()
+    this.resetAlertRed()
   }
 
   updateLogoPartner(imageLink: string) {
@@ -240,11 +261,19 @@ export class AdminProfileComponent implements OnInit {
     this.partnersService.updatePartner(requestBody)
       .subscribe(
         response => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.blob?.uri
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
+      this.resetAlert()
+      this.resetAlertRed()
   }
 
   uploadMainFile() {
@@ -261,14 +290,16 @@ export class AdminProfileComponent implements OnInit {
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
           this.imageLink = response.blob?.uri
-          console.log(response.blob?.uri)
         },
         (error: any) => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
     }
     this.resetAlert()
+    this.resetAlertRed()
   }
 
   updateMainPartner(imageLink: string) {
@@ -279,11 +310,19 @@ export class AdminProfileComponent implements OnInit {
     this.partnersService.updatePartner(requestBody)
       .subscribe(
         response => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.blob?.uri
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
+      this.resetAlert()
+      this.resetAlertRed()
   }
 
   uploadProfileFile() {
@@ -300,14 +339,16 @@ export class AdminProfileComponent implements OnInit {
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
           this.imageLink = response.blob?.uri
-          console.log(response.blob?.uri)
         },
         (error: any) => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
     }
     this.resetAlert()
+    this.resetAlertRed()
   }
 
   updateProfilePartner(imageLink: string) {
@@ -318,11 +359,19 @@ export class AdminProfileComponent implements OnInit {
     this.partnersService.updatePartner(requestBody)
       .subscribe(
         response => {
+          this.isAlert = true;
+          this.alertMsg = "Ai încărcat imaginea cu succes!"
+          this.closeAlert();
+          this.imageLink = response.blob?.uri
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+          this.closeAlertRed();
         }
       );
+      this.resetAlert()
+      this.resetAlertRed()
   }
 
   public getJobsByPartner() : void {
@@ -341,12 +390,10 @@ export class AdminProfileComponent implements OnInit {
               jobStatus: studentJob.jobStatus,
               studentDetails: studentJob.student
             };
-            console.log(element)
             this.studentsTable.push(element)
           }
         }
       }
-      console.log(this.studentsTable)
     });
   }
 
@@ -364,8 +411,6 @@ export class AdminProfileComponent implements OnInit {
     // this.studentsTable = []
     this.studentService.getStudentsByPartnerId(this.partnerId).subscribe( async (result) => {
       this.studentPartnersTable = result;
-
-      console.log(this.studentPartnersTable)
     });
   }
 

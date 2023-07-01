@@ -40,7 +40,6 @@ export class StudentsService {
   }
 
   public getJobsForStudentByEmail(email: any): Observable<StudentJob[]> {
-    console.log(email)
     const token = this.authService.getAccessToken();
       if (token) {
         const headers = new HttpHeaders({

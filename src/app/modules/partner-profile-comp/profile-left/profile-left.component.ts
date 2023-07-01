@@ -25,6 +25,8 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   public jobs!: Job[];
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
 
   // info for map
   public latitude!: number;
@@ -43,7 +45,6 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
     ngOnInit() {
       this.partnerId = this.route.snapshot.paramMap.get('id')!;
       this.getPartner().then(() => {
-        console.log(this.partner); // Check the retrieved partner data
         this.findCoordinates(this.partner.address);
       });
     }
@@ -64,12 +65,21 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
       }, 5000); 
   }
 
+  resetAlertRed() {
+    this.isAlertRed = false; 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+        this.isAlertRed = false; 
+    }, 5000); 
+  }
+
   public async getPartner(): Promise<void>  {
     return new Promise<void>((resolve) => {
     this.partnersService.getPartnerById(this.partnerId).subscribe( (result) => {
       this.partner = result;
       resolve()
-      // console.log(this.partner);
     });
   });
   }
@@ -88,7 +98,6 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   }
 
   findCoordinates(address: string) {
-    console.log(address)
     this.mapsAPILoader.load().then(() => {
       const geocoder = new google.maps.Geocoder();
       geocoder.geocode({ address }, (results, status) => {
@@ -106,7 +115,6 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
     this.email = this.authService.getEmailFromToken();
     this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
         this.student = result;
-        console.log(this.student);
 
     const requestBody: any = {};
     requestBody.id = this.student.id;
@@ -120,13 +128,14 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
           this.closeAlert();
         },
         (error: any) => {
-          this.isAlert = true;
-          this.alertMsg = "Partenerul se află deja în lista de favorite!"
-          this.closeAlert();
+          this.isAlertRed = true;
+          this.alertMsgRed = "Partenerul se află deja în lista de favorite!"
+          this.closeAlertRed();
         }
     );
     });
     this.resetAlert()
+    this.resetAlertRed()
 }
 
   ngOnDestroy(): void {

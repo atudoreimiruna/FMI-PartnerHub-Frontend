@@ -50,7 +50,6 @@ export class UserProfileJobsComponent implements OnInit {
   public getStudent() : void {
     this.studentService.getStudentByEmail(this.email).subscribe( (result) => {
       this.student = result;
-      // console.log(this.student)
       this.jobs = result.jobs;
     })
   }
@@ -58,7 +57,6 @@ export class UserProfileJobsComponent implements OnInit {
   public getStudentJobs(): void {
     this.studentService.getStudentJobs(this.email).subscribe(async (result) => {
       this.studentJobsView = result;
-      console.log(this.studentJobsView)
       const favoriteJobsPromises = this.studentJobsView
         .filter((job) => job.jobStatus === StudentJobStatusEnum.Favorite)
         .map((job) => this.jobToJobObject(job));
@@ -74,7 +72,6 @@ export class UserProfileJobsComponent implements OnInit {
         const job = await promise;
         this.favoriteJobs.push(job);
       }
-      console.log(this.favoriteJobs)
       for (const promise of appliedJobsPromises) {
         const job = await promise;
         this.appliedJobs.push(job);
@@ -115,13 +112,11 @@ export class UserProfileJobsComponent implements OnInit {
   public getStudentByEmail() : void {
     this.studentService.getJobsForStudentByEmail(this.email).subscribe( (result) => {
       this.studentJobs = result;
-      // console.log(this.studentJobs)
     })
   }
   
   public deleteStudentJob(job: Job) : void {
     window.location.reload();
-    // console.log(this.student.id, job.id)
     this.studentService.deleteStudentJob(this.student.id, job.id).subscribe( (result: any) => {
       if(result) { 
       }

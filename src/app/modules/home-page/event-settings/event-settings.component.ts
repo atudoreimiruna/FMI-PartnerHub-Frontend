@@ -15,6 +15,8 @@ export class EventSettingsComponent {
   public Editor = ClassicEditor;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public event!: Event; 
   public eventId!: number;
   public events!: Event[];
@@ -36,9 +38,19 @@ export class EventSettingsComponent {
     this.isAlert = false; 
   }
 
+  resetAlertRed() {
+    this.isAlertRed = false; 
+  }
+
   closeAlert() {
     setTimeout(() => {
       this.isAlert = false; 
+    }, 5000); 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+      this.isAlertRed = false; 
     }, 5000); 
   }
 
@@ -51,16 +63,18 @@ export class EventSettingsComponent {
   public deleteEvent(id: number): void {
     this.eventsService.deleteEvent(id).subscribe(
       response => {
-        // window.location.reload();
         this.isAlert = true;
         this.alertMsg = "Evenimentul a fost șters cu succes!";
         this.closeAlert();
-        this.resetAlert(); // Move the resetAlert() call here
       },
       error => {
-        // Handle any errors that occurred during the request
+        this.isAlertRed = true;
+        this.alertMsgRed = "Evenimentul nu a fost șters!"
+        this.closeAlertRed();
       }
     );
+    this.resetAlert(); 
+    this.resetAlertRed()
   }
 
   updateEvent(form: NgForm) {
@@ -84,9 +98,12 @@ export class EventSettingsComponent {
           this.closeAlert();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Informațiile nu au fost actualizate!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 }

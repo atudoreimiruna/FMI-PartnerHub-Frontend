@@ -15,6 +15,8 @@ export class EventSettingsEditJobComponent {
   public Editor = ClassicEditor;
   public isAlert = false;
   public alertMsg!: string;
+  public isAlertRed = false;
+  public alertMsgRed!: string;
   public job!: Job; 
   public jobId!: number;
   public jobs!: Job[];
@@ -42,6 +44,16 @@ export class EventSettingsEditJobComponent {
     }, 5000); 
   }
 
+  resetAlertRed() {
+    this.isAlertRed = false; 
+  }
+
+  closeAlertRed() {
+    setTimeout(() => {
+      this.isAlertRed = false; 
+    }, 5000); 
+  }
+
   public getJob() : void {
     this.jobsService.getJobById(this.jobId).subscribe( (result) => {
       this.job = result;
@@ -58,9 +70,12 @@ export class EventSettingsEditJobComponent {
         this.resetAlert(); // Move the resetAlert() call here
       },
       error => {
-        // Handle any errors that occurred during the request
+        this.isAlertRed = true;
+        this.alertMsgRed = "Jobul nu a fost șters!"
+        this.closeAlertRed();
       }
     );
+    this.resetAlertRed()
   }
 
   updateJob(form: NgForm) {
@@ -85,9 +100,12 @@ export class EventSettingsEditJobComponent {
           this.closeAlert();
         },
         error => {
-          // Handle any errors that occurred during the request
+          this.isAlertRed = true;
+          this.alertMsgRed = "Jobul nu a fost actualizat!"
+          this.closeAlertRed();
         }
       );
       this.resetAlert()
+      this.resetAlertRed()
   }
 }

@@ -4,12 +4,12 @@ import { CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAdminGuard implements CanActivate {
+export class AuthUsersGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
     const roles = localStorage.getItem("roles")
-    if(roles === "Admin") { 
+    if(roles?.includes("User") || roles?.includes("Admin") || roles?.includes("SuperAdmin")) { 
       return true;
     }
     else {
