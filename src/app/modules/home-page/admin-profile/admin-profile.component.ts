@@ -135,12 +135,11 @@ export class AdminProfileComponent implements OnInit {
 
   openEventEdit(eventId: number): void {
     let dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { id: eventId, events: this.events }
+    dialogConfig.data = { id: eventId, events: this.events, partnerId: this.partnerId }
     dialogConfig.width = '600px';
     dialogConfig.height = '90vh';
     let dialogRef = this.dialog.open(EventSettingsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((res) => {
-      //in res am date trimise la inchidere popup
     })
   }
 
@@ -179,53 +178,53 @@ export class AdminProfileComponent implements OnInit {
     this.file = event.target.files[0];
   }
 
-  uploadFile() {
-    if (this.file && this.partner.id) {
-      this.fileService.uploadFile(2, this.partner.id, this.file)
-      .pipe(
-        finalize(() => {
-        this.updateImagePartner(this.imageLink)
-        })
-      )
-      .subscribe(
-        (response: any) => {
-          this.isAlert = true;
-          this.alertMsg = "Ai încărcat imaginea cu succes!"
-          this.closeAlert();
-          this.imageLink = response.
-          this.imageLink = response.mainImageUrl
-        },
-        (error: any) => {
-          this.isAlertRed = true;
-          this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
-          this.closeAlertRed();
-        }
-      );
-    }
-    this.resetAlert()
-    this.resetAlertRed()
-  }
+  // uploadFile() {
+  //   if (this.file && this.partner.id) {
+  //     this.fileService.uploadFile(2, this.partner.id, this.file)
+  //     .pipe(
+  //       finalize(() => {
+  //       this.updateImagePartner(this.imageLink)
+  //       })
+  //     )
+  //     .subscribe(
+  //       (response: any) => {
+  //         this.isAlert = true;
+  //         this.alertMsg = "Ai încărcat imaginea cu succes!"
+  //         this.closeAlert();
+  //         this.imageLink = response.
+  //         this.imageLink = response.mainImageUrl
+  //       },
+  //       (error: any) => {
+  //         this.isAlertRed = true;
+  //         this.alertMsgRed = "Imaginea nu a putut fi încărcată!"
+  //         this.closeAlertRed();
+  //       }
+  //     );
+  //   }
+  //   this.resetAlert()
+  //   this.resetAlertRed()
+  // }
 
-  updateImagePartner(imageLink: string) {
-    const requestBody: any = {};
-    requestBody.id = this.partner.id;
+  // updateImagePartner(imageLink: string) {
+  //   const requestBody: any = {};
+  //   requestBody.id = this.partner.id;
 
-    this.partnersService.updatePartner(requestBody)
-      .subscribe(
-        response => {
-          this.isAlert = true;
-          this.alertMsg = "Ai actualizat cu succes informațiile tale!"
-          this.closeAlert();
-        },
-        error => {
-          this.isAlertRed = true;
-          this.alertMsgRed = "Informațiile nu au putut fi actualizate!"
-          this.closeAlertRed();
-        }
-      );
-      this.resetAlert()
-      this.resetAlertRed()
-  }
+  //   this.partnersService.updatePartner(requestBody)
+  //     .subscribe(
+  //       response => {
+  //         this.isAlert = true;
+  //         this.alertMsg = "Ai actualizat cu succes informațiile tale!"
+  //         this.closeAlert();
+  //       },
+  //       error => {
+  //         this.isAlertRed = true;
+  //         this.alertMsgRed = "Informațiile nu au putut fi actualizate!"
+  //         this.closeAlertRed();
+  //       }
+  //     );
+  //     this.resetAlert()
+  //     this.resetAlertRed()
+  // }
 
   uploadLogoFile() {
     if (this.file && this.partner.id) {
@@ -240,7 +239,7 @@ export class AdminProfileComponent implements OnInit {
           this.isAlert = true;
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
-          this.imageLink = response.blob?.uri
+          // this.imageLink = response.blob?.uri
         },
         (error: any) => {
           this.isAlertRed = true;
@@ -264,7 +263,7 @@ export class AdminProfileComponent implements OnInit {
           this.isAlert = true;
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
-          this.imageLink = response.blob?.uri
+          // this.imageLink = response.blob?.uri
         },
         error => {
           this.isAlertRed = true;
@@ -289,7 +288,7 @@ export class AdminProfileComponent implements OnInit {
           this.isAlert = true;
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
-          this.imageLink = response.blob?.uri
+          // this.imageLink = response.blob?.uri
         },
         (error: any) => {
           this.isAlertRed = true;
@@ -313,7 +312,7 @@ export class AdminProfileComponent implements OnInit {
           this.isAlert = true;
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
-          this.imageLink = response.blob?.uri
+          // this.imageLink = response.blob?.uri
         },
         error => {
           this.isAlertRed = true;
@@ -327,7 +326,7 @@ export class AdminProfileComponent implements OnInit {
 
   uploadProfileFile() {
     if (this.file && this.partner.id) {
-      this.fileService.uploadFile(2, this.partner.id, this.file)
+      this.fileService.uploadFile(1, this.partner.id, this.file)
       .pipe(
         finalize(() => {
           this.updateMainPartner(this.imageLink)
@@ -338,7 +337,7 @@ export class AdminProfileComponent implements OnInit {
           this.isAlert = true;
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
-          this.imageLink = response.blob?.uri
+          // this.imageLink = response.blob?.uri
         },
         (error: any) => {
           this.isAlertRed = true;
@@ -362,7 +361,7 @@ export class AdminProfileComponent implements OnInit {
           this.isAlert = true;
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
-          this.imageLink = response.blob?.uri
+          // this.imageLink = response.blob?.uri
         },
         error => {
           this.isAlertRed = true;

@@ -19,6 +19,7 @@ export class EventSettingsEditJobComponent {
   public alertMsgRed!: string;
   public job!: Job; 
   public jobId!: number;
+  public partnerId!: number;
   public jobs!: Job[];
 
   constructor(public dialogRef: MatDialogRef<EventSettingsEditJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,6 +28,7 @@ export class EventSettingsEditJobComponent {
 
     ngOnInit() {
       this.jobId = this.data.id;
+      this.partnerId = this.data.partnerId;
       this.getJob();
     }
 
@@ -91,7 +93,8 @@ export class EventSettingsEditJobComponent {
     if (description) requestBody.description = description;
     if (criteria) requestBody.criteria = criteria;
     if (skills) requestBody.skills = skills;
-
+    requestBody.partnerId = this.partnerId;
+    
     this.jobsService.updateJob(requestBody)
       .subscribe(
         response => {

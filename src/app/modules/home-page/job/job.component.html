@@ -2,7 +2,7 @@
 
 <div class="button-container">
   
-  <div class="dropdown">
+  <div *ngIf="uniqueCategories.length > 0" class="dropdown">
     <button class="dropdown-button" (click)="toggleDropdown2()">
       Categorie
       <span class="dropdown-arrow" [class.active]="isDropdownOpen2"></span>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="dropdown">
+  <div *ngIf="uniqueAddresses.length > 0" class="dropdown">
     <button class="dropdown-button" (click)="toggleDropdown()">
       Locație
       <span class="dropdown-arrow" [class.active]="isDropdownOpen"></span>
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="dropdown">
+  <div *ngIf="uniquePartners.length > 0" class="dropdown">
     <button class="dropdown-button" (click)="toggleDropdown1()">
       Companie
       <span class="dropdown-arrow" [class.active]="isDropdownOpen1"></span>
@@ -40,9 +40,10 @@
       </li>
     </div>
   </div>
-  
 </div>
+
 <h1></h1>
+
 <div *ngFor="let job of jobs">
   <a href="http://localhost:4200/joburi/{{ job.id }}" class="text-reset text-decoration-none">
     <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px; width: 50rem; box-shadow: 0 0 10px #5C97BF;">
@@ -52,19 +53,21 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title" style="font-weight: bold;">{{ job.title }}</h5>
-              <p *ngIf="job.address" class="card-text">
-                <small class="text-muted"><i class="material-icons">place</i> {{ job.address }}</small>
-              </p>
-              <p *ngIf="job.salary" class="card-text">
-                <small class="text-muted"><i class="material-icons">paid</i> {{ job.salary }}</small>
-              </p>
-              <p *ngIf="job.minExperience != 0 && job.maxExperience != 0" class="card-text">
-                <small class="text-muted"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență</small>
-              </p>
-              <p *ngIf="job.lastUpdated" class="card-text">
-                <small class="text-muted">Actualizat la: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
-              </p>
+              <h5 class="card-title" *ngIf="job.title" style="font-weight: bold;">{{ job.title }}</h5>
+              <div class="card-text-wrapper">
+                <p *ngIf="job.address" class="card-text">
+                  <small class="text-muted"><i class="material-icons">place</i> {{ job.address }}</small>
+                </p>
+                <p *ngIf="job.salary" class="card-text">
+                  <small class="text-muted"><i class="material-icons">paid</i> {{ job.salary }}</small>
+                </p>
+                <p *ngIf="job.minExperience != 0 && job.maxExperience != 0" class="card-text">
+                  <small class="text-muted"><i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență</small>
+                </p>
+                <p *ngIf="job.lastUpdated" class="card-text">
+                  <small class="text-muted">Actualizat la: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</small>
+                </p>
+              </div>
             </div>
           </div>
         </div>

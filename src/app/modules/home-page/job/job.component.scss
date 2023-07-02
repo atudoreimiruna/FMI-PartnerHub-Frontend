@@ -91,3 +91,10 @@
 .card-text small i.material-icons {
     font-size: 17px; /* Adjust the font size as per your preference */
 }
+
+.card-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+  }

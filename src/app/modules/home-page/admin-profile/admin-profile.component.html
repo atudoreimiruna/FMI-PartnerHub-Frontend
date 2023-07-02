@@ -11,11 +11,11 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
-  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
+  <div class="card" *ngIf="studentPartnersTable.length > 0 || studentsTable.length > 0" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
     <div class="card-body">
-      <h4 class="card-title" style="margin-bottom: 20px;">Studenți interesați de companie</h4>
+      <h4 class="card-title" *ngIf="studentPartnersTable.length > 0" style="margin-bottom: 20px;">Studenți interesați de companie</h4>
 
-      <table class="table table-sm">
+      <table *ngIf="studentPartnersTable.length > 0" class="table table-sm">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -36,9 +36,10 @@
         </tbody>
       </table>
 
-      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Studenți interesați de joburi și aplicări</h5>
+      
+      <h5 class="card-title" *ngIf="studentsTable.length > 0" style="margin-bottom: 20px; margin-top: 20px;">Studenți interesați de joburi și aplicări</h5>
 
-      <table class="table table-sm">
+      <table *ngIf="studentsTable.length > 0"  class="table table-sm">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -84,7 +85,6 @@
         <div class="mb-3">
           <label for="exampleInputName" class="form-label">Nume</label>
           <input type="text" class="form-control" id="exampleInputName" name="name" [(ngModel)]="partner.name" >
-          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
 
         <div class="mb-3">

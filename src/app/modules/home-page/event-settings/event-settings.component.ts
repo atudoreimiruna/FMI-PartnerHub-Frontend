@@ -19,6 +19,7 @@ export class EventSettingsComponent {
   public alertMsgRed!: string;
   public event!: Event; 
   public eventId!: number;
+  public partnerId!: number;
   public events!: Event[];
 
   constructor(public dialogRef: MatDialogRef<EventSettingsComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,6 +28,7 @@ export class EventSettingsComponent {
 
     ngOnInit() {
       this.eventId = this.data.id;
+      this.partnerId = this.data.partnerId;
       this.getEvent();
     }
 
@@ -88,7 +90,7 @@ export class EventSettingsComponent {
     if (date) requestBody.date = date;
     if (time) requestBody.time = time;
     if (description) requestBody.description = description;
-
+    requestBody.partnerId = this.partnerId;
     
     this.eventsService.updateEvent(requestBody)
       .subscribe(
