@@ -235,7 +235,7 @@ export class AdminProfileComponent implements OnInit {
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
           this.imageLink = response.blob?.uri
-          console.log(response.blob?.uri)
+          // console.log(response.blob?.uri)
         },
         (error: any) => {
           // Handle any errors that occurred during the request
@@ -274,7 +274,7 @@ export class AdminProfileComponent implements OnInit {
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
           this.imageLink = response.blob?.uri
-          console.log(response.blob?.uri)
+          // console.log(response.blob?.uri)
         },
         (error: any) => {
           // Handle any errors that occurred during the request
@@ -313,7 +313,7 @@ export class AdminProfileComponent implements OnInit {
           this.alertMsg = "Ai încărcat imaginea cu succes!"
           this.closeAlert();
           this.imageLink = response.blob?.uri
-          console.log(response.blob?.uri)
+          // console.log(response.blob?.uri)
         },
         (error: any) => {
           // Handle any errors that occurred during the request

@@ -285,7 +285,7 @@ export class SuperAdminProfileComponent {
     // if (description) requestBody.description = this.practice.description;
     
     // console.log(form.value)
-    console.log(requestBody.description)
+    // console.log(requestBody.description)
 
     this.practiceService.updatePractice(requestBody)
       .subscribe(

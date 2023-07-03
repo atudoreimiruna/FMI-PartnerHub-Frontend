@@ -89,7 +89,7 @@ export class AuthService {
   private saveAccessTokenAndRoles(token: string) {
     // Save the access token to browser storage
     localStorage.setItem('accessToken', token);
-    console.log(token)
+    // console.log(token)
     this.getRolesFromToken();
     this.getPartnerFromToken();
     this.router.navigate(["/home"])

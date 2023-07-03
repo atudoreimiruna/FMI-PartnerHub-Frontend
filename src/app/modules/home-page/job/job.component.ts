@@ -88,11 +88,8 @@ export class JobComponent implements OnInit, OnDestroy {
     this.jobsService.getJobs(this.pageNumber, this.pageSize).subscribe(jobs => {
       this.filteredJobs = this.jobs;
       this.uniqueAddresses = [...new Set(this.jobsPag.map(job => job.address))];
-      // console.log(this.uniqueAddresses)
       this.uniquePartners = [...new Set(this.jobsPag.map(job => job.partnerName))];
-      // console.log(this.uniquePartners)
       this.uniqueCategories = [...new Set(this.jobsPag.map(job => job.title))];
-      // console.log(this.uniqueCategories)
     });
   }
 
@@ -108,7 +105,6 @@ export class JobComponent implements OnInit, OnDestroy {
       this.displayCount = result.length;
     });
   }
-
 
   public getJobsByFilter(partner?: string, address?: string, category?: string) {
     this.jobsService.getJobsFilter(this.pageNumber, this.pageSize, partner, address, category).subscribe(jobs => {

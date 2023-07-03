@@ -40,28 +40,28 @@ export class JobsService {
     return of([]);
 }
 
-  public getJobsFilter(pageNumber?: any, pageSize?: any, partner?: string, address?: string, category?: string): Observable<Job[]> {
-    let params = new HttpParams();
+public getJobsFilter(pageNumber?: any, pageSize?: any, partner?: string, address?: string, category?: string): Observable<Job[]> {
+  let params = new HttpParams();
 
-    if (partner) {
-      params = params.set('PartnerName', partner);
-    }
-    if (address) {
-      params = params.set('Address', address);
-    }
-    if (category) {
-      params = params.set('Title', category);
-    }
-
-    const token = this.authService.getAccessToken();
-    if (token) {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      });
-      return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`, { params, headers });
-    }
-    return of([]);
+  if (partner) {
+    params = params.append('PartnerName', partner);
   }
+  if (address) {
+    params = params.append('Address', address);
+  }
+  if (category) {
+    params = params.append('Title', category);
+  }
+
+  const token = this.authService.getAccessToken();
+  if (token) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get<Job[]>(`${this.url}?PageNumber=${pageNumber}&PageSize=${pageSize}&OrderByDescending=LastUpdated`, { params, headers });
+  }
+  return of([]);
+}
 
   loadJobsByPartner(partnerName: string): void {
     const filter = { PartnerName: partnerName };
