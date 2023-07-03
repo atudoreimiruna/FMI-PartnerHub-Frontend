@@ -1,5 +1,4 @@
 import { StudentJobDetails } from "./studentJobDetails";
-import { StudentJobView } from "./studentJobView";
 
 export interface Job {
     id : number;
@@ -14,6 +13,7 @@ export interface Job {
     skills: string;
     partnerLogo : string;
     partnerName : string;
+    partnerId : number;
     activated : boolean;
     lastUpdated : string;
     createdAt : string;

@@ -9,6 +9,7 @@ export class AuthUsersGuard implements CanActivate {
 
   canActivate(): boolean {
     const roles = localStorage.getItem("roles")
+    console.log(roles)
     if(roles?.includes("User") || roles?.includes("Admin") || roles?.includes("SuperAdmin")) { 
       return true;
     }

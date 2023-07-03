@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { catchError, map, mergeMap, tap, throwError } from 'rxjs';
 import { Partner } from 'src/app/interfaces/partner';
 import { Practice } from 'src/app/interfaces/practice';
 import { UserRoles } from 'src/app/interfaces/userRoles';
@@ -46,10 +47,11 @@ export class SuperAdminProfileComponent {
   public pageSize: number = 5;
 
   public email: string = '';
-  public role: number = 2;
+  public role: number = 0;
   public name: string = '';
   public partner: string = '';
   public partnerToDelete: string = '';
+  public description: string = '';
 
   public isAlert = false;
   public isAlertRed = false;
@@ -121,6 +123,7 @@ export class SuperAdminProfileComponent {
         this.isAlert = true;
         this.alertMsg = "Ai adăugat cu succes!"
         this.closeAlert();
+        this.userRoles.push(response)
       },
       error => {
         this.isAlertRed = true;
@@ -131,6 +134,7 @@ export class SuperAdminProfileComponent {
     this.resetAlert()
     this.resetAlertRed()
     form.reset();
+
     }
   }
 
@@ -140,27 +144,58 @@ export class SuperAdminProfileComponent {
   
       const requestBody = {
         email: email,
-        partner: partner
+        partner: this.partner
       };
-   
-    this.authService.addPartnerToAdmin(requestBody).subscribe(
-      response => {
-        this.isAlert = true;
-        this.alertMsg = "Ai adăugat cu succes!"
-        this.closeAlert();
-      },
-      error => {
-        this.isAlertRed = true;
-        this.alertMsgRed = "Adminul nu a putut fi adăugat!"
-        this.closeAlertRed();
+  
+      if (requestBody.partner) {
+        this.partnersService.getPartnersByName(requestBody.partner)
+          .pipe(
+            map(response => { return response[0] }), 
+            mergeMap(partner => {
+              const partnerId = partner.id; 
+              const newRequestBody = {
+                email: this.email,
+                partnerId: partnerId
+              };
+              return this.authService.addPartnerToAdmin(newRequestBody)
+                .pipe(
+                  map(response => {
+                    // console.log("dbcjjde")
+                    this.isAlert = true;
+                    this.alertMsg = "Ai adăugat cu succes adminul!";
+                    // this.closeAlert();
+                  }),
+                  catchError(error => {
+                    this.isAlertRed = true;
+                    this.alertMsgRed = "Adminul nu a putut fi adăugat!";
+                    // this.closeAlertRed();
+                    return throwError(error);
+                  })
+                );
+            })
+          )
+          .subscribe(
+            response => {
+              // console.log("dbcjjde")
+              this.isAlert = true;
+              this.alertMsg = "Ai adăugat cu succes adminul!";
+              // this.closeAlert();
+            },
+            error => {
+              this.isAlertRed = true;
+              this.alertMsgRed = "Adminul nu a putut fi adăugat!";
+              // this.closeAlertRed();
+            },
+            () => {
+              // this.resetAlert();
+              // this.resetAlertRed();
+              form.reset();
+            }
+          );
       }
-    );
-    this.resetAlert()
-    this.resetAlertRed()
-    form.reset();
     }
   }
-
+  
   public addPartner(form: NgForm): void {
     if (form.valid) {
       const { name } = form.value;
@@ -228,14 +263,9 @@ export class SuperAdminProfileComponent {
         this.isAlert = true;
         this.alertMsg = "Ai eliminat cu succes partenerul!"
         this.closeAlert();
-        window.location.reload();
 
       },
       error => {
-        this.isAlertRed = true;
-        this.alertMsgRed = "Partenerul nu poate fi eliminat!"
-        this.closeAlertRed();
-        window.location.reload();
       }
     );
     this.resetAlert()
@@ -245,14 +275,22 @@ export class SuperAdminProfileComponent {
 
   public updatePractice(form: NgForm) {
     const { description } = form.value;
-  
-    const requestBody: any = {};
-    requestBody.id = this.practice.id; // Assuming this.practice contains the practice object with an 'id' property
-    if (description) requestBody.description = description;
-  
+    
+    const requestBody = {
+      id: this.practice.id,
+      description: this.practice.description
+    };
+ 
+    // requestBody.id = this.practice.id; 
+    // if (description) requestBody.description = this.practice.description;
+    
+    // console.log(form.value)
+    console.log(requestBody.description)
+
     this.practiceService.updatePractice(requestBody)
       .subscribe(
         response => {
+          // console.log(this.practice.description)
           this.isAlert = true;
           this.alertMsg = "Ai actualizat cu succes informațiile!";
           this.closeAlert();

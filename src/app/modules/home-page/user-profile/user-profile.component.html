@@ -42,12 +42,12 @@
 
             <div *ngIf="student.skill" class="mb-3">
                 <label for="exampleInputSkills" class="form-label">Aptitudinile mele</label>
-                <label class="form-control">{{student.skill}}</label>
+                <label class="form-control" [innerHTML]="student.skill"></label>
             </div>
 
             <div *ngIf="student.description" class="mb-3">
                 <label for="exampleInputDescription" class="form-label">Despre mine</label>
-                <label class="form-control">{{student.description}}</label>
+                <label class="form-control" [innerHTML]="student.description"></label>
             </div>
 
             <div *ngIf="fileNames && fileNames.length > 0" class="mb-3">

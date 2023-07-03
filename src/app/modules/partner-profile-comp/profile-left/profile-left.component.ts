@@ -5,6 +5,7 @@ import { Job } from 'src/app/interfaces/job';
 import { Partner } from 'src/app/interfaces/partner';
 import { Student } from 'src/app/interfaces/student';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataService } from 'src/app/services/data.services';
 import { JobsService } from 'src/app/services/jobs.service';
 import { PartnersService } from 'src/app/services/partners.service';
 import { StudentsService } from 'src/app/services/students.service';
@@ -39,7 +40,8 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
     public authService: AuthService,
     public studentService: StudentsService,
     private router: Router,
-    private mapsAPILoader: MapsAPILoader
+    private mapsAPILoader: MapsAPILoader,
+    private dataService: DataService
   ) { }
 
     ngOnInit() {
@@ -85,6 +87,7 @@ export class ProfileLeftComponent implements OnDestroy, OnInit {
   }
 
   public getJobsByFilter(partner?: string) {
+    // this.dataService.updateSelectedPartner(partner)
     this.jobsService.getJobsFilter(0, 0, partner).subscribe(jobs => {
       this.jobs = jobs;
     });

@@ -65,19 +65,20 @@ export class EventSettingsEditJobComponent {
   public deleteJob(id: number): void {
     this.jobsService.deleteJob(id).subscribe(
       response => {
+        window.location.reload()
         // window.location.reload();
-        this.isAlert = true;
-        this.alertMsg = "Jobul a fost șters cu succes!";
-        this.closeAlert();
-        this.resetAlert(); // Move the resetAlert() call here
+        // this.isAlert = true;
+        // this.alertMsg = "Jobul a fost șters cu succes!";
+        // this.closeAlert();
       },
       error => {
-        this.isAlertRed = true;
-        this.alertMsgRed = "Jobul nu a fost șters!"
-        this.closeAlertRed();
+        // this.isAlertRed = true;
+        // this.alertMsgRed = "Jobul nu a fost șters!"
+        // this.closeAlertRed();
       }
     );
-    this.resetAlertRed()
+    // this.resetAlertRed()
+    // this.resetAlert()
   }
 
   updateJob(form: NgForm) {
@@ -93,7 +94,7 @@ export class EventSettingsEditJobComponent {
     if (description) requestBody.description = description;
     if (criteria) requestBody.criteria = criteria;
     if (skills) requestBody.skills = skills;
-    requestBody.partnerId = this.partnerId;
+    requestBody.partnerId = this.job.partnerId;
     
     this.jobsService.updateJob(requestBody)
       .subscribe(

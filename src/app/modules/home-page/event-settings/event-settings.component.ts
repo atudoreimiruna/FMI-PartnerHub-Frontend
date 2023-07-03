@@ -90,7 +90,7 @@ export class EventSettingsComponent {
     if (date) requestBody.date = date;
     if (time) requestBody.time = time;
     if (description) requestBody.description = description;
-    requestBody.partnerId = this.partnerId;
+    requestBody.partnerId = this.event.partner.id;
     
     this.eventsService.updateEvent(requestBody)
       .subscribe(

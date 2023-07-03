@@ -29,6 +29,17 @@ export class PartnersService {
       return of([]);
   }
 
+  public getPartnersByName(partnerName: any) : Observable<Partner[]> {
+    const token = this.authService.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.get<any>(`${this.url}?Name=${partnerName}`, { headers });
+      }
+      return of([]);
+  }
+
   public postPartner(requestBody: any): Observable<any> {
     const token = this.authService.getAccessToken();
       if (token) {

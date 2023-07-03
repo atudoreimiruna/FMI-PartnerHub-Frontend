@@ -124,7 +124,7 @@
 
       <div>
         <div class="mb-3">
-          <label for="formFile" class="form-label">Pagina principală</label>
+          <label for="formFile" class="form-label">Pagina de profil</label>
           <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
         </div>
         <button type="submit" class="btn btn-primary" (click)="uploadProfileFile()">Salvează</button>
@@ -132,7 +132,7 @@
 
       <div>
         <div class="mb-3">
-          <label for="formFile" class="form-label">Pagina de profil</label>
+          <label for="formFile" class="form-label">Pagina principală</label>
           <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
         </div>
         <button type="submit" class="btn btn-primary" (click)="uploadMainFile()">Salvează</button>
@@ -143,12 +143,12 @@
           <label for="formFile" class="form-label">Logo</label>
           <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
         </div>
-        <button type="submit" class="btn btn-primary" (click)="uploadLogoFile()">Salvează</button>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 30px;" (click)="uploadLogoFile()">Salvează</button>
       </div>
 
-    <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează evenimentele</h5>
+    <h5 *ngIf="events.length > 0" class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează evenimentele</h5>
       
-    <table class="table table-sm">
+    <table *ngIf="events.length > 0" class="table table-sm">
       <thead>
         <tr>
           <th scope="col"></th>
@@ -169,9 +169,9 @@
 
     <button (click)="openEventAdd()" type="submit" class="btn btn-primary">Adaugă un eveniment nou</button>
 
-    <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează joburile</h5>
+    <h5 *ngIf="jobs.length > 0" class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează joburile</h5>
       
-    <table class="table table-sm">
+    <table *ngIf="jobs.length > 0" class="table table-sm">
       <thead>
         <tr>
           <th scope="col"></th>

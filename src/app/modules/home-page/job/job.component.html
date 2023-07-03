@@ -49,7 +49,7 @@
     <div class="card mx-auto mb-3" style="max-width: 800px; height: 200px; width: 50rem; box-shadow: 0 0 10px #5C97BF;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img class="card-img" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px #5C97BF; margin-left: 50px;">
+            <img class="card-img" *ngIf="job.partnerLogo" src="{{ job.partnerLogo }}" alt="Card image" style="object-fit: cover; width: auto; height: 150px; margin-top: 20px; box-shadow: 0 0 10px #5C97BF; margin-left: 50px;">
           </div>
           <div class="col-md-8">
             <div class="card-body">

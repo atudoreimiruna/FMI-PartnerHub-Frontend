@@ -89,8 +89,10 @@ export class AuthService {
   private saveAccessTokenAndRoles(token: string) {
     // Save the access token to browser storage
     localStorage.setItem('accessToken', token);
+    console.log(token)
     this.getRolesFromToken();
     this.getPartnerFromToken();
+    this.router.navigate(["/home"])
   }
 
   public getAccessToken(): string | null {
@@ -150,7 +152,6 @@ export class AuthService {
             accessToken: this.getMicrosoftAccessToken(),
             refreshToken: this.getRefreshToken()
           };
-  
           // window.location.href = 'http://localhost:4200/home';
         }
       });
@@ -168,8 +169,8 @@ export class AuthService {
     localStorage.removeItem('partnerId');
   }
 
-  isLoggedIn(): boolean {
-    return this.oauthService.hasValidAccessToken();
+  isLoggedIn(): any {
+    return this.oauthService.hasValidAccessToken() && localStorage.getItem('accessToken');
   }
 
   getMicrosoftAccessToken(): string {
@@ -210,5 +211,16 @@ export class AuthService {
       return partner;
     }
     return null;
+  }
+
+  public runModel(): Observable<any> {
+    const token = this.getAccessToken();
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return this.http.post(`${this.url}/model_training`, { headers });
+      }
+      return of([]);
   }
 }

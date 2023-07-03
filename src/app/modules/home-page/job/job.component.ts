@@ -86,11 +86,13 @@ export class JobComponent implements OnInit, OnDestroy {
   loadJobs()
   {
     this.jobsService.getJobs(this.pageNumber, this.pageSize).subscribe(jobs => {
-      this.jobs = jobs;
       this.filteredJobs = this.jobs;
-      this.uniqueAddresses = [...new Set(jobs.map(job => job.address))];
-      this.uniquePartners = [...new Set(jobs.map(job => job.partnerName))];
-      this.uniqueCategories = [...new Set(jobs.map(job => job.title))];
+      this.uniqueAddresses = [...new Set(this.jobsPag.map(job => job.address))];
+      // console.log(this.uniqueAddresses)
+      this.uniquePartners = [...new Set(this.jobsPag.map(job => job.partnerName))];
+      // console.log(this.uniquePartners)
+      this.uniqueCategories = [...new Set(this.jobsPag.map(job => job.title))];
+      // console.log(this.uniqueCategories)
     });
   }
 

@@ -101,7 +101,8 @@ export class UserProfileJobsComponent implements OnInit {
             salary: completeJob.salary,
             minExperience: completeJob.minExperience,
             maxExperience: completeJob.maxExperience,
-            jobStudents: completeJob.jobStudents
+            jobStudents: completeJob.jobStudents,
+            partnerId: completeJob.partnerId
       };
     } else {
       throw new Error(`Job not found for jobId: ${job.jobId}`);

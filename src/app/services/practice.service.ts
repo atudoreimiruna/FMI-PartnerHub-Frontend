@@ -38,8 +38,6 @@ export class PracticeService {
       return this.http.put(`${this.url}`, requestBody, { headers });
     }
   
-    return of(); // Return an empty observable if there is no token
+    return of([]); 
   }
-  
-
 }
