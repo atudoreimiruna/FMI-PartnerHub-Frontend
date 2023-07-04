@@ -132,8 +132,7 @@
       <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează informațiile despre practică</h5>
 
       <form #updateForm="ngForm">
-        <div class="mb-3">
-          <!-- <label for="exampleInputDescription2" class="form-label"></label> -->
+        <div class="mb-3" *ngIf="practice">
           <ckeditor [editor]="Editor" id="exampleInputDescription2" name="description" [(ngModel)]="practice.description"></ckeditor>
         </div>
         <button (click)="updatePractice(updateForm)" type="submit" class="btn btn-primary">Actualizează informațiile</button>

@@ -11,13 +11,13 @@
 </div>
 
 <div class="card">
-  <div class="card-body">
+  <div class="card-body" *ngIf="job">
     <h5 class="card-title">{{ job.title }}</h5>
   </div>
 </div>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" *ngIf="job">
       <h5 class="card-title">Criterii Job</h5>
       <p *ngIf="job.salary" class="card-text"><i class="material-icons">paid</i> {{ job.salary }}</p>
       <p *ngIf="job.address" class="card-text"><i class="material-icons">place</i> {{ job.address }}</p>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" *ngIf="job">
       <h5 class="card-title">Detalii Job</h5>
       <p class="card-text"> Ultima actualizare: {{ job.lastUpdated | date:'dd-MM-yyyy' }}</p>
       <p class="card-text"> Publicat: {{ job.createdAt | date:'dd-MM-yyyy' }}</p>

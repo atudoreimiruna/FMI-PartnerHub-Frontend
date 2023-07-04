@@ -1,7 +1,7 @@
 <nav-bar></nav-bar>
 
 <div>
-  <div>
+  <div *ngIf="student">
     <nav class="nav main-nav">
       <ul>
         <li><a href="http://localhost:4200/user/{{ student.email }}">PROFIL</a></li>

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-  <div class="card">
+  <div class="card" *ngIf="job">
       <div class="card-body">
         <h5 class="card-title">Criteriile jobului</h5>
         <p class="card-text" [innerHTML]="job.criteria"></p>
@@ -10,7 +10,7 @@
   </div>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" *ngIf="job">
       <h5 class="card-title">Descrierea jobului</h5>
       <p class="card-text" [innerHTML]="job.description"></p>
     </div>

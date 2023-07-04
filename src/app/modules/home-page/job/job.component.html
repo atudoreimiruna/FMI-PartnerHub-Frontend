@@ -2,44 +2,51 @@
 
 <div class="button-container">
   
-  <div *ngIf="uniqueCategories.length > 0" class="dropdown">
-    <button class="dropdown-button" (click)="toggleDropdown2()">
-      Categorie
-      <span class="dropdown-arrow" [class.active]="isDropdownOpen2"></span>
-    </button>
-    <div class="dropdown-menu" [class.active]="isDropdownOpen2">
-      <li (click)="selectCategory('all')"><a>Arată toate</a></li>
-      <li *ngFor="let category of uniqueCategories" (click)="selectCategory(category)">
-        <a>{{ category }}</a>
-      </li>
+  <!-- <div *ngIf="uniqueCategories"> -->
+    <div *ngIf="uniqueCategories" class="dropdown">
+      <button class="dropdown-button" (click)="toggleDropdown2()">
+        Categorie
+        <span class="dropdown-arrow" [class.active]="isDropdownOpen2"></span>
+      </button>
+      <div class="dropdown-menu" [class.active]="isDropdownOpen2">
+        <li (click)="selectCategory('all')"><a>Arată toate</a></li>
+        <li *ngFor="let category of uniqueCategories" (click)="selectCategory(category)">
+          <a>{{ category }}</a>
+        </li>
+      </div>
     </div>
-  </div>
+  <!-- </div> -->
 
-  <div *ngIf="uniqueAddresses.length > 0" class="dropdown">
-    <button class="dropdown-button" (click)="toggleDropdown()">
-      Locație
-      <span class="dropdown-arrow" [class.active]="isDropdownOpen"></span>
-    </button>
-    <div class="dropdown-menu" [class.active]="isDropdownOpen">
-      <li (click)="selectAddress('all')"><a>Arată toate</a></li>
-      <li *ngFor="let address of uniqueAddresses" (click)="selectAddress(address)">
-        <a>{{ address }}</a>
-      </li>
+  <!-- <div *ngIf="uniqueAddresses"> -->
+    <div *ngIf="uniqueAddresses" class="dropdown">
+      <button class="dropdown-button" (click)="toggleDropdown()">
+        Locație
+        <span class="dropdown-arrow" [class.active]="isDropdownOpen"></span>
+      </button>
+      <div class="dropdown-menu" [class.active]="isDropdownOpen">
+        <li (click)="selectAddress('all')"><a>Arată toate</a></li>
+        <li *ngFor="let address of uniqueAddresses" (click)="selectAddress(address)">
+          <a>{{ address }}</a>
+        </li>
+      </div>
     </div>
-  </div>
+  <!-- </div> -->
 
-  <div *ngIf="uniquePartners.length > 0" class="dropdown">
-    <button class="dropdown-button" (click)="toggleDropdown1()">
-      Companie
-      <span class="dropdown-arrow" [class.active]="isDropdownOpen1"></span>
-    </button>
-    <div class="dropdown-menu" [class.active]="isDropdownOpen1">
-      <li (click)="selectPartner('all')"><a>Arată toate</a></li>
-      <li *ngFor="let partner of uniquePartners" (click)="selectPartner(partner)">
-        <a>{{ partner }}</a>
-      </li>
+  <!-- <div *ngIf="uniquePartners"> -->
+    <div *ngIf="uniquePartners" class="dropdown">
+      <button class="dropdown-button" (click)="toggleDropdown1()">
+        Companie
+        <span class="dropdown-arrow" [class.active]="isDropdownOpen1"></span>
+      </button>
+      <div class="dropdown-menu" [class.active]="isDropdownOpen1">
+        <li (click)="selectPartner('all')"><a>Arată toate</a></li>
+        <li *ngFor="let partner of uniquePartners" (click)="selectPartner(partner)">
+          <a>{{ partner }}</a>
+        </li>
+      </div>
     </div>
-  </div>
+  <!-- </div> -->
+
 </div>
 
 <h1></h1>

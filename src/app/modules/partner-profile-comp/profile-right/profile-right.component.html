@@ -1,12 +1,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-<div *ngIf="this.partner.description" class="card">
-  <div class="card-body">
-    <h5 class="card-title">Descrierea companiei</h5>
-    <p class="card-text" [innerHTML]="partner.description"></p>
+<div *ngIf="partner">
+  <div *ngIf="this.partner.description" class="card">
+    <div class="card-body">
+      <h5 class="card-title">Descrierea companiei</h5>
+      <p class="card-text" [innerHTML]="partner.description"></p>
+    </div>
   </div>
 </div>
 
-<div *ngIf="this.partner.profileImageUrl" style="width: 98%; height: 400px; margin-left: 20px;">
-  <image-slider [slides]="slides"></image-slider>
+<div *ngIf="this.partner">
+  <div *ngIf="this.partner.profileImageUrl" style="width: 98%; height: 400px; margin-left: 20px;">
+    <image-slider [slides]="slides"></image-slider>
+  </div>
 </div>

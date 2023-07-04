@@ -1,7 +1,7 @@
 <nav-bar></nav-bar>
 
 <div>
-  <nav class="nav main-nav">
+  <nav class="nav main-nav" *ngIf="student">
       <ul>
         <li><a href="http://localhost:4200/user/{{ student.email }}">PROFIL</a></li>
         <li><a href="http://localhost:4200/user/joburi/{{ student.email }}">JOBURILE TALE</a></li>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
-  <div class="card-body">
+  <div class="card-body" *ngIf="student">
     <!-- <h5 class="card-title">{{ student.firstName }} {{ student.lastName }}</h5> -->
     <form #updateForm="ngForm" (ngSubmit)="updateStudent(updateForm)">
       <div class="mb-3">

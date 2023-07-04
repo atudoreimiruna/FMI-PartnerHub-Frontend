@@ -1,7 +1,7 @@
 <nav-bar></nav-bar>
 
 <div>
-  <nav class="nav main-nav">
+  <nav class="nav main-nav" *ngIf="student">
       <ul>
         <li><a href="http://localhost:4200/user/{{ student.email }}">PROFIL</a></li>
         <li><a href="http://localhost:4200/user/joburi/{{ student.email }}">JOBURILE TALE</a></li>
@@ -11,7 +11,9 @@
     </nav>
 </div>
 
-<h2 *ngIf="studentJobs.length > 0" class="first_title">Joburi recomandate pentru tine</h2>
+<div *ngIf="studentJobs">
+  <h2 *ngIf="studentJobs.length > 0" class="first_title">Joburi recomandate pentru tine</h2>
+</div>
 
 <div *ngFor="let job of studentJobs">
   <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
@@ -29,7 +31,9 @@
   </div>
 </div>
 
-<h2 *ngIf="favoriteJobs.length > 0" class="first_title">Joburi favorite</h2>
+<div *ngIf="favoriteJobs">
+  <h2 *ngIf="favoriteJobs.length > 0" class="first_title">Joburi favorite</h2>
+</div>
 
 <div *ngFor="let job of favoriteJobs">
   <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
@@ -47,7 +51,9 @@
   </div>
 </div>
 
-<h2 *ngIf="appliedJobs.length > 0" class="first_title">Aplicări</h2>
+<div *ngIf="appliedJobs">
+  <h2 *ngIf="appliedJobs.length > 0" class="first_title">Aplicări</h2>
+</div>
 
 <div *ngFor="let job of appliedJobs">
   <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
