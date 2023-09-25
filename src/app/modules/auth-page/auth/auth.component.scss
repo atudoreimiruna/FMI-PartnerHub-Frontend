@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('https://i0.wp.com/www.edupedu.ro/wp-content/uploads/2019/05/Universitatea-din-Bucuresti-foto-unibuc-ro-e1559041658145.jpg?fit=1632%2C800&ssl=1');
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  flex-direction: row;
+}
+
+.card {
+  width: 500px; /* Increased card width */
+  height: 300px;
+  border: 1px solid #000; /* Add border */
+  text-align: center;
+  padding: 5px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  margin-top: 50px;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.microsoft-button {
+  margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background-color: white;
+    color: black;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px 20px;
+    border:1px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+}
+
+.microsoft-button:hover {
+    background-color: #ECF0F1;
+}
+
+.microsoft-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

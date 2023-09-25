@@ -1,0 +1,79 @@
+
+.card-text i.material-icons {
+  font-size: 1.2em; /* or whatever size you want */
+  vertical-align: middle; /* to align the icon vertically with the text */
+  margin-right: 0.1em; /* to add some space between the icon and text */
+}
+
+.card {
+  margin-left: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px #5C97BF;
+  width: 18rem;
+
+  .card-map {
+    width: 270px;
+    height: fit-content;
+  }
+  .card-body {
+      font-family: 'Roboto',Helvetica,Arial,sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .card-title {
+          font-weight: bold;
+          size: 50px;
+      }
+  }
+
+  .btn {
+      background-color: white;
+      margin: 10px 0;
+      //background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+          background-color: #4B77BE;
+      }
+  }
+
+  .btn-primary {
+      font-family: 'Roboto',Helvetica,Arial,sans-serif;
+      color: #333333;
+      border: 1px solid black;
+  }
+
+  .btn-second {
+      font-family: 'Roboto',Helvetica,Arial,sans-serif;
+      color: #333333;
+      border: 1px solid white;
+
+      &:hover {
+          background-color: #4B77BE;
+      }
+  }
+}
+
+@media only screen and (max-width:800px) {
+    /* For tablets: */
+    .card {
+      width: 80%;
+      padding: 0;
+    }
+
+  }
+  @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+    .card {
+      width: 100%;
+    }
+  }

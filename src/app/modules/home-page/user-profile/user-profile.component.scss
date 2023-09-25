@@ -1,0 +1,147 @@
+.nav {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #65C6BB;
+  }
+  
+  .nav > ul {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav > ul > li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav > ul > li > a {
+    display: block;
+    padding: 10px 20px;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ECF0F1;
+    border: 1px solid #ccc;
+    padding: 0;
+    }
+  
+    .nav ul ul li {
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: 143px;
+    }
+  
+    .nav ul ul li a {
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+      z-index: 9999;
+    }
+    
+  .nav ul {
+    margin: 0;
+  }
+  
+  .nav ul li:hover > ul {
+    display: block;
+  }
+  
+  .nav li {
+    display: inline;
+  }
+  
+  .nav a {
+    display: inline-block;
+    padding: .5em;
+    color: black;
+    font-size: larger;
+    text-decoration: none;
+  }
+  
+  .main-nav {
+    text-align: center;
+    font-size: 1.0em;
+    font-weight: lighter;
+    border-bottom: 2px solid #ECF0F1;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  }
+  
+  .main-nav li {
+    padding: 0 5%;
+  }
+  
+  .main-nav li a {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  }
+  
+  .nav a:hover {
+    background-color: #336E7B
+  }
+  
+  
+// .card-text i.material-icons {
+//   font-size: 1.2em; 
+//   vertical-align: middle; 
+//   margin-right: 0.1em; 
+// }
+
+// .card {
+//   margin-left: 50px;
+//   margin-bottom: 20px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 50rem;
+//   box-shadow: 0 0 10px #5C97BF;
+
+//   .card-body {
+//       font-family: 'Roboto',Helvetica,Arial,sans-serif;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+
+//       .card-title {
+//           font-weight: bold;
+//           size: 50px;
+//       }
+//   }
+
+.btn {
+  background-color: white;
+  margin: 5px 0;
+  color: #fff;
+  border: none;
+  // padding: 10px 20px;
+  // border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+      background-color: #4B77BE;
+  }
+}
+
+.btn-primary {
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  color: #333333;
+  border: 1px solid black;
+}
+
+
+.form-label {
+  font-weight: bold;
+}

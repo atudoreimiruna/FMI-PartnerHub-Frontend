@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+
+<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div *ngIf="isAlertRed" class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsgRed}} 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div *ngIf="partner">
+  <div *ngIf="partner.logoImageUrl" class="card">
+    <a href="{{ partner.social }}" target="_blank"> 
+        <img class="card-img-top" src="{{ partner.logoImageUrl }}" alt="Card image cap">
+    </a>
+    
+    <div class="card-body">
+      <h5 class="card-title">{{ partner.name }}</h5>
+      <button *ngIf="isUserAuthorized()" (click)="updatePartnerOnStudent()" class="btn btn-primary">SALVEAZĂ</button>
+      <a href="http://localhost:4200/joburi" (click)="getJobsByFilter(partner.name)" class="btn btn-second">Joburi ({{ partner.jobs.length }})</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="partner">
+  <div *ngIf="partner.email || partner.phone" class="card">
+      <div class="card-body">
+        <h5 class="card-title">Contact</h5>
+        <p class="card-text" *ngIf="partner.email"><i class="material-icons">email</i> {{ partner.email }}</p>
+        <p class="card-text" *ngIf="partner.phone"><i class="material-icons">phone</i> {{ partner.phone }}</p>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="partner">
+  <div class="card" *ngIf="partner.address">
+    <div class="card-body">
+      <h5 class="card-title">Locație</h5>
+      <p class="card-map"> 
+        <agm-map style="height: 270px;" [latitude]="latitude" [longitude]="longitude" [zoom]="15">
+          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+      </p>
+      <p class="card-text" *ngIf="partner.address"><i class="material-icons">place</i> {{ partner.address }}</p>
+    </div>
+  </div>
+</div>

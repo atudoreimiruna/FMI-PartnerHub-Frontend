@@ -1,0 +1,133 @@
+.card{
+  width: 75vw;
+  object-fit: contain;
+  margin: auto;
+}
+
+.first_title
+{
+  --hidden-scrollbar-width:  0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  vertical-align: initial;
+  border: 0;
+  padding-top: 2.4rem;
+  color: #25044e;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  margin-top: 40px;
+}
+
+.line {
+  height: 2px;
+  width: 100%;
+  background-color: #3A539B;
+  // margin-left: 1rem;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.card-title
+{
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.card-text
+{
+  font-family:'Roboto',Helvetica,Arial,sans-serif;
+}
+
+.btn
+{
+  background-color: white;
+}
+
+.btn-primary
+{
+  background-color: white;
+  margin: 10px 0;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+
+  &:hover {
+      background-color: #4B77BE;
+  }
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.mat_card {
+  width: 20vw;
+  object-fit: contain;
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px #5C97BF;
+    .card_text {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: bold;
+    }
+
+  .card_image {
+    height: 250px; /* set the desired height */
+    width: auto; /* maintain aspect ratio */
+    object-fit: contain;
+  }
+   
+  .button_apply {
+    background-color: white;
+    margin: 10px 0;
+    //background-color: #007bff;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+
+    &:hover {
+        background-color: #4B77BE;
+    }
+  }
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Set minimum height to make sure the container expands to the full height of the viewport */
+}
+
+.cards_container {
+  flex-grow: 1; /* Allow the cards container to grow and take up remaining vertical space */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

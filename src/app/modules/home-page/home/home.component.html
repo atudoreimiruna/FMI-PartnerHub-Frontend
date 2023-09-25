@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<nav-bar></nav-bar>
+
+<div style="width: 100%; height: 400px; ">
+  <image-slider [slides]="slides"></image-slider>
+</div>
+
+<div id="partners" #partnerspage class="header-with-line">
+  <h2 class="first_title">
+    Fă cunoștință cu firmele colaboratoare facultății!
+  </h2>
+  <div class="line"></div>
+</div>
+
+<div *ngIf="partners">
+  <div *ngFor="let partner of partners.slice(0, 5)">
+    <div class="card mb-3" style="box-shadow: 0 0 10px #5C97BF;">
+      <img *ngIf="partner.mainImageUrl" class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">{{partner.name}}</h5>
+        <p class="card-text" [innerHTML]="partner.mainDescription"></p>
+        <a href="http://localhost:4200/partener/{{ partner.id }}" class="btn btn-primary">VEZI PROFILUL</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="button-container" *ngIf="!showAllPartners && partners">
+  <button *ngIf="partners.length > 5" (click)="showAllPartners = true" class="btn btn-primary">Show More</button>
+</div>
+
+<div *ngIf="showAllPartners">
+  <div *ngFor="let partner of partners.slice(5)">
+    <div class="card mb-3" style="box-shadow: 0 0 10px #5C97BF;">
+      <img *ngIf="partner.mainImageUrl" class="card-img" src="{{partner.mainImageUrl}}" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">{{partner.name}}</h5>
+        <p class="card-text">{{partner.mainDescription}}</p>
+        <a href="http://localhost:4200/partener/{{ partner.id }}" class="btn btn-primary">VEZI PROFILUL</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button *ngIf="partners.length > 10" (click)="showAllPartners = false" class="btn btn-primary">Show Less</button>
+  </div>
+</div>
+
+<div id="events" #eventspage class="header-with-line">
+  <h2 class="first_title">
+    Ia parte la evenimentele organizate de partenerii noștri!
+  </h2>
+  <div class="line"></div>
+</div>
+
+<div class="row" *ngIf="events">
+  <ng-container *ngFor="let event of events.slice(0, showAllEvents ? events.length : 6)">
+    <div class="col-md-4">
+      <div class="card mb-4" style="width: 18rem; box-shadow: 0 0 10px #5C97BF;">
+        <a style="text-decoration: none; color: inherit;" href="http://localhost:4200/partener/{{ event.partner.id }}">
+          <div class="card-body">
+            <h5 class="card-title" style="font-size: 20px;">{{event.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary" style="color: gray">{{event.type}}</h6>
+            <p *ngIf="event.location" class="card-text"><i class="material-icons">map</i> {{ event.location }}</p>
+            <p *ngIf="event.date" class="card-text"><i class="material-icons">event</i> {{ event.date | date:'dd-MM-yyyy' }}</p>
+            <p *ngIf="event.time" class="card-text"><i class="material-icons">watch</i> {{ event.time }}</p>
+            <p *ngIf="event.partnerName" class="card-text" style="font-weight: bold;">{{ event.partnerName }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="button-container" *ngIf="events">
+  <button *ngIf="events.length > 6" (click)="showAllEvents = !showAllEvents" class="btn btn-primary" style="margin-top: 20px;">{{ showAllEvents ? 'Show Less' : 'Show More' }}</button>
+</div>
+<div class="header-with-line">
+  <h2 class="first_title">
+    Aplică la joburile oferite de partenerii noștri!
+  </h2>
+  <div class="line"></div>
+</div>
+
+<div class="row" *ngIf="jobs">
+  <ng-container *ngFor="let job of jobs.slice(0, showAllJobs ? jobs.length : 8)">
+    <div class="col-md-3">
+      <div class="card mb-4" style="width: 15rem; box-shadow: 0 0 10px #5C97BF; margin-bottom: 5px;">
+        <a href="http://localhost:4200/joburi/{{ job.id }}">
+          <img *ngIf="job.partnerLogo" style="object-fit: contain;" [src]="job.partnerLogo" class="card-img-top">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 15px; object-fit: contain;">{{job.title}}</h5>
+          <a *ngIf="isUserAuthorized()" href="http://localhost:4200/joburi/{{ job.id }}" class="btn btn-primary">APLICĂ</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="button-container" *ngIf="jobs">
+  <button *ngIf="jobs.length > 8" (click)="showAllJobs = !showAllJobs" class="btn btn-primary" style="margin-top: 20px;">
+    {{ showAllJobs ? 'Show Less' : 'Show More' }}
+  </button>
+</div>
+
+<footer-comp></footer-comp>

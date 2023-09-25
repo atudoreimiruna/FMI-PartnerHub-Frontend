@@ -1,0 +1,35 @@
+<nav-bar></nav-bar>
+
+<div>
+  <div *ngIf="student">
+    <nav class="nav main-nav">
+      <ul>
+        <li><a href="http://localhost:4200/user/{{ student.email }}">PROFIL</a></li>
+        <li><a href="http://localhost:4200/user/joburi/{{ student.email }}">JOBURILE TALE</a></li>
+        <li><a href="http://localhost:4200/user/parteneri/{{ student.email }}">COMPANII FAVORITE</a></li>
+        <li><a href="http://localhost:4200/user/cont/{{ student.email }}">SETĂRILE CONTULUI</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div *ngFor="let partner of partners">
+    <div class="card"
+      style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 20%; margin-right: 20%;">
+      <h5 class="card-header">{{partner.name}}</h5>
+      <div class="card-body">
+        <!-- <h5 class="card-title">{{job.title}}</h5>
+        <p class="card-text">
+          <i *ngIf="job.address" class="material-icons">place</i> {{ job.address }}    
+          <i *ngIf="job.salary" class="material-icons">paid</i> {{ job.salary }}   
+          <i class="material-icons">assessment</i> {{ job.minExperience }}-{{ job.maxExperience }} ani experiență
+        </p> -->
+        <a href="http://localhost:4200/partener/{{ partner.id }}" class="btn btn-primary"
+          style="margin-right: 5px;">VIZUALIZEAZĂ</a> <button (click)="deleteStudentPartner(partner)"
+          class="btn btn-primary">Elimină din favorite</button>
+      </div>
+    </div>
+
+
+</div>
+  <footer-comp></footer-comp>
+</div>

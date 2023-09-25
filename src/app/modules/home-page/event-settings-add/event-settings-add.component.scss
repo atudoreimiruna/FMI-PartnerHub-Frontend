@@ -1,0 +1,32 @@
+
+.btn {
+    background-color: white;
+    margin: 10px 0;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  
+    &:hover {
+        background-color: #336E7B;
+    }
+  }
+  
+  .btn-primary {
+    font-family: 'Roboto',Helvetica,Arial,sans-serif;
+    color: #333333;
+    border: 1px solid black;
+  }
+  
+  
+  .form-label {
+  font-weight: bold;
+  }
+  
+  .card-title
+  {
+    font-family: 'Roboto',Helvetica,Arial,sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

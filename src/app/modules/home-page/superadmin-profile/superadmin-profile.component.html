@@ -1,0 +1,148 @@
+<nav-bar></nav-bar>
+
+<div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div *ngIf="isAlertRed" class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+  {{alertMsgRed}} 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card mb-3" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
+    <div class="card-body">
+      <h5 class="card-title" style="margin-bottom: 20px;">Setări Admin</h5>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group" >
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresa de email" [(ngModel)]="searchText" (keyup.enter)="getUsersAndRoles()">
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <button (click)="getUsersAndRoles()" type="submit" class="btn btn-primary mb-2">Caută</button>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-4">
+        <button class="btn btn-primary" >
+          <span class="MuiButton-startIcon MuiButton-iconSizeMedium">
+            <i class="material-icons">sort_by_alpha</i>
+          </span>
+        </button>
+      </div> -->
+
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">User</th>
+            <th scope="col">Roluri</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let userRole of userRoles">
+            <tr>
+              <th scope="row"></th>
+              <td>{{userRole.userName}}</td>
+              <td>{{userRole.roles}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <app-pagination [totalLength] ="displayCount" (changePage)="selectPagination($event)" [pageSize]="pageSize"></app-pagination>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Creează un nou user sau adaugă un rol unui user existent</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="addRoleToUser(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Adresa de email</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Rol</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="role" ngModel>
+            <option value="2">User</option>
+            <option value="1">Admin</option>
+            <option value="0">SuperAdmin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Adaugă</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Elimină rolul unui user</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="removeRoleFromUser(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlInput2">Adresa de email</label>
+          <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com" name="email" [(ngModel)]="email">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Rol</label>
+          <select class="form-control" id="exampleFormControlSelect2" name="role" [(ngModel)]="role">
+            <option value="2">User</option>
+            <option value="1">Admin</option>
+            <option value="0">SuperAdmin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Elimină</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Adaugă un nou partener</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="addPartner(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlInput3">Numele partenerului</label>
+          <input type="email" class="form-control" id="exampleFormControlInput3" name="name" [(ngModel)]="name">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Adaugă</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Elimină un partener</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="removePartner(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Numele partenerului</label>
+          <select class="form-control" id="exampleFormControlSelect2" name="partnerToDelete" [(ngModel)]="partnerToDelete">
+            <option *ngFor="let partner of partners" >{{partner.name}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Elimină</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Adaugă admini partenerilor</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="addAdminToPartner(updateForm)">
+        <div class="form-group">
+          <label for="exampleFormControlInput4">Adresa de email a adminului</label>
+          <input type="email" class="form-control" id="exampleFormControlInput4" placeholder="name@example.com" name="email" [(ngModel)]="email">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect4">Numele partenerului</label>
+          <select class="form-control" id="exampleFormControlSelect4" name="partner" [(ngModel)]="partner">
+            <option *ngFor="let partner of partners" >{{partner.name}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 10px;">Adaugă</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează informațiile despre practică</h5>
+
+      <form #updateForm="ngForm">
+        <div class="mb-3" *ngIf="practice">
+          <ckeditor [editor]="Editor" id="exampleInputDescription2" name="description" [(ngModel)]="practice.description"></ckeditor>
+        </div>
+        <button (click)="updatePractice(updateForm)" type="submit" class="btn btn-primary">Actualizează informațiile</button>
+      </form>
+    </div>
+
+    <div>
+      <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Delogare</button>
+    </div>
+
+</div>
+
+<footer-comp></footer-comp>

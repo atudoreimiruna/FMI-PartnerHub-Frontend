@@ -1,0 +1,74 @@
+<nav-bar></nav-bar>
+
+<div>
+    <nav class="nav main-nav" *ngIf="student">
+        <ul>
+            <li><a href="http://localhost:4200/user/{{ student.email }}">PROFIL</a></li>
+        <li><a href="http://localhost:4200/user/joburi/{{ student.email }}">JOBURILE TALE</a></li>
+        <li><a href="http://localhost:4200/user/parteneri/{{ student.email }}">COMPANII FAVORITE</a></li>
+        <li><a href="http://localhost:4200/user/cont/{{ student.email }}">SETĂRILE CONTULUI</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 20px; margin-left: 20%; margin-right: 20%;">
+    <div class="card-body" *ngIf="student">
+        <!-- <h5 class="card-title">{{ student.firstName }} {{ student.lastName }}</h5> -->
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputFirstName" class="form-label">Nume</label>
+                <label class="form-control">{{student.name}}</label>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Adresă de email</label>
+                <label class="form-control">{{student.email}}</label>
+            </div>
+
+            <div *ngIf="student.personalEmail" class="mb-3">
+                <label for="exampleInputEmail2" class="form-label">Adresă de email personală</label>
+                <label class="form-control">{{student.personalEmail}}</label>
+            </div>
+
+            <div *ngIf="student.phone" class="mb-3">
+                <label for="exampleInputPhone" class="form-label">Număr de telefon</label>
+                <label class="form-control">{{student.phone}}</label>
+            </div>
+
+            <div *ngIf="student.degree" class="mb-3">
+                <label for="exampleInputDegree" class="form-label">Studii</label>
+                <label class="form-control">{{student.degree}}</label>
+            </div>
+
+            <div *ngIf="student.skill" class="mb-3">
+                <label for="exampleInputSkills" class="form-label">Aptitudinile mele</label>
+                <label class="form-control" [innerHTML]="student.skill"></label>
+            </div>
+
+            <div *ngIf="student.description" class="mb-3">
+                <label for="exampleInputDescription" class="form-label">Despre mine</label>
+                <label class="form-control" [innerHTML]="student.description"></label>
+            </div>
+
+            <div *ngIf="fileNames && fileNames.length > 0" class="mb-3">
+                <label class="form-label">CV-urile mele</label>
+                <div *ngFor="let file of fileNames">
+                    <div class="d-flex align-items-center">
+                        <label class="form-control">{{file}}</label>
+                        <button (click)="deleteFile(file)" class="btn btn-primary mx-2">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <div>
+            <button class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Delogare</button>
+        </div>
+        
+    </div>
+</div>
+
+<footer-comp></footer-comp>

@@ -1,0 +1,12 @@
+.job-left,
+  .job-right {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .job-left,
+    .job-right {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }

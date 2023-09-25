@@ -1,0 +1,204 @@
+<nav-bar></nav-bar>
+
+<div>
+  <div *ngIf="isAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+      {{alertMsg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div *ngIf="isAlertRed" class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3" role="alert" style="z-index: 10000;">
+    {{alertMsgRed}} 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="card" *ngIf="studentPartnersTable || studentsTable" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
+    <div class="card-body">
+      <h4 class="card-title" *ngIf="studentPartnersTable" style="margin-bottom: 20px;">Studenți interesați de companie</h4>
+
+      <table *ngIf="studentPartnersTable" class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Student</th>
+            <th scope="col">Detalii student</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let studentPartner of studentPartnersTable">
+            <tr> 
+              <th scope="row"></th>
+              <td>{{studentPartner.name}}</td>
+              <td (click)="openStudent(studentPartner)" style="cursor: pointer;">
+                <i class="material-icons">visibility</i>
+              </td>
+            </tr> 
+          </ng-container> 
+        </tbody>
+      </table>
+
+      
+      <h5 class="card-title" *ngIf="studentsTable" style="margin-bottom: 20px; margin-top: 20px;">Studenți interesați de joburi și aplicări</h5>
+
+      <table *ngIf="studentsTable"  class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Student</th>
+            <th scope="col">Job</th>
+            <th scope="col">Status</th>
+            <th scope="col">Detalii student</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let studentTable of studentsTable">
+            <tr> 
+              <th scope="row"></th>
+              <td>{{studentTable.studentName}}</td>
+              <td>{{studentTable.jobTitle}}</td>
+              <td>
+                <ng-container *ngIf="studentTable.jobStatus === 1">
+                  Favorit
+                </ng-container>
+                <ng-container *ngIf="studentTable.jobStatus === 2">
+                  Aplicare
+                </ng-container>
+              </td>
+              <td (click)="openStudent(studentTable.studentDetails)" style="cursor: pointer;">
+                <i class="material-icons">visibility</i>
+              </td>
+            </tr> 
+          </ng-container> 
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="card" style="border-radius: 20px; box-shadow: 0 0 10px #5C97BF; margin-top: 30px; margin-bottom: 5px; margin-left: 10%; margin-right: 10%;">
+    <div class="card-body" *ngIf="partner">
+      <h4 class="card-title" style="margin-bottom: 20px;">Setări Admin</h4>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează informațiile partenerului</h5>
+
+      <form #updateForm="ngForm" (ngSubmit)="updatePartner(updateForm)">
+
+        <div class="mb-3">
+          <label for="exampleInputName" class="form-label">Nume</label>
+          <input type="text" class="form-control" id="exampleInputName" name="name" [(ngModel)]="partner.name" >
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputAddress" class="form-label">Adresă</label>
+          <input type="text" class="form-control" id="exampleInputAddress" name="address" [(ngModel)]="partner.address">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPhone" class="form-label">Număr de telefon</label>
+            <input type="tel" class="form-control" id="exampleInputPhone" name="phone" [(ngModel)]="partner.phone">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Adresă de email</label>
+            <input type="email" class="form-control" id="exampleInputEmail" name="email" [(ngModel)]="partner.email">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputSocial" class="form-label">Website</label>
+            <input type="text" class="form-control" id="exampleInputSocial" name="social" [(ngModel)]="partner.social">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputMainDescription" class="form-label">Descriere pentru pagina principală</label>
+          <ckeditor [editor]="Editor" id="exampleInputMainDescription" name="mainDescription" [(ngModel)]="partner.mainDescription"></ckeditor>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputDescription" class="form-label">Descriere pentru pagina de profil</label>
+          <ckeditor [editor]="Editor" id="exampleInputDescription" name="description" [(ngModel)]="partner.description"></ckeditor>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizează informațiile</button>
+      </form>
+
+      <h5 class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Încarcă imaginile partenerului</h5>
+
+      <div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Pagina de profil</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="uploadProfileFile()">Salvează</button>
+      </div>
+
+      <div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Pagina principală</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="uploadMainFile()">Salvează</button>
+      </div>
+
+      <div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Logo</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 30px;" (click)="uploadLogoFile()">Salvează</button>
+      </div>
+
+    <h5 *ngIf="events.length > 0" class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează evenimentele</h5>
+      
+    <table *ngIf="events.length > 0" class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Eveniment</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let event of events">
+          <tr (click)="openEventEdit(event.id)" style="cursor: pointer;">
+            <th scope="row"></th>
+            <td>{{event.title}}</td>
+            <td>{{event.date | date:'dd-MM-yyyy' }}</td>
+          </tr>
+        </ng-container> 
+      </tbody>
+    </table>
+
+    <button (click)="openEventAdd()" type="submit" class="btn btn-primary">Adaugă un eveniment nou</button>
+
+    <h5 *ngIf="jobs.length > 0" class="card-title" style="margin-bottom: 20px; margin-top: 20px;">Actualizează joburile</h5>
+      
+    <table *ngIf="jobs.length > 0" class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Job</th>
+          <th scope="col">Ultima actualizare</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let job of jobs">
+          <tr (click)="openEventEditJob(job.id)" style="cursor: pointer;">
+            <th scope="row"></th>
+            <td>{{job.title}}</td>
+            <td>{{job.lastUpdated | date:'dd-MM-yyyy' }}</td>
+          </tr>
+        </ng-container> 
+      </tbody>
+    </table>
+
+    <button (click)="openEventAddJob()" type="submit" class="btn btn-primary">Adaugă un job nou</button>
+
+    <div>
+      <button style="margin-bottom: 15px; margin-left: 15px; background-color: #4B77BE; width: 150px; height: 50px;" class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Delogare</button>
+    </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer-comp></footer-comp>

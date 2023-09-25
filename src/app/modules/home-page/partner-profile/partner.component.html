@@ -1,0 +1,35 @@
+<nav-bar></nav-bar>
+
+<style>
+  profile-left, profile-right {
+    display: inline-block;
+    
+    vertical-align: top;
+  }
+</style>
+
+<profile-left>left content here</profile-left>
+<profile-right>right content here</profile-right>
+
+<div *ngIf="events" class="header-with-line">
+  <h2 class="first_title">
+  Evenimente
+  </h2>
+</div>
+
+<div *ngFor="let event of events">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{event.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary" style="color: gray">{{event.type}}</h6>
+      <p class="card-text" [innerHTML]="event.description"></p>
+      <p class="card-text">
+        <i *ngIf="event.location" class="material-icons">map</i> {{ event.location }}    
+        <i *ngIf="event.date" class="material-icons">event</i> {{ event.date | date:'dd-MM-yyyy' }}   
+        <i *ngIf="event.time" class="material-icons">watch</i> {{ event.time }}
+      </p>
+      <p class="card-text"><small class="text-body-secondary">Postat la: {{event.createdAt | date:'dd-MM-yyyy'}}</small></p>
+    </div>
+  </div>
+</div>
+<footer-comp></footer-comp>
