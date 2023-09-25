@@ -18,7 +18,7 @@ import { AgmCoreModule } from '@agm/core';
         CommonModule,
         ImageSliderModule,
         AgmCoreModule.forRoot({
-            apiKey: "AIzaSyBhU3J5kgohV9C4enjQW6g2tbzs-MAMTF8"
+            apiKey: "API-KEY"
           })
     ]
 })
