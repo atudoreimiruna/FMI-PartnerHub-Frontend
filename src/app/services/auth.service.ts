@@ -123,11 +123,11 @@ export class AuthService {
   
   private configureOAuth() {
     const authConfig: AuthConfig = {
-      issuer: 'https://login.microsoftonline.com/20ed8f4e-52f7-4d77-bfc1-862ced77c351/v2.0',
+      issuer: 'https://login.microsoftonline.com/client-secret/v2.0',
       redirectUri: window.location.origin,
-      clientId: 'f969fab1-6d79-42a0-96c0-32eb06cb8d0b',
+      clientId: 'clientId',
       responseType: 'code',
-      scope: 'api://f969fab1-6d79-42a0-96c0-32eb06cb8d0b/Users.All',
+      scope: 'api://client-secret/Users.All',
       showDebugInformation: false,
       strictDiscoveryDocumentValidation: false
     };
